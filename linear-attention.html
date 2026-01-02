@@ -230,29 +230,31 @@
                 <li>计算输出：Y=Softmax(Q*K)*V（为了表述简便，忽略归一化与掩码矩阵）</li>
             </ol>
 
-            <p>要实现全局注意力，就要一个包含位置信息的全局矩阵来编码注意力矩阵Q*K，与之伴随的是空间平方的复杂度，和超长上下文的工程难题。如果我们放松Softmax的计算要求，用线性核来解耦注意力矩阵：Softmax(Q*K) ~= phi(Q)*phi(K)，那么我们可以改换输出公式里的乘法顺序（忽略核函数）：Y=Q*(K*V)。此时我们只需要维护一个与上下文长度无关的固定矩阵K*V即可，计算复杂度降为空间线性。缺点也是显而易见的：我们无法精准地编码位置信息；随着文本增长，早期记忆更容易被灾难性遗忘。正如【3】所指出的，线性注意力机制本质上是一种RNN。</p>
+            <p>要实现全局注意力，就要一个包含位置信息的全局矩阵来编码注意力矩阵Q*K，与之伴随的是空间平方的复杂度，和超长上下文的工程难题。若将注意力核从 softmax 放宽为可分解的核函数（或用随机特征/显式特征映射近似 softmax kernel），则可将注意力写成：</p>
 
-            <p><strong>这种重述带来了新的视角。</strong>我们把线性注意力的输出公式拆分为两步：</p>
-            <ol>
-                <li>M+=K*V</li>
-                <li>Y=Q*M</li>
-            </ol>
+            <div class="formula">Attn(Q,K,V) ≈ φ(Q)(φ(K)ᵀ V)</div>
 
-            <p>中间状态M描述了一个随着输入流更新的记忆状态，也就是 RNN 里的隐状态。这是一个典型的关联记忆模型（associative memory），它编码了从 Key 到 Value 的映射关系。面对一个新的 Query，输出行为就是从M中提取出与Q关联的记忆。关联记忆模型正是去年 Hopfield 和 Hinton 获得物理学诺贝尔奖的工作的基础。启发它的赫布理论以及衍生出的突触可塑性依然是今天主流神经生物学的基础理论。</p>
+            <p>在自回归（causal）情形下，令</p>
+            <div class="formula">S_t = Σ_{i≤t} φ(k_i)v_iᵀ,  z_t = Σ_{i≤t} φ(k_i)</div>
+
+            <p>则输出可写成：</p>
+            <div class="formula">o_t = (φ(q_t)ᵀ S_t) / (φ(q_t)ᵀ z_t)</div>
+
+            <p>其中 S_t 是一个随 token 流递推更新、与上下文长度无关的中间态。分母项 z_t 的归一化对于数值稳定和长度增长时的尺度漂移至关重要，这也是线性注意力处理灾难性遗忘的关键机制。Katharopoulos 等人指出，这种递推实现使线性注意力在因果场景下呈现出明确的 RNN 结构：注意力从"扫描全部 KV 列表"转为"更新固定大小的隐状态并进行读出"【3】。</p>
+
+            <p><strong>这种重述带来了新的视角。</strong>中间状态 S_t 描述了一个随着输入流更新的记忆状态，也就是 RNN 里的隐状态。这是一个典型的关联记忆模型（associative memory），它编码了从 Key 到 Value 的映射关系。面对一个新的 Query，输出行为就是从 S_t 中提取出与 Q 关联的记忆。关联记忆模型正是 2024 年 Hopfield 和 Hinton 获得物理学诺贝尔奖的工作的基础<sup><a href="#note1">*</a></sup>。启发它的赫布理论以及衍生出的突触可塑性依然是今天主流神经生物学的基础理论。</p>
 
             <h2>波函数类比</h2>
 
-            <p>中间状态M的引入，让我想起量子力学历史上矩阵力学与波动力学之争。深受马赫主义影响的海森堡认为物理理论应当避免引入缺乏操作定义的量，比如电子在轨道上的精确位置和经典动量等，只有轨道之间的跃迁信息是可观测量，应当用矩阵来描述。与此同时，德布罗意从光的波粒二相性出发，认为一切物质都具有波动性，需要用波函数描述这种物质波。注意：在波恩的概率诠释之前，德布罗意认为这是真实存在的实体波（就像电磁波一样），而不仅仅是便于计算的隐喻。虽然两个理论很快被证明在数学上是等价的——从本体论层面上，波函数从物质实体降格为量子态在位置表象下的表征（representation）——但是波函数相较抽象晦涩的矩阵拥有几何直觉与可视化的优势。它在帮助我们想象（而非理解）理论的可能性上仍有价值。</p>
+            <p>中间状态 S_t 的引入，让我想起量子力学历史上矩阵力学与波动力学之争。深受马赫主义影响的海森堡认为物理理论应当避免引入缺乏操作定义的量，比如电子在轨道上的精确位置和经典动量等，只有轨道之间的跃迁信息是可观测量，应当用矩阵来描述。与此同时，德布罗意从光的波粒二相性出发，认为一切物质都具有波动性，需要用波函数描述这种物质波。注意：在波恩的概率诠释之前，德布罗意认为这是真实存在的实体波（就像电磁波一样），而不仅仅是便于计算的隐喻。虽然两个理论很快被证明在数学上是等价的——从本体论层面上，波函数从物质实体降格为量子态在位置表象下的表征（representation）——但是波函数相较抽象晦涩的矩阵拥有几何直觉与可视化的优势。它在帮助我们想象（而非理解）理论的可能性上仍有价值。</p>
 
-            <p><strong>在我看来，线性注意力的中间状态M就是这个多出来的波函数。</strong>它不仅在方法论上帮助我们理解线性注意力机制，更是在本体论层面打开了一个新的探索空间，即对于"记忆"本身的建模与训练。</p>
+            <p><strong>在我看来，线性注意力的中间状态 S_t 并不是额外引入了新的"本体论对象"，更像是一次表象切换：</strong>把原本隐含在一次性注意力计算中的线性映射（从 key 空间到 value 空间的关联）显式化为一个可递推更新的算符/状态。就像波函数作为量子态在特定基下的表示，提供了强烈的几何直觉与可视化入口；S_t 的显式化同样把"记忆是什么、如何写入/遗忘、如何分层"变成了可以被直接设计与分析的对象。</p>
 
             <h2>从静态到动态："惊讶度"的物理学</h2>
 
-            <p>在此基础上，【1】提出了一个更深刻的视角转换。它将第一步，记忆更新，视作一个在线学习（on-line learning）的动力学过程，指导这个过程的，是一个全局损失函数L。于是，记忆更新行为被视作：为了最小化损失函数，参数M对数据流的动态响应。即：</p>
+            <p>在此基础上，【1】提出了一个更深刻的视角转换。它将记忆更新视作一个在线学习（online learning）的动力学过程。在 Titans 的视角里，长期记忆的"写入"可以被理解为对某个 associative memory loss 的在线优化：每来一段新数据，就在记忆参数上走一步（或少数几步）梯度更新。更关键的是，更新强度并非恒定，而是由"惊讶度（surprise）"调制：违反模型预期的数据更"值得被记住"。Titans 用梯度作为 surprise 的度量，并结合衰减机制实现记忆管理；作者还指出该机制与带动量与 weight decay 的小批量梯度法存在等价联系。</p>
 
-            <div class="formula">M=argmin L(M(K),V)</div>
-
-            <p>我们对反过来的表述都很熟悉。传统的机器学习就是基于这样一套逻辑：预设一个目标函数，通过已标注训练集（在线或离线），训练出一个最佳模型。此处，目标函数是具象的（预测与标注的误差），模型参数是抽象的。而在"从关联记忆到在线学习"的图景转换里，模型参数是具象的（记忆），参数的动力学过程也是具象的（记忆更新），我们要反推出一个目标函数，是相对抽象的。不过【1】还是为这个目标函数赋予了一个诠释，称为"惊讶度"，直观理解为：人们对习以为常的现象不会加以过多关注，意外事件更容易被记住，即触发记忆更新机制。</p>
+            <p>我们对反过来的表述都很熟悉。传统的机器学习就是基于这样一套逻辑：预设一个目标函数，通过已标注训练集（在线或离线），训练出一个最佳模型。此处，目标函数是具象的（预测与标注的误差），模型参数是抽象的。而在"从关联记忆到在线学习"的图景转换里，模型参数是具象的（记忆），参数的动力学过程也是具象的（记忆更新），我们要反推出一个目标函数，是相对抽象的。这个目标函数被诠释为"惊讶度"：人们对习以为常的现象不会加以过多关注，意外事件更容易被记住，即触发记忆更新机制。</p>
 
             <p>任何一个接受过高等物理学训练的人都会对这个逆向思维非常敏感，因为它是分析力学的核心思想。基于速度、加速度、力等矢量概念的牛顿力学表述是动力学过程，它用"动力因"描绘了一整套机械宇宙图景；但是当代力学体系所依赖的是一系列标量：哈密顿量、拉格朗日量、作用量、路径积分、配分函数。这些标量不仅完美兼容动力学表述，还可以简洁地描述系统遵循的对称性，深刻揭示对称与守恒的关系，优雅地处理边界条件和自由度。它们极其晦涩抽象，但是在数学上如此优越，足以让人们抛弃一个更直观的动力学图景。</p>
 
@@ -264,13 +266,17 @@
                 <li>优化器：从损失函数到记忆更新的优化机制，Gradient Descent, SGD, Adam…</li>
             </ol>
 
-            <p>【1】将在线学习称为 Test-time Training（TTT）。它打了个很形象的比方：今天的大模型是一个顺行性遗忘症（anterograde amnesia）患者。它拥有在某个时间节点前（预训练语料库截止时间）的所有记忆。在运行时，它也拥有执行该任务所需要的所有短期记忆（上下文）。但是，一旦任务结束，这些上下文被立刻抛弃，无法形成长期记忆。在线学习可以突破这个藩篱，因为它不必保留所有上下文，只需要通过流经的短期记忆形成长期记忆（也就是M）即可。与之相对的基础模型（提供了从输入X到QKV的映射矩阵）除了提供对世界的基本理解以外，还担负着"更有效地形成长期记忆"的职责。</p>
+            <p>【1】用"顺行性遗忘症（anterograde amnesia）"这个比喻来描述今天的大模型：它拥有在某个时间节点前（预训练语料库截止时间）的所有记忆。在运行时，它也拥有执行该任务所需要的所有短期记忆（上下文）。但是，一旦任务结束，这些上下文被立刻抛弃，无法形成长期记忆。Titans 提出的 test-time memorization / online learning 可以突破这个藩篱，因为它不必保留所有上下文，只需要通过流经的短期记忆形成长期记忆（也就是 S_t）即可。与之相对的基础模型（提供了从输入X到QKV的映射矩阵）除了提供对世界的基本理解以外，还担负着"更有效地形成长期记忆"的职责。</p>
+
+            <p>需要区分的是，<strong>Titans 的在线学习</strong>与<strong>Test-Time Training (TTT) layers</strong>【7】是不同的概念：TTT 特指 Sun 等人提出的方法，他们将 hidden state 直接做成一个小模型，每个 token/mini-batch 做一步自监督学习更新；而 Titans 关注的是长期记忆模块的训练，用 surprise 和衰减机制来管理记忆。</p>
 
             <p>对于这一点，【2】认为【1】的做法不够精致。从更新频率的视角来看，【1】本质上提供了二元更新频率，即：</p>
             <ul>
                 <li>外层循环，f=0，基础模型，静态，不更新。</li>
-                <li>内层循环，f=1，以token流为单位，每流经一个token就更新一次M。</li>
+                <li>内层循环，f=1，以token流为单位，每流经一个token就更新一次记忆状态。</li>
             </ul>
+
+            <p>Nested Learning 进一步把"更新频率"提升为一个新的设计轴：对系统中每个组件定义其 update rate（权重多久更新一次），据此将嵌套/并行的内部优化问题排序成 levels，并由此得到"连续谱"的记忆系统（CMS）：不同模块在不同频率上压缩与固化其各自的 context flow。Titans 可以被视为只有两级频率的特例。</p>
 
             <p>而人的记忆更像是一个层级结构：从原初的感官信息（sensory registeration）开始，部分进入工作记忆（working memory）并被编码为具体的情境记忆（episodic memory）。随着系统整合的发生，这些记忆经历"去情境化"（decontextualization），最终提炼为稳固的语义知识（semantic knowledge），并内化为深层的认知图式（cognitive schemas）与世界观。（当然实际情况比这个单一链条复杂得多，比如我们今天的大部分抽象知识都在语义知识空间里直接生成，并没有对应的情境记忆。）这不仅仅是一个抽象的认识论模型，它更有着神经生物的基础，在大脑中与高频（gamma）到低频（delta）的神经振荡相对应。这也是当前神经科学研究的核心范式之一。</p>
 
@@ -282,7 +288,7 @@
 
             <p>重整化群是一套普世方法，无论对象是量子电动力学、永磁体还是沙堆，无论尺度变换是连续的还是离散的，它都用同一个框架去审视系统。在这套框架里最核心的概念是不动点（fixed point），或严格来说是非平庸的不动点（称之为"临界点"）。临界点针对参数空间而言，它指系统在一套特定的参数下（比如磁铁所处的温度和外磁场强度）不随时间或空间的尺度（比如磁铁原子的自旋块，block spin）的变化而变化。临界点并不是一个"点"，而是一切符合尺度不变性的参数自空间。在深度学习模型里，空间尺度坐标是神经网络的深度（从下到上）；在【2】里，时间尺度坐标是洋葱的层数（从外到里）。（其实重整化流的图像对扩散模型最直观，因为它的时间和空间尺度变化是绑定的。）</p>
 
-            <p>一个好的模型一定在一个临界点上，反之未必。我们可以想象两类平庸的不动点。红外不动点——过拟合，模型仅仅是一本字典，没有泛化能力；紫外不动点——白噪音 / 灾难性遗忘，模型记不住任何东西，至少无法可靠地记住任何东西。而在非平庸的临界点上，模型收敛到了某个固定的参数流形上。它有效地冲刷掉了原初信息中的噪音，保留了记忆和认知中最深层的结构。注意，临界点性质不足以判断模型好坏，但它提供了一套归类方法（普世类，Universality Class），将模型的微扰自由度分为相关算符（relevant operator）和无关算符（irrelevant operator）。在同一个普世类下，所有无关算符都会被积分掉（integrated out），而相关算符则不断被强化。我想提出的是，对于记忆模型而言，特别是在个性化AI的语境下，我们真正关心的不是那些强相关算符，而是在两者边界上的边缘算符（marginal operator）。强相关算符对应的是基础模型中已经习得的通用知识（语法、基础知识、普世价值观），它对记忆模型而言并不重要；真正重要的是从"我"的记忆中提取的关于"我"的偏好、思维方式和价值观，这些信息最有可能编码在边缘算符中。令人期待的是，重整化群不仅为这种概念区分提供了可量化定义的蓝图，还提供了一个系统方案来计算模型在相关算符附近的状态方程（equation of state）。它不是第一性原理层面上的动力学方程（equation of dynamics），但它提供了丰富的模型库，来探索普世类流形的动态平衡关系。</p>
+            <p>我们可以尝试用"接近某种非平庸不动点/不变流形"来组织现象，检验其是否能解释泛化与遗忘的权衡。作为类比示意，我们可以想象两类平庸的不动点：<strong>红外不动点</strong>——过拟合，模型仅仅是一本字典，没有泛化能力；<strong>紫外不动点</strong>——白噪音 / 灾难性遗忘，模型记不住任何东西，至少无法可靠地记住任何东西。而在非平庸的临界点上，模型收敛到了某个固定的参数流形上。它有效地冲刷掉了原初信息中的噪音，保留了记忆和认知中最深层的结构。注意，临界点性质不足以判断模型好坏，但它提供了一套归类方法（普世类，Universality Class），将模型的微扰自由度分为相关算符（relevant operator）和无关算符（irrelevant operator）。在同一个普世类下，所有无关算符都会被积分掉（integrated out），而相关算符则不断被强化。我想提出的是，对于记忆模型而言，特别是在个性化AI的语境下，我们真正关心的不是那些强相关算符，而是在两者边界上的<strong>边缘算符（marginal operator）</strong>。强相关算符对应的是基础模型中已经习得的通用知识（语法、基础知识、普世价值观），它对记忆模型而言并不重要；真正重要的是从"我"的记忆中提取的关于"我"的偏好、思维方式和价值观，这些信息最有可能编码在边缘算符中。令人期待的是，重整化群不仅为这种概念区分提供了可量化定义的蓝图，还提供了一个系统方案来计算模型在相关算符附近的状态方程（equation of state）。它不是第一性原理层面上的动力学方程（equation of dynamics），但它提供了丰富的模型库，来探索普世类流形的动态平衡关系。</p>
 
             <p>以上是我最近的阅读体验。如果你看完一头雾水，这不怪你（当然也不怪我）。首先我自己并没有想清楚许多细节，特别是如何将【2】里的自由度映射到RG框架里；其次我也没有面向普通读者写作（和我的科普书不同）。我想象中的读者是兼具物理学和AI研究背景的科学家——这在今天的AI圈不在少数。物理学对于AI的滋养远未结束，尤其在关于"尺度"的研究上——这远不是一个"Scaling Law"可以涵盖的丰富宝藏。</p>
 
@@ -295,7 +301,9 @@
                     <li>It's All Connected: A Journey Through Test-Time Memorization, Attentional Bias, Retention, and Online Optimization (Apr 2025)</li>
                     <li>线性注意力简史：从模仿、创新到反哺 By 苏剑林，2025-06-20</li>
                     <li>什么是物理？用物理学的视角看世界（下）：近代物理篇，2024</li>
+                    <li>Learning to (Learn at Test Time): RNNs with Expressive Hidden States (2024)</li>
                 </ol>
+                <p id="note1" style="margin-top: 20px; font-size: 0.9em; color: #666;"><sup>*</sup> 2024年诺贝尔物理学奖授予 John J. Hopfield 与 Geoffrey Hinton，表彰他们在机器学习/神经网络领域的基础性贡献。详见 <a href="https://www.nobelprize.org/prizes/physics/2024/summary/" target="_blank">Nobel Prize 官方页面</a>。</p>
             </div>
         </div>
 
@@ -316,33 +324,33 @@
 
             <p>To achieve global attention, one requires a global matrix containing positional information to encode the attention matrix Q*K. This comes with quadratic spatial complexity O(n²) and the engineering challenges of handling ultra-long contexts.</p>
 
-            <p>If we relax the Softmax requirement and use a linear kernel to decouple the attention matrix—Softmax(Q*K) ~= φ(Q)*φ(K)—we can change the order of multiplication in the output formula (ignoring the kernel function): Y=Q*(K*V). Now, we only need to maintain a fixed-size matrix K*V independent of context length, reducing complexity to linear space. The downsides are obvious: we cannot precisely encode positional information, and as the text grows, early memories are prone to catastrophic forgetting. As [3] pointed out, linear attention is essentially a variant of an RNN.</p>
+            <p>If we relax the Softmax requirement and use a decomposable kernel function (or approximate the softmax kernel with random/explicit feature maps), we can write attention as:</p>
 
-            <p><strong>This reformulation brings a new perspective.</strong> We can split the linear attention output into two steps:</p>
-            <ol>
-                <li>M += K*V</li>
-                <li>Y = Q*M</li>
-            </ol>
+            <div class="formula">Attn(Q,K,V) ≈ φ(Q)(φ(K)ᵀ V)</div>
 
-            <p>The intermediate state M describes a memory state that updates with the input stream—equivalent to the hidden state in an RNN. This is a typical <strong>associative memory model</strong>, encoding the mapping from Key to Value. Faced with a new Query, the output behavior is simply extracting the memory associated with Q from M. Associative memory models are the foundation of the work for which Hopfield and Hinton were awarded the Nobel Prize in Physics last year. The Hebbian theory that inspired it, along with the derived concept of synaptic plasticity, remains a cornerstone of modern neurobiology.</p>
+            <p>In the autoregressive (causal) setting, let</p>
+            <div class="formula">S_t = Σ_{i≤t} φ(k_i)v_iᵀ,  z_t = Σ_{i≤t} φ(k_i)</div>
+
+            <p>then the output can be written as:</p>
+            <div class="formula">o_t = (φ(q_t)ᵀ S_t) / (φ(q_t)ᵀ z_t)</div>
+
+            <p>where S_t is an intermediate state that updates recursively with the token stream and is independent of context length. The normalization term z_t is crucial for numerical stability and scale drift as length grows—this is a key mechanism for linear attention to handle catastrophic forgetting. Katharopoulos et al. point out that this recursive implementation reveals an explicit RNN structure in causal linear attention: attention transforms from "scanning the entire KV list" to "updating a fixed-size hidden state and reading out" [3].</p>
+
+            <p><strong>This reformulation brings a new perspective.</strong> The intermediate state S_t describes a memory state that updates with the input stream—equivalent to the hidden state in an RNN. This is a typical <strong>associative memory model</strong>, encoding the mapping from Key to Value. Faced with a new Query, the output behavior is simply extracting the memory associated with Q from S_t. Associative memory models are the foundation of the work for which Hopfield and Hinton were awarded the 2024 Nobel Prize in Physics<sup><a href="#note1-en">*</a></sup>. The Hebbian theory that inspired it, along with the derived concept of synaptic plasticity, remains a cornerstone of modern neurobiology.</p>
 
             <h2>The Wave Function Analogy</h2>
 
-            <p>The introduction of the intermediate state M reminds me of the historical debate between Matrix Mechanics and Wave Mechanics. Heisenberg, deeply influenced by Machian positivism, believed physical theories should avoid quantities lacking operational definitions—such as the precise position and classical momentum of an electron in orbit. Only the transition information between orbits was observable and thus should be described by matrices.</p>
+            <p>The introduction of the intermediate state S_t reminds me of the historical debate between Matrix Mechanics and Wave Mechanics. Heisenberg, deeply influenced by Machian positivism, believed physical theories should avoid quantities lacking operational definitions—such as the precise position and classical momentum of an electron in orbit. Only the transition information between orbits was observable and thus should be described by matrices.</p>
 
             <p>Meanwhile, de Broglie, starting from the wave-particle duality of light, proposed that all matter has a wave nature requiring a wave function description. Note that before Born's probability interpretation, de Broglie believed this was a real, physical wave (like an electromagnetic wave), not just a calculation metaphor. Although the two theories were soon proven mathematically equivalent—and ontologically, the wave function was "downgraded" from a material entity to a representation of a quantum state in the position basis—the wave function still possessed geometric intuition and visualization advantages over the abstract, obscure matrices. It remains valuable for imagining (rather than just calculating) theoretical possibilities.</p>
 
-            <p><strong>In my view, the intermediate state M in linear attention is precisely this additional "wave function."</strong> It not only helps us understand the mechanism methodologically but also opens a new exploratory space at the ontological level: the modeling and training of "memory" itself.</p>
+            <p><strong>In my view, the intermediate state S_t in linear attention is not an additional "ontological object," but rather a representation switch:</strong> it makes explicit the linear mapping (the association from key space to value space) that was previously implicit in the one-shot attention computation, turning it into a recursively updatable operator/state. Just as the wave function, as a representation of a quantum state in a specific basis, provides strong geometric intuition and visualization; the explicitization of S_t similarly turns "what memory is, how to write/forget, how to layer" into objects that can be directly designed and analyzed.</p>
 
             <h2>From Static to Dynamic: The Physics of "Surprise"</h2>
 
-            <p>Building on this, [1] proposes an even deeper perspective shift. It views the first step—memory update—as a dynamic process of <strong>online learning</strong>, guided by a global loss function L. Thus, the memory update behavior is seen as the parameter M's dynamic response to the data stream to minimize loss:</p>
+            <p>Building on this, [1] proposes an even deeper perspective shift. In Titans' view, the "writing" of long-term memory can be understood as online optimization of an associative memory loss: for each new piece of data, take one (or a few) gradient update steps on the memory parameters. More crucially, the update strength is not constant but modulated by "surprise": data that violates model expectations is more "worth remembering." Titans use gradients as a measure of surprise and combine it with decay mechanisms for memory management; the authors also point out that this mechanism has equivalent connections to mini-batch gradient descent with momentum and weight decay.</p>
 
-            <div class="formula">M = argmin L(M(K), V)</div>
-
-            <p>We are familiar with the inverse formulation. Traditional machine learning is based on pre-setting an objective function and training an optimal model via a labeled dataset (online or offline). There, the objective is concrete (prediction error), and the model parameters are abstract. However, in the shift from "associative memory" to "online learning," the model parameters are concrete (the memory M), and the dynamics are concrete (the update rule), while we must infer the objective function, which is relatively abstract.</p>
-
-            <p>[1] interprets this objective as "Surprise": we tend to ignore habitual phenomena, but unexpected events are more likely to be remembered, triggering the memory update mechanism.</p>
+            <p>We are familiar with the inverse formulation. Traditional machine learning is based on pre-setting an objective function and training an optimal model via a labeled dataset (online or offline). There, the objective is concrete (prediction error), and the model parameters are abstract. However, in the shift from "associative memory" to "online learning," the model parameters are concrete (the memory), and the dynamics are concrete (the update rule), while we must infer the objective function, which is relatively abstract. This objective is interpreted as "Surprise": we tend to ignore habitual phenomena, but unexpected events are more likely to be remembered, triggering the memory update mechanism.</p>
 
             <p>Anyone with training in advanced physics will be sensitive to this inverse thinking—it is the core of <strong>Analytical Mechanics</strong>. Newton's formulation, based on vectors like velocity, acceleration, and force, is a dynamical process painting a mechanical universe via "efficient causes." However, modern mechanics relies on scalars: the Hamiltonian, Lagrangian, Action, Path Integral, and Partition Function. These scalars not only perfectly accommodate dynamical descriptions but also elegantly describe symmetries, conservation laws, boundary conditions, and degrees of freedom. They are abstract and obscure, yet their mathematical superiority is sufficient to make us abandon the more intuitive Newtonian picture.</p>
 
@@ -354,15 +362,19 @@
                 <li><strong>Optimizer:</strong> The mechanism from loss function to memory update (GD, SGD, Adam, etc.).</li>
             </ol>
 
-            <p>[1] terms this online learning <strong>Test-Time Training (TTT)</strong>. It uses a vivid analogy: today's LLMs suffer from <em>anterograde amnesia</em>. They possess all memories prior to a specific cutoff (pre-training), and during runtime, they hold the short-term memory (context) needed for the task. But once the task ends, the context is discarded, never forming long-term memory. Online learning breaks this barrier because it doesn't need to retain the full context buffer; it only needs to form long-term memory (state M) via the flowing short-term memory. Conversely, the "Foundation Model" (which provides the X→QKV mapping) is responsible not just for basic world understanding, but for "learning how to form long-term memories effectively."</p>
+            <p>[1] uses the analogy of <em>anterograde amnesia</em> to describe today's LLMs: they possess all memories prior to a specific cutoff (pre-training), and during runtime, they hold the short-term memory (context) needed for the task. But once the task ends, the context is discarded, never forming long-term memory. Titans' test-time memorization / online learning breaks this barrier because it doesn't need to retain the full context buffer; it only needs to form long-term memory (state S_t) via the flowing short-term memory. Conversely, the "Foundation Model" (which provides the X→QKV mapping) is responsible not just for basic world understanding, but for "learning how to form long-term memories effectively."</p>
+
+            <p>It is important to distinguish <strong>Titans' online learning</strong> from <strong>Test-Time Training (TTT) layers</strong> [7]: TTT specifically refers to Sun et al.'s approach, where they make the hidden state directly into a small model, performing one step of self-supervised learning update per token/mini-batch; whereas Titans focuses on training long-term memory modules, using surprise and decay mechanisms to manage memory.</p>
 
             <h2>The Onion of Time: Nested Learning and RG</h2>
 
             <p>Regarding this, [2] critiques [1] as lacking refinement. From the perspective of update frequency, [1] essentially offers a binary frequency:</p>
             <ul>
                 <li><strong>Outer Loop (f=0):</strong> Foundation model, static, no update.</li>
-                <li><strong>Inner Loop (f=1):</strong> Updates M with every token in the stream.</li>
+                <li><strong>Inner Loop (f=1):</strong> Updates memory state with every token in the stream.</li>
             </ul>
+
+            <p>Nested Learning further elevates "update frequency" as a new design axis: for each component in the system, define its update rate (how often weights update), thereby ordering nested/parallel internal optimization problems into levels, and thus obtaining a "continuous spectrum" memory system (CMS): different modules compress and consolidate their respective context flows at different frequencies. Titans can be seen as a special case with only two frequency levels.</p>
 
             <p>Human memory, however, resembles a hierarchical structure: starting from raw <strong>sensory registration</strong>, entering <strong>working memory</strong>, encoded into <strong>episodic memory</strong>, and through consolidation, de-contextualized into stable <strong>semantic knowledge</strong> and deep <strong>cognitive schemas</strong>. (Reality is more complex, but this holds conceptually). This hierarchy has neurobiological grounding, corresponding to neural oscillations ranging from high-frequency Gamma to low-frequency Delta waves.</p>
 
@@ -380,8 +392,7 @@
 
             <p>RG applies a unified framework whether the object is QED, a permanent magnet, or a sandpile. The core concept is the <strong>Fixed Point</strong> (specifically, the Critical Point). A critical point refers to a subspace of parameters where the system remains invariant under scale transformations (e.g., the block spin of a magnet). In Deep Learning, the spatial scale coordinate is Network Depth; in [2], the temporal scale coordinate is the Onion Layer (Outer → Inner).</p>
 
-            <p>A good model must reside at a <strong>Critical Point</strong>.</p>
-            <p>We can imagine two trivial fixed points:</p>
+            <p>We can attempt to organize phenomena using "proximity to some non-trivial fixed point/invariant manifold," testing whether it can explain the trade-off between generalization and forgetting. As an illustrative analogy, we can imagine two trivial fixed points:</p>
             <ul>
                 <li><strong>IR Fixed Point (Overfitting):</strong> The model is just a dictionary; zero generalization.</li>
                 <li><strong>UV Fixed Point (White Noise / Catastrophic Forgetting):</strong> The model remembers nothing reliable.</li>
@@ -408,7 +419,9 @@
                     <li><em>It's All Connected: A Journey Through Test-Time Memorization, Attentional Bias, Retention, and Online Optimization</em> (Apr 2025)</li>
                     <li><em>A Brief History of Linear Attention</em> by Su Jianlin (Jun 2025)</li>
                     <li><em>What is Physics? Looking at the World through the Lens of Physics (Part II)</em> (2024)</li>
+                    <li><em>Learning to (Learn at Test Time): RNNs with Expressive Hidden States</em> (2024)</li>
                 </ol>
+                <p id="note1-en" style="margin-top: 20px; font-size: 0.9em; color: #666;"><sup>*</sup> The 2024 Nobel Prize in Physics was awarded to John J. Hopfield and Geoffrey Hinton for their foundational contributions to machine learning/neural networks. See the <a href="https://www.nobelprize.org/prizes/physics/2024/summary/" target="_blank">official Nobel Prize page</a>.</p>
             </div>
         </div>
     </div>

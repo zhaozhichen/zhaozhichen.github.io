@@ -245,7 +245,7 @@
             <p>传统的注意力机制本质上做了两件事情：</p>
             <ol>
                 <li>将输入 \(X\) 映射到三个矩阵：Key，Value，Query</li>
-                <li>计算输出：\(Y = \mathrm{softmax}(QK^\top)V\)（为了表述简便，忽略归一化与掩码矩阵）</li>
+                <li>计算输出：\(\mathrm{Attn}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right)V\)（为了表述简便，忽略掩码矩阵）</li>
             </ol>
 
             <p>要实现全局注意力，就要一个包含位置信息的全局矩阵来编码注意力矩阵 \(QK^\top\)，与之伴随的是空间平方的复杂度 \(O(n^2)\)，和超长上下文的工程难题。若将注意力核从 softmax 放宽为可分解的核函数（或用随机特征/显式特征映射近似 softmax kernel），则可将注意力写成：</p>
@@ -345,7 +345,7 @@
             <p>Traditional attention mechanisms essentially perform two tasks:</p>
             <ol>
                 <li>Map the input \(X\) to three matrices: Key, Value, and Query.</li>
-                <li>Compute the output: \(Y = \mathrm{softmax}(QK^\top)V\) (ignoring normalization and masking for brevity).</li>
+                <li>Compute the output: \(\mathrm{Attn}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right)V\) (ignoring masking for brevity).</li>
             </ol>
 
             <p>To achieve global attention, one requires a global matrix containing positional information to encode the attention matrix \(QK^\top\). This comes with quadratic spatial complexity \(O(n^2)\) and the engineering challenges of handling ultra-long contexts.</p>

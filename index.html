@@ -151,15 +151,18 @@
                         </div>
                     </div>
                     <div class="contact-form">
-                        <form>
+                        <form id="contact-form" action="https://formsubmit.co/zhaozhichen@gmail.com" method="POST">
+                            <input type="hidden" name="_captcha" value="false">
+                            <input type="hidden" name="_subject" value="New message from your website">
+                            <input type="hidden" name="_next" value="">
                             <div class="form-group">
-                                <input type="text" placeholder="Your Name" required>
+                                <input type="text" name="name" placeholder="Your Name" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" placeholder="Your Email" required>
+                                <input type="email" name="email" placeholder="Your Email" required>
                             </div>
                             <div class="form-group">
-                                <textarea placeholder="Your Message" rows="5" required></textarea>
+                                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary">Send Message</button>
                         </form>

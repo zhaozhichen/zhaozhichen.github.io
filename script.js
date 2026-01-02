@@ -37,15 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Form submission handling
-    const contactForm = document.querySelector('.contact-form form');
+    const contactForm = document.getElementById('contact-form');
     if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             
             // Get form data
-            const name = this.querySelector('input[type="text"]').value;
-            const email = this.querySelector('input[type="email"]').value;
-            const message = this.querySelector('textarea').value;
+            const name = this.querySelector('input[name="name"]').value;
+            const email = this.querySelector('input[name="email"]').value;
+            const message = this.querySelector('textarea[name="message"]').value;
             
             // Simple validation
             if (!name || !email || !message) {
@@ -60,23 +60,39 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Create mailto link with form data
-            const subject = encodeURIComponent(`Message from ${name} (${email})`);
-            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-            const mailtoLink = `mailto:zhaozhichen@gmail.com?subject=${subject}&body=${body}`;
+            // Disable submit button and show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
             
-            // Open email client
-            window.location.href = mailtoLink;
+            // Prepare form data
+            const formData = new FormData(this);
             
-            // Show success message
-            setTimeout(() => {
-                alert('Your email client should open now. If not, please send your message to zhaozhichen@gmail.com');
-            }, 500);
-            
-            // Reset form after a short delay
-            setTimeout(() => {
-                this.reset();
-            }, 1000);
+            try {
+                // Send form data using fetch
+                const response = await fetch('https://formsubmit.co/ajax/zhaozhichen@gmail.com', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    // Show success message
+                    alert('Thank you for your message! I will get back to you soon.');
+                    // Reset form
+                    this.reset();
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            } catch (error) {
+                // Show error message
+                alert('Sorry, there was an error sending your message. Please try again later.');
+                console.error('Form submission error:', error);
+            } finally {
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
         });
     }
     

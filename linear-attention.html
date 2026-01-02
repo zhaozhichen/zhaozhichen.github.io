@@ -4,6 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>线性注意力背后的视角转换 | The Paradigm Shift Behind Linear Attention</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            }
+        };
+    </script>
     <style>
         * {
             margin: 0;
@@ -140,8 +152,12 @@
             padding: 15px;
             border-left: 4px solid #4a90e2;
             margin: 20px 0;
-            font-family: "Courier New", monospace;
             overflow-x: auto;
+            text-align: center;
+        }
+        
+        .formula .MathJax {
+            font-size: 1.1em;
         }
 
         .references {
@@ -218,7 +234,9 @@
         <div id="content-zh" class="content active">
             <p>我最近阅读了 Google Research 的两篇论文【1】、【2】，并回溯了最早提出线性注意力机制的论文【3】。我在阅读过程中再一次体会到视角转换如何为一个理论框架赋予新的想象空间。如果你没有经历过这种转换，你会低估它的深远意义。联想量子力学的发展历史：</p>
 
-            <div class="formula">矩阵力学 / 波动力学 => 量子场论 / 正则量子化 => 路径积分</div>
+            <div class="formula">\[
+            \text{矩阵力学 / 波动力学} \Rightarrow \text{量子场论 / 正则量子化} \Rightarrow \text{路径积分}
+            \]</div>
 
             <p>每次变革不仅仅是用一套新的数学公式重写既有知识，而是用一套全新的视角和语言审视理论。在这个意义上，（数学）语言不仅是思维的边界，它内嵌了思维的空间结构。</p>
 
@@ -226,19 +244,25 @@
 
             <p>传统的注意力机制本质上做了两件事情：</p>
             <ol>
-                <li>将输入X映射到三个矩阵：Key，Value，Query</li>
-                <li>计算输出：Y=Softmax(Q*K)*V（为了表述简便，忽略归一化与掩码矩阵）</li>
+                <li>将输入 \(X\) 映射到三个矩阵：Key，Value，Query</li>
+                <li>计算输出：\(Y = \mathrm{softmax}(QK^\top)V\)（为了表述简便，忽略归一化与掩码矩阵）</li>
             </ol>
 
-            <p>要实现全局注意力，就要一个包含位置信息的全局矩阵来编码注意力矩阵Q*K，与之伴随的是空间平方的复杂度，和超长上下文的工程难题。若将注意力核从 softmax 放宽为可分解的核函数（或用随机特征/显式特征映射近似 softmax kernel），则可将注意力写成：</p>
+            <p>要实现全局注意力，就要一个包含位置信息的全局矩阵来编码注意力矩阵 \(QK^\top\)，与之伴随的是空间平方的复杂度 \(O(n^2)\)，和超长上下文的工程难题。若将注意力核从 softmax 放宽为可分解的核函数（或用随机特征/显式特征映射近似 softmax kernel），则可将注意力写成：</p>
 
-            <div class="formula">Attn(Q,K,V) ≈ φ(Q)(φ(K)ᵀ V)</div>
+            <div class="formula">\[
+            \mathrm{Attn}(Q,K,V) \approx \phi(Q)\big(\phi(K)^\top V\big)
+            \]</div>
 
             <p>在自回归（causal）情形下，令</p>
-            <div class="formula">S_t = Σ_{i≤t} φ(k_i)v_iᵀ,  z_t = Σ_{i≤t} φ(k_i)</div>
+            <div class="formula">\[
+            S_t = \sum_{i \le t} \phi(k_i) v_i^\top, \qquad z_t = \sum_{i \le t} \phi(k_i)
+            \]</div>
 
             <p>则输出可写成：</p>
-            <div class="formula">o_t = (φ(q_t)ᵀ S_t) / (φ(q_t)ᵀ z_t)</div>
+            <div class="formula">\[
+            o_t = \frac{\phi(q_t)^\top S_t}{\phi(q_t)^\top z_t}
+            \]</div>
 
             <p>其中 S_t 是一个随 token 流递推更新、与上下文长度无关的中间态。分母项 z_t 的归一化对于数值稳定和长度增长时的尺度漂移至关重要，这也是线性注意力处理灾难性遗忘的关键机制。Katharopoulos 等人指出，这种递推实现使线性注意力在因果场景下呈现出明确的 RNN 结构：注意力从"扫描全部 KV 列表"转为"更新固定大小的隐状态并进行读出"【3】。</p>
 
@@ -260,13 +284,13 @@
 
             <p>一旦为线性注意力机制赋予了关联记忆和在线学习的诠释，我们就可以泛化以上两个步骤。【4】将泛化自由度归为四类：</p>
             <ol>
-                <li>记忆框架，用神经网络取代矩阵编码K->V，获得更高的自由度同时降低过拟合风险。</li>
+                <li>记忆框架，用神经网络取代矩阵编码 \(K \to V\)，获得更高的自由度同时降低过拟合风险。</li>
                 <li>优化目标：设计损失函数。</li>
                 <li>遗忘门：记忆与遗忘一体两面，学习因子和遗忘因子本身可以是可学习的参数。</li>
                 <li>优化器：从损失函数到记忆更新的优化机制，Gradient Descent, SGD, Adam…</li>
             </ol>
 
-            <p>【1】用"顺行性遗忘症（anterograde amnesia）"这个比喻来描述今天的大模型：它拥有在某个时间节点前（预训练语料库截止时间）的所有记忆。在运行时，它也拥有执行该任务所需要的所有短期记忆（上下文）。但是，一旦任务结束，这些上下文被立刻抛弃，无法形成长期记忆。Titans 提出的 test-time memorization / online learning 可以突破这个藩篱，因为它不必保留所有上下文，只需要通过流经的短期记忆形成长期记忆（也就是 S_t）即可。与之相对的基础模型（提供了从输入X到QKV的映射矩阵）除了提供对世界的基本理解以外，还担负着"更有效地形成长期记忆"的职责。</p>
+            <p>【1】用"顺行性遗忘症（anterograde amnesia）"这个比喻来描述今天的大模型：它拥有在某个时间节点前（预训练语料库截止时间）的所有记忆。在运行时，它也拥有执行该任务所需要的所有短期记忆（上下文）。但是，一旦任务结束，这些上下文被立刻抛弃，无法形成长期记忆。Titans 提出的 test-time memorization / online learning 可以突破这个藩篱，因为它不必保留所有上下文，只需要通过流经的短期记忆形成长期记忆（也就是 \(S_t\)）即可。与之相对的基础模型（提供了从输入 \(X\) 到 \(QKV\) 的映射矩阵）除了提供对世界的基本理解以外，还担负着"更有效地形成长期记忆"的职责。</p>
 
             <p>需要区分的是，<strong>Titans 的在线学习</strong>与<strong>Test-Time Training (TTT) layers</strong>【7】是不同的概念：TTT 特指 Sun 等人提出的方法，他们将 hidden state 直接做成一个小模型，每个 token/mini-batch 做一步自监督学习更新；而 Titans 关注的是长期记忆模块的训练，用 surprise 和衰减机制来管理记忆。</p>
 
@@ -310,7 +334,9 @@
         <div id="content-en" class="content">
             <p>I recently read two Google Research papers [1, 2] and revisited the seminal paper that first introduced the linear attention mechanism [3]. The process reminded me once again how a shift in perspective can endow a theoretical framework with entirely new imaginative space. If you haven't experienced such a shift, it is easy to underestimate its profound significance. Consider the history of quantum mechanics:</p>
 
-            <div class="formula">Matrix Mechanics / Wave Mechanics → Quantum Field Theory / Canonical Quantization → Path Integral</div>
+            <div class="formula">\[
+            \text{Matrix Mechanics / Wave Mechanics} \rightarrow \text{Quantum Field Theory / Canonical Quantization} \rightarrow \text{Path Integral}
+            \]</div>
 
             <p>Each revolution was not merely rewriting existing knowledge with new formulas; it was a re-examination of theory through a completely new lens and language. In this sense, mathematical language is not just the boundary of thought; it embeds the very spatial structure of thinking.</p>
 
@@ -318,21 +344,27 @@
 
             <p>Traditional attention mechanisms essentially perform two tasks:</p>
             <ol>
-                <li>Map the input X to three matrices: Key, Value, and Query.</li>
-                <li>Compute the output: Y=Softmax(Q*K)*V (ignoring normalization and masking for brevity).</li>
+                <li>Map the input \(X\) to three matrices: Key, Value, and Query.</li>
+                <li>Compute the output: \(Y = \mathrm{softmax}(QK^\top)V\) (ignoring normalization and masking for brevity).</li>
             </ol>
 
-            <p>To achieve global attention, one requires a global matrix containing positional information to encode the attention matrix Q*K. This comes with quadratic spatial complexity O(n²) and the engineering challenges of handling ultra-long contexts.</p>
+            <p>To achieve global attention, one requires a global matrix containing positional information to encode the attention matrix \(QK^\top\). This comes with quadratic spatial complexity \(O(n^2)\) and the engineering challenges of handling ultra-long contexts.</p>
 
             <p>If we relax the Softmax requirement and use a decomposable kernel function (or approximate the softmax kernel with random/explicit feature maps), we can write attention as:</p>
 
-            <div class="formula">Attn(Q,K,V) ≈ φ(Q)(φ(K)ᵀ V)</div>
+            <div class="formula">\[
+            \mathrm{Attn}(Q,K,V) \approx \phi(Q)\big(\phi(K)^\top V\big)
+            \]</div>
 
             <p>In the autoregressive (causal) setting, let</p>
-            <div class="formula">S_t = Σ_{i≤t} φ(k_i)v_iᵀ,  z_t = Σ_{i≤t} φ(k_i)</div>
+            <div class="formula">\[
+            S_t = \sum_{i \le t} \phi(k_i) v_i^\top, \qquad z_t = \sum_{i \le t} \phi(k_i)
+            \]</div>
 
             <p>then the output can be written as:</p>
-            <div class="formula">o_t = (φ(q_t)ᵀ S_t) / (φ(q_t)ᵀ z_t)</div>
+            <div class="formula">\[
+            o_t = \frac{\phi(q_t)^\top S_t}{\phi(q_t)^\top z_t}
+            \]</div>
 
             <p>where S_t is an intermediate state that updates recursively with the token stream and is independent of context length. The normalization term z_t is crucial for numerical stability and scale drift as length grows—this is a key mechanism for linear attention to handle catastrophic forgetting. Katharopoulos et al. point out that this recursive implementation reveals an explicit RNN structure in causal linear attention: attention transforms from "scanning the entire KV list" to "updating a fixed-size hidden state and reading out" [3].</p>
 
@@ -356,13 +388,13 @@
 
             <p>Once we endow linear attention with the interpretations of associative memory and online learning, we can generalize the steps. [4] categorizes the degrees of freedom into four classes:</p>
             <ol>
-                <li><strong>Memory Architecture:</strong> Using neural networks to replace the matrix encoding K→V, gaining higher degrees of freedom while reducing overfitting risks.</li>
+                <li><strong>Memory Architecture:</strong> Using neural networks to replace the matrix encoding \(K \to V\), gaining higher degrees of freedom while reducing overfitting risks.</li>
                 <li><strong>Objective:</strong> Designing the loss function.</li>
                 <li><strong>Forget Gate:</strong> Memory and forgetting are two sides of the same coin; learning and forgetting factors can themselves be learnable parameters.</li>
                 <li><strong>Optimizer:</strong> The mechanism from loss function to memory update (GD, SGD, Adam, etc.).</li>
             </ol>
 
-            <p>[1] uses the analogy of <em>anterograde amnesia</em> to describe today's LLMs: they possess all memories prior to a specific cutoff (pre-training), and during runtime, they hold the short-term memory (context) needed for the task. But once the task ends, the context is discarded, never forming long-term memory. Titans' test-time memorization / online learning breaks this barrier because it doesn't need to retain the full context buffer; it only needs to form long-term memory (state S_t) via the flowing short-term memory. Conversely, the "Foundation Model" (which provides the X→QKV mapping) is responsible not just for basic world understanding, but for "learning how to form long-term memories effectively."</p>
+            <p>[1] uses the analogy of <em>anterograde amnesia</em> to describe today's LLMs: they possess all memories prior to a specific cutoff (pre-training), and during runtime, they hold the short-term memory (context) needed for the task. But once the task ends, the context is discarded, never forming long-term memory. Titans' test-time memorization / online learning breaks this barrier because it doesn't need to retain the full context buffer; it only needs to form long-term memory (state \(S_t\)) via the flowing short-term memory. Conversely, the "Foundation Model" (which provides the \(X \to QKV\) mapping) is responsible not just for basic world understanding, but for "learning how to form long-term memories effectively."</p>
 
             <p>It is important to distinguish <strong>Titans' online learning</strong> from <strong>Test-Time Training (TTT) layers</strong> [7]: TTT specifically refers to Sun et al.'s approach, where they make the hidden state directly into a small model, performing one step of self-supervised learning update per token/mini-batch; whereas Titans focuses on training long-term memory modules, using surprise and decay mechanisms to manage memory.</p>
 

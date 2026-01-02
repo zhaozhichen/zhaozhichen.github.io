@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
             
             // Get form data
-            const formData = new FormData(this);
             const name = this.querySelector('input[type="text"]').value;
             const email = this.querySelector('input[type="email"]').value;
             const message = this.querySelector('textarea').value;
@@ -61,9 +60,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Show success message (in a real application, you would send this to a server)
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
+            // Create mailto link with form data
+            const subject = encodeURIComponent(`Message from ${name} (${email})`);
+            const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+            const mailtoLink = `mailto:zhaozhichen@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            setTimeout(() => {
+                alert('Your email client should open now. If not, please send your message to zhaozhichen@gmail.com');
+            }, 500);
+            
+            // Reset form after a short delay
+            setTimeout(() => {
+                this.reset();
+            }, 1000);
         });
     }
     

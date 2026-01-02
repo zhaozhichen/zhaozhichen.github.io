@@ -333,128 +333,344 @@
         </div>
 
         <div id="content-en" class="content active">
-            <p>I recently read two Google Research papers [1, 2] and revisited the seminal paper that first introduced the linear attention mechanism [3]. The process reminded me once again how a shift in perspective can endow a theoretical framework with entirely new imaginative space. If you haven't experienced such a shift, it is easy to underestimate its profound significance. Consider the history of quantum mechanics:</p>
+            <p>
+                I recently read two Google Research works on test-time memory and continual learning [1, 2], and revisited the seminal
+                paper that first made linear attention explicit [3]. The process reminded me once again how a shift in perspective can
+                endow a theoretical framework with entirely new imaginative space. If you haven't experienced such a shift, it is easy
+                to underestimate its significance. Consider the history of quantum mechanics:
+            </p>
 
             <div class="formula">\[
-            \text{Matrix Mechanics / Wave Mechanics} \rightarrow \text{Quantum Field Theory / Canonical Quantization} \rightarrow \text{Path Integral}
+            \text{Matrix Mechanics} \leftrightarrow \text{Wave Mechanics}
+            \;\;\rightarrow\;\;
+            \text{Second Quantization (Operator QFT)} \leftrightarrow \text{Path-Integral Formulation}
             \]</div>
 
-            <p>Each revolution was not merely rewriting existing knowledge with new formulas; it was a re-examination of theory through a completely new lens and language. In this sense, mathematical language is not just the boundary of thought; it embeds the very spatial structure of thinking.</p>
+            <p>
+                (This is intentionally schematic: matrix and wave mechanics are equivalent formulations of the same quantum theory;
+                and in quantum field theory, the operator/second-quantized and path-integral formulations are complementary languages,
+                not a strict chronological sequence.)
+            </p>
+
+            <p>
+                Each revolution was not merely rewriting existing knowledge with new formulas; it was a re-examination of theory
+                through a new lens and language. In this sense, mathematical language is not just the boundary of thought; it embeds
+                part of the "geometry" of thinking—what becomes salient, manipulable, and even askable.
+            </p>
 
             <h2>What space does Linear Attention open up?</h2>
 
             <p>Traditional attention mechanisms essentially perform two tasks:</p>
             <ol>
-                <li>Map the input \(X\) to three matrices: Key, Value, and Query.</li>
-                <li>Compute the output: \(\mathrm{Attn}(Q,K,V)=\mathrm{softmax}\left(\frac{QK^\top}{\sqrt{d}}\right)V\) (ignoring masking for brevity).</li>
+                <li>
+                    Map the input \(X\) to Query, Key, and Value via learned projections: \(Q=XW_Q,\,K=XW_K,\,V=XW_V\).
+                </li>
+                <li>
+                    Compute the output (softmax applied row-wise):
+                    \[
+                        \mathrm{Attn}(Q,K,V)=\mathrm{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V,
+                    \]
+                    ignoring masking for brevity.
+                </li>
             </ol>
 
-            <p>To achieve global attention, one requires a global matrix containing positional information to encode the attention matrix \(QK^\top\). This comes with quadratic spatial complexity \(O(n^2)\) and the engineering challenges of handling ultra-long contexts.</p>
+            <p>
+                The bottleneck is not "a global positional matrix," but the all-pairs interaction itself: global attention forms an
+                \(n\times n\) matrix of query–key scores (often augmented with positional encodings or relative position biases),
+                which incurs \(O(n^2)\) time and memory in the sequence length.
+            </p>
 
-            <p>If we relax the Softmax requirement and use a decomposable kernel function (or approximate the softmax kernel with random/explicit feature maps), we can write attention as:</p>
+            <p>
+                <strong>Kernelized (a.k.a. linear) attention</strong> replaces the softmax kernel with a feature map
+                \(\phi:\mathbb{R}^{d_k}\to\mathbb{R}^{m}\) such that the similarity factorizes:
+                \(\kappa(q,k)=\phi(q)^\top \phi(k)\).
+                (A related but distinct line of work approximates the exponential kernel underlying softmax using random/explicit
+                features; the algebra below covers the kernelized form and clarifies what must be normalized.)
+            </p>
 
+            <p>In normalized kernel attention, the attention can be written as:</p>
             <div class="formula">\[
-            \mathrm{Attn}(Q,K,V) \approx \phi(Q)\big(\phi(K)^\top V\big)
+                \mathrm{Attn}(Q,K,V)
+                \;=\;
+                \frac{\phi(Q)\big(\phi(K)^\top V\big)}
+                     {\phi(Q)\big(\phi(K)^\top \mathbf{1}\big)},
             \]</div>
 
-            <p>In the autoregressive (causal) setting, let</p>
+            <p>
+                where \(\mathbf{1}\) is an all-ones vector and the division is row-wise. In practice, one often requires
+                \(\phi(\cdot)\ge 0\) (or otherwise ensures positivity) so the denominator is well-behaved.
+            </p>
+
+            <p>In the autoregressive (causal) setting, define the recurrent accumulators</p>
             <div class="formula">\[
-            S_t = \sum_{i \le t} \phi(k_i) v_i^\top, \qquad z_t = \sum_{i \le t} \phi(k_i)
+                S_t = \sum_{i \le t} \phi(k_i) v_i^\top, \qquad
+                z_t = \sum_{i \le t} \phi(k_i),
             \]</div>
 
-            <p>then the output can be written as:</p>
+            <p>then the per-token readout becomes</p>
             <div class="formula">\[
-            o_t = \frac{\phi(q_t)^\top S_t}{\phi(q_t)^\top z_t}
+                o_t = \frac{\phi(q_t)^\top S_t}{\phi(q_t)^\top z_t}.
             \]</div>
 
-            <p>where \(S_t\) is an intermediate state that updates recursively with the token stream and is independent of context length. The normalization term \(z_t\) is crucial for numerical stability and scale drift as length grows—this is a key mechanism for linear attention to handle catastrophic forgetting. Katharopoulos et al. point out that this recursive implementation reveals an explicit RNN structure in causal linear attention: attention transforms from "scanning the entire KV list" to "updating a fixed-size hidden state and reading out" [3].</p>
+            <p>
+                Here \(S_t\) has a <em>fixed parameterization</em> (constant memory footprint) that does not grow with the context length.
+                The normalization accumulator \(z_t\) is essential for numerical stability and preventing scale drift as \(t\) grows.
+                <strong>However, normalization does not eliminate information loss:</strong> compressing an ever-growing history into a fixed-size
+                state inevitably induces recency bias and retrieval degradation unless the update rule has an explicit mechanism for
+                selective write/forget.
+                Katharopoulos et al. emphasize that this recursive implementation reveals an explicit RNN structure in causal linear
+                attention: attention transforms from "scanning the entire KV list" to "updating a fixed-size recurrent state and reading
+                out" [3].
+            </p>
 
-            <p><strong>This reformulation brings a new perspective.</strong> The intermediate state \(S_t\) describes a memory state that updates with the input stream—equivalent to the hidden state in an RNN. This is a typical <strong>associative memory model</strong>, encoding the mapping from Key to Value. Faced with a new Query, the output behavior is simply extracting the memory associated with \(Q\) from \(S_t\). Associative memory models are the foundation of the work for which Hopfield and Hinton were awarded the 2024 Nobel Prize in Physics<sup><a href="#note1-en">*</a></sup>. The Hebbian theory that inspired it, along with the derived concept of synaptic plasticity, remains a cornerstone of modern neurobiology.</p>
+            <p>
+                <strong>This reformulation brings a new perspective.</strong>
+                The intermediate state \(S_t\) plays the role of a matrix-valued hidden state: it is a <strong>fast-weight</strong>
+                associative memory that encodes a (compressed) mapping from key features to values. Given a new query, the readout
+                extracts the value associated with \(\phi(q_t)\) via the linear operator \(S_t\).
+            </p>
+
+            <p>
+                Associative memory is a central thread here: Hopfield's contribution is explicitly framed as an associative memory in
+                the 2024 Nobel Prize press materials, while the broader prize citation credits foundational discoveries enabling machine
+                learning with neural networks<sup><a href="#note1-en">*</a></sup>. Hebbian learning and synaptic plasticity—though far richer than
+                any single toy model—remain foundational concepts in neuroscience.
+            </p>
 
             <h2>The Wave Function Analogy</h2>
 
-            <p>The introduction of the intermediate state \(S_t\) reminds me of the historical debate between Matrix Mechanics and Wave Mechanics. Heisenberg, deeply influenced by Machian positivism, believed physical theories should avoid quantities lacking operational definitions—such as the precise position and classical momentum of an electron in orbit. Only the transition information between orbits was observable and thus should be described by matrices.</p>
+            <p>
+                The introduction of the intermediate state \(S_t\) reminds me of the historical debate between Matrix Mechanics and
+                Wave Mechanics. Heisenberg, deeply influenced by Machian empiricism/positivism, insisted that physical theory should
+                be formulated in terms of observables—famously, spectral transition data—rather than unobservable classical trajectories.
+            </p>
 
-            <p>Meanwhile, de Broglie, starting from the wave-particle duality of light, proposed that all matter has a wave nature requiring a wave function description. Note that before Born's probability interpretation, de Broglie believed this was a real, physical wave (like an electromagnetic wave), not just a calculation metaphor. Although the two theories were soon proven mathematically equivalent—and ontologically, the wave function was "downgraded" from a material entity to a representation of a quantum state in the position basis—the wave function still possessed geometric intuition and visualization advantages over the abstract, obscure matrices. It remains valuable for imagining (rather than just calculating) theoretical possibilities.</p>
+            <p>
+                Meanwhile, de Broglie, starting from the wave–particle duality of light, proposed that matter has a wave nature that
+                invites a wave-function description. Historically, before Born's probabilistic interpretation became standard, it was
+                natural to entertain ontological readings of this "matter wave." Although Schrödinger's and Heisenberg's formulations
+                were soon shown to be mathematically equivalent, the wave function \(\psi(x)=\langle x|\psi\rangle\) retains geometric
+                intuition as a particular representation of the abstract state.
+            </p>
 
-            <p><strong>In my view, the intermediate state \(S_t\) in linear attention is not an additional "ontological object," but rather a representation switch:</strong> it makes explicit the linear mapping (the association from key space to value space) that was previously implicit in the one-shot attention computation, turning it into a recursively updatable operator/state. Just as the wave function, as a representation of a quantum state in a specific basis, provides strong geometric intuition and visualization; the explicitization of \(S_t\) similarly turns "what memory is, how to write/forget, how to layer" into objects that can be directly designed and analyzed.</p>
+            <p>
+                <strong>In my view, the intermediate state \(S_t\) in linear attention is not an additional "ontological object," but a
+                  representation switch:</strong>
+                it makes explicit the linear mapping (the association from key-feature space to value space) that was previously implicit
+                in the one-shot attention computation, turning it into a recursively updatable operator/state. Just as the wave function
+                provides an intuition-friendly representation of a quantum state in a chosen basis, making \(S_t\) explicit turns "what
+                memory is," "how to write/forget," and "how to layer time-scales" into objects that can be directly designed and analyzed.
+            </p>
 
             <h2>From Static to Dynamic: The Physics of "Surprise"</h2>
 
-            <p>Building on this, [1] proposes an even deeper perspective shift. In Titans' view, the "writing" of long-term memory can be understood as online optimization of an associative memory loss: for each new piece of data, take one (or a few) gradient update steps on the memory parameters. More crucially, the update strength is not constant but modulated by "surprise": data that violates model expectations is more "worth remembering." Titans use gradients as a measure of surprise and combine it with decay mechanisms for memory management; the authors also point out that this mechanism has equivalent connections to mini-batch gradient descent with momentum and weight decay.</p>
+            <p>
+                Building on this, Titans [1] proposes a deeper perspective shift: treat long-term memory as a parameterized module that
+                can be updated <em>at test time</em>, and interpret "writing" as online optimization of an associative-memory objective.
+                In particular, Titans argues that events that violate the model's expectations are more "memorable." It operationalizes
+                this <strong>surprise</strong> using gradients of an associative-memory loss (used as a signal for what should be written),
+                and combines it with an explicit decay mechanism for memory management; the paper further draws connections to
+                mini-batch gradient descent with momentum and weight decay.
+            </p>
 
-            <p>We are familiar with the inverse formulation. Traditional machine learning is based on pre-setting an objective function and training an optimal model via a labeled dataset (online or offline). There, the objective is concrete (prediction error), and the model parameters are abstract. However, in the shift from "associative memory" to "online learning," the model parameters are concrete (the memory), and the dynamics are concrete (the update rule), while we must infer the objective function, which is relatively abstract. This objective is interpreted as "Surprise": we tend to ignore habitual phenomena, but unexpected events are more likely to be remembered, triggering the memory update mechanism.</p>
+            <p>
+                We are used to the forward direction: specify an objective and train parameters offline on a dataset (supervised or
+                self-supervised) to minimize it. The online-learning lens flips what feels "given" versus "derived": we take the update
+                dynamics of a particular state/parameter subset (the memory) seriously as a first-class object, and make the objective
+                and regularization that the dynamics implements explicit. The surprise narrative is one concrete way to interpret that
+                objective: routine events are compressed away; unexpected events receive disproportionate write bandwidth.
+            </p>
 
-            <p>Anyone with training in advanced physics will be sensitive to this inverse thinking—it is the core of <strong>Analytical Mechanics</strong>. Newton's formulation, based on vectors like velocity, acceleration, and force, is a dynamical process painting a mechanical universe via "efficient causes." However, modern mechanics relies on scalars: the Hamiltonian, Lagrangian, Action, Path Integral, and Partition Function. These scalars not only perfectly accommodate dynamical descriptions but also elegantly describe symmetries, conservation laws, boundary conditions, and degrees of freedom. They are abstract and obscure, yet their mathematical superiority is sufficient to make us abandon the more intuitive Newtonian picture.</p>
+            <p>
+                Anyone with training in theoretical physics will be sensitive to this move: modern physics often prefers scalar-valued
+                functionals—Hamiltonians, Lagrangians, actions, partition functions—as organizing principles. They can encode symmetries
+                and constraints cleanly, handle boundary conditions elegantly, and support powerful approximation tools. They may feel
+                less "mechanistic" than Newton's vector dynamics, but they frequently make the structure of a theory more transparent.
+            </p>
 
-            <p>Once we endow linear attention with the interpretations of associative memory and online learning, we can generalize the steps. [4] categorizes the degrees of freedom into four classes:</p>
+            <p>
+                Once we endow linear attention with the interpretations of associative memory and online optimization, we can
+                systematically generalize the two-step picture. MIRAS [4] categorizes key degrees of freedom into four classes:
+            </p>
             <ol>
-                <li><strong>Memory Architecture:</strong> Using neural networks to replace the matrix encoding \(K \to V\), gaining higher degrees of freedom while reducing overfitting risks.</li>
-                <li><strong>Objective:</strong> Designing the loss function.</li>
-                <li><strong>Forget Gate:</strong> Memory and forgetting are two sides of the same coin; learning and forgetting factors can themselves be learnable parameters.</li>
-                <li><strong>Optimizer:</strong> The mechanism from loss function to memory update (GD, SGD, Adam, etc.).</li>
+                <li>
+                    <strong>Memory Architecture:</strong> Replace the simple matrix-valued association (e.g., an outer-product accumulator)
+                    with a richer parameterization (e.g., a neural memory), trading off capacity, inductive bias, and regularization.
+                </li>
+                <li><strong>Objective:</strong> Design the internal loss ("attentional bias") that defines what the memory should fit.</li>
+                <li>
+                    <strong>Retention / Forget Gate:</strong> Memory and forgetting are two sides of the same coin; retention/decay can be
+                    learnable and can depend on surprise, capacity, or context.
+                </li>
+                <li><strong>Optimizer:</strong> Choose the online update rule (GD, SGD, Adam-like, learned optimizers, etc.).</li>
             </ol>
 
-            <p>[1] uses the analogy of <em>anterograde amnesia</em> to describe today's LLMs: they possess all memories prior to a specific cutoff (pre-training), and during runtime, they hold the short-term memory (context) needed for the task. But once the task ends, the context is discarded, never forming long-term memory. Titans' test-time memorization / online learning breaks this barrier because it doesn't need to retain the full context buffer; it only needs to form long-term memory (state \(S_t\)) via the flowing short-term memory. Conversely, the "Foundation Model" (which provides the \(X \to QKV\) mapping) is responsible not just for basic world understanding, but for "learning how to form long-term memories effectively."</p>
+            <p>
+                To place this in a broader continual-learning narrative, Nested Learning [2] uses an analogy to
+                <em>anterograde amnesia</em>: a person can retain long-past memories and experience a transient present, but cannot
+                consolidate new experiences into long-term memory after onset. The authors argue that today's LLMs exhibit an analogous
+                pattern: after pre-training, they can adapt within a context window, yet the information in that window typically does not
+                get consolidated into persistent parameters.
+            </p>
 
-            <p>It is important to distinguish <strong>Titans' online learning</strong> from <strong>Test-Time Training (TTT) layers</strong> [7]: TTT specifically refers to Sun et al.'s approach, where they make the hidden state directly into a small model, performing one step of self-supervised learning update per token/mini-batch; whereas Titans focuses on training long-term memory modules, using surprise and decay mechanisms to manage memory.</p>
+            <p>
+                Titans' test-time memorization breaks part of this barrier by allowing a long-term memory module to be updated online
+                without retaining the full context buffer; it aims to distill the passing short-term context flow into a persistent state.
+                In this framing, the foundation model (which implements \(X\mapsto Q,K,V\)) is responsible not only for broad world
+                knowledge, but also for providing representations that make such consolidation efficient.
+            </p>
+
+            <p>
+                It is important to distinguish <strong>Titans' test-time memorization / online optimization view</strong> from
+                <strong>Test-Time Training (TTT) layers</strong> [7]. TTT refers to Sun et al.'s approach in which the hidden state is itself a
+                small learner (e.g., a linear model or an MLP) updated by a self-supervised learning step per token/mini-batch; Titans,
+                in contrast, emphasizes a neural long-term memory module with surprise- and decay-modulated updates.
+            </p>
 
             <h2>The Onion of Time: Nested Learning and RG</h2>
 
-            <p>Regarding this, [2] critiques [1] as lacking refinement. From the perspective of update frequency, [1] essentially offers a binary frequency:</p>
+            <p>
+                Nested Learning [2] argues that Titans-style designs are still "coarse" along one crucial axis: <strong>update frequency</strong>.
+                A convenient caricature of many test-time memory schemes is a two-rate system:
+            </p>
             <ul>
-                <li><strong>Outer Loop (f=0):</strong> Foundation model, static, no update.</li>
-                <li><strong>Inner Loop (f=1):</strong> Updates memory state with every token in the stream.</li>
+                <li><strong>Slow/Outer loop (≈0 at deployment):</strong> foundation parameters are static at inference time.</li>
+                <li><strong>Fast/Inner loop (per-token):</strong> a memory state/module is updated with the token stream.</li>
             </ul>
 
-            <p>Nested Learning further elevates "update frequency" as a new design axis: for each component in the system, define its update rate (how often weights update), thereby ordering nested/parallel internal optimization problems into levels, and thus obtaining a "continuous spectrum" memory system (CMS): different modules compress and consolidate their respective context flows at different frequencies. Titans can be seen as a special case with only two frequency levels.</p>
+            <p>
+                Nested Learning elevates update frequency into a design axis: assign each component an update rate and order nested or
+                parallel learning problems into <em>levels</em>. This yields a memory system that is best viewed as a
+                <strong>spectrum of time scales</strong> (often discretized into levels, but conceptually approaching a continuum): different
+                modules compress and consolidate their respective context flows at different rates. In this view, Titans is a special case
+                with essentially two update-frequency levels.
+            </p>
 
-            <p>Human memory, however, resembles a hierarchical structure: starting from raw <strong>sensory registration</strong>, entering <strong>working memory</strong>, encoded into <strong>episodic memory</strong>, and through consolidation, de-contextualized into stable <strong>semantic knowledge</strong> and deep <strong>cognitive schemas</strong>. (Reality is more complex, but this holds conceptually). This hierarchy has neurobiological grounding, corresponding to neural oscillations ranging from high-frequency Gamma to low-frequency Delta waves.</p>
+            <p>
+                Human memory is often described as hierarchical: raw <strong>sensory registration</strong> feeds <strong>working memory</strong>,
+                which can be encoded into <strong>episodic memory</strong>; through consolidation and abstraction, knowledge can become
+                increasingly decontextualized into <strong>semantic knowledge</strong> and deeper <strong>cognitive schemas</strong>. Reality is
+                messier than any single chain, but the multi-time-scale motif is robust. Nested Learning grounds this motif in neuroscience
+                via neural oscillations spanning faster bands (e.g., gamma) to slower bands (e.g., delta/theta) that correlate with different
+                roles in perception, cognition, and consolidation.
+            </p>
 
-            <p>[2] designs a hierarchical memory and learning framework. Just as Deep Neural Networks and Stacked Transformers achieve hierarchical abstraction in space, memory behavior achieves hierarchical abstraction in <em>time</em>. [2] proposes an onion-like nested structure:</p>
+            <p>
+                NL proposes an onion-like multi-level structure ordered by update rate:
+            </p>
             <ul>
-                <li><strong>Outermost Layer:</strong> Faces the raw information flow, fastest update frequency.</li>
-                <li><strong>Innermost Layer:</strong> The foundation model, static.</li>
-                <li><strong>Middle Layers:</strong> Each extracts and condenses information from the outer layer at a specific frequency.</li>
+                <li><strong>Innermost / closest-to-stream levels:</strong> operate directly on the token/context flow and update most frequently.</li>
+                <li><strong>Intermediate levels:</strong> consolidate and compress information from faster levels at intermediate rates.</li>
+                <li><strong>Outermost levels:</strong> correspond to the slowest loop (e.g., pre-training) and are effectively static at deployment.</li>
             </ul>
-            <p>([1] can be seen as an onion with only two layers).</p>
+            <p>(Titans can be viewed as an onion with only two prominent layers.)</p>
 
-            <p><strong>"Hierarchical Structure" triggers my physics instincts again.</strong> Physics is, to some extent, the study of "Scale." We are lucky not to live in a scale-invariant world (otherwise, reality would be a fractal abstract painting). Governing our world are dimensional constants, the most fundamental being Planck time and Planck length.</p>
+            <p>
+                <strong>"Hierarchical structure" triggers my physics instincts again.</strong> Physics is, to some extent, the study of scale.
+                Our world is not scale-invariant; it contains characteristic lengths and times. Even when we lack a final theory of quantum
+                gravity, it is meaningful to note that Planck units (built from \(c\), \(G\), and \(\hbar\)) define natural reference scales such
+                as Planck length and Planck time.
+            </p>
 
-            <p><strong>Renormalization Group (RG)</strong> is the mathematical tool for exploring the relationship between theory and scale. Originating from QFT to fix UV divergence in QED, it revealed profound invariances and became a universal method in Condensed Matter Physics (Wilsonian RG). "Group" implies the scale transformations satisfy associativity.</p>
+            <p>
+                <strong>Renormalization Group (RG)</strong> is a mathematical language for reasoning about how effective descriptions change
+                with scale. Historically misnamed, RG refers to a composable flow across scales; in many coarse-graining settings the
+                transformation is not strictly invertible, so it behaves more like a semigroup.
+            </p>
 
-            <p>RG applies a unified framework whether the object is QED, a permanent magnet, or a sandpile. The core concept is the <strong>Fixed Point</strong> (specifically, the Critical Point). A critical point refers to a subspace of parameters where the system remains invariant under scale transformations (e.g., the block spin of a magnet). In Deep Learning, the spatial scale coordinate is Network Depth; in [2], the temporal scale coordinate is the Onion Layer (Outer → Inner).</p>
+            <p>
+                RG suggests a concrete style of question-asking: identify a coarse-graining transformation, study how effective parameters
+                ("couplings") flow under repeated application, and characterize invariant structures (fixed points, critical manifolds,
+                slow/invariant manifolds). Fixed points are special parameter settings that remain unchanged under the RG transformation;
+                in statistical physics, critical behavior is associated with non-trivial fixed points where correlation lengths become large.
+            </p>
 
-            <p>We can attempt to organize phenomena using "proximity to some non-trivial fixed point/invariant manifold," testing whether it can explain the trade-off between generalization and forgetting. As an illustrative analogy, we can imagine two trivial fixed points:</p>
+            <p>
+                In deep learning, it is tempting—but nontrivial—to treat layer depth as a discrete representation "scale," and in NL to treat
+                level index (ordered by update rate) as a time-scale axis. I do not claim a literal RG equivalence here; rather, I propose
+                RG as an organizing language for multi-time-scale memory systems.
+            </p>
+
+            <p>
+                As an illustrative caricature (not a theorem), imagine two "trivial" endpoints of a memory system:
+            </p>
             <ul>
-                <li><strong>IR Fixed Point (Overfitting):</strong> The model is just a dictionary; zero generalization.</li>
-                <li><strong>UV Fixed Point (White Noise / Catastrophic Forgetting):</strong> The model remembers nothing reliable.</li>
+                <li><strong>IR-like endpoint (memorization):</strong> the model degenerates into a lookup table; weak generalization.</li>
+                <li>
+                    <strong>UV-like endpoint (overwrite/noise):</strong> the system fails to retain useful information under continual updates.
+                    (Here "catastrophic forgetting" refers to continual-learning interference across tasks; earlier we used "recency bias"
+                    for within-sequence memory dilution.)
+                </li>
             </ul>
 
-            <p>At a non-trivial Critical Point, the model converges to a specific parameter manifold. It effectively washes out the noise from raw information while retaining the deepest structures of memory and cognition.</p>
+            <p>
+                The interesting regime is the middle: an effective balance where the system compresses away nuisance variability while
+                retaining stable, reusable structure. RG provides a principled vocabulary for such regimes via <strong>universality</strong> and
+                the decomposition of perturbations into <strong>relevant</strong>, <strong>irrelevant</strong>, and <strong>marginal</strong> directions.
+            </p>
 
-            <p>Critically, RG provides a classification method: <strong>Universality Classes</strong>, dividing degrees of freedom into <strong>Relevant Operators</strong> and <strong>Irrelevant Operators</strong>. Under the same universality class, irrelevant operators are "integrated out," while relevant ones are reinforced.</p>
+            <p>
+                <strong>Conjecture (toward personalized AI):</strong> in personalization, the most valuable information is often neither "strongly
+                relevant" (broad world knowledge already in the foundation model) nor "irrelevant" noise. It may live near
+                <strong>marginal directions</strong>: aspects of a user's preferences, reasoning style, and values that should persist without
+                destabilizing general capabilities. Making this precise would require operational definitions of (i) a scale transformation on
+                the memory system (e.g., rescaling update intervals/retention and compensating parameters) and (ii) an observable that
+                measures persistence vs interference. RG then suggests an empirical program: estimate which perturbations grow/decay
+                under scale changes (effective scaling dimensions) and test whether a stable manifold exists for personalization dynamics.
+            </p>
 
-            <p><strong>I propose a hypothesis:</strong> For memory models, especially in the context of <strong>Personalized AI</strong>, we shouldn't care about the <em>strongly Relevant Operators</em>. These correspond to general knowledge (grammar, logic, universal values) already acquired by the Foundation Model. What truly matters are the <strong>Marginal Operators</strong>—those at the boundary. The information about <em>my</em> preferences, <em>my</em> way of thinking, and <em>my</em> values is most likely encoded in these marginal operators.</p>
-
-            <p>Excitingly, RG provides not just a blueprint for these definitions, but a systematic scheme to calculate the <strong>Equation of State</strong> near relevant operators. It's not a dynamical equation from first principles, but it offers a rich library of models to explore the dynamic equilibrium of universality class manifolds.</p>
-
-            <div class="divider"></div>
-
-            <p><em>The above is my recent reading experience. If you find it confusing, it's not your fault (and I hope not mine). I haven't clarified many details myself, specifically mapping the degrees of freedom in [2] to the RG framework. I envision my readers as scientists with backgrounds in both Physics and AI—a growing demographic today. The nourishment Physics provides to AI is far from over, especially regarding "Scale"—a treasure trove far richer than what "Scaling Laws" currently cover.</em></p>
+            <p>
+                The above is my recent reading experience. If you find it confusing, it's not your fault (and I hope not mine).
+                I have not yet fully clarified how to map all degrees of freedom in [2] into a rigorous RG framework. I imagine the target
+                reader as a scientist fluent in both physics and AI—a growing demographic. Physics still has much to offer AI, especially
+                around "scale"—a treasure trove far richer than what today's "scaling laws" alone capture.
+            </p>
 
             <div class="references">
                 <h2>References</h2>
                 <ol>
-                    <li><em><a href="https://arxiv.org/abs/2501.00663" target="_blank">Titans: Learning to Memorize at Test Time</a></em> (Dec 2024)</li>
-                    <li><em><a href="https://research.google/blog/introducing-nested-learning-a-new-ml-paradigm-for-continual-learning/" target="_blank">Nested Learning: The Illusion of Deep Learning Architecture</a></em> (Nov 2025)</li>
-                    <li><em><a href="https://arxiv.org/abs/2006.16236" target="_blank">Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention</a></em> (Aug 2020)</li>
-                    <li><em><a href="https://arxiv.org/abs/2504.13173" target="_blank">It's All Connected: A Journey Through Test-Time Memorization, Attentional Bias, Retention, and Online Optimization</a></em> (Apr 2025)</li>
-                    <li><em><a href="https://spaces.ac.cn/archives/11033" target="_blank">A Brief History of Linear Attention</a></em> by Su Jianlin (Jun 2025)</li>
-                    <li><em><a href="https://www.douban.com/doubanapp/dispatch/book/36819634" target="_blank">What is Physics? Looking at the World through the Lens of Physics (Part II)</a></em> (2024)</li>
-                    <li><em><a href="https://arxiv.org/abs/2407.04620" target="_blank">Learning to (Learn at Test Time): RNNs with Expressive Hidden States</a></em> (2024)</li>
+                    <li>
+                        <em><a href="https://arxiv.org/abs/2501.00663" target="_blank">Titans: Learning to Memorize at Test Time</a></em>
+                        (arXiv: Dec 31, 2024)
+                    </li>
+                    <li>
+                        <em><a href="https://arxiv.org/abs/2512.24695" target="_blank">Nested Learning: The Illusion of Deep Learning Architectures</a></em>
+                        (NeurIPS 2025; arXiv: Dec 2025)
+                        <br/>
+                        <span style="font-size:0.95em;color:#666;">
+                            (See also the accompanying blog post:
+                            <a href="https://research.google/blog/introducing-nested-learning-a-new-ml-paradigm-for-continual-learning/" target="_blank">
+                                Introducing Nested Learning
+                            </a>, Nov 7, 2025.)
+                        </span>
+                    </li>
+                    <li>
+                        <em><a href="https://arxiv.org/abs/2006.16236" target="_blank">Transformers are RNNs: Fast Autoregressive Transformers with Linear Attention</a></em>
+                        (ICML 2020)
+                    </li>
+                    <li>
+                        <em><a href="https://arxiv.org/abs/2504.13173" target="_blank">It's All Connected: A Journey Through Test-Time Memorization, Attentional Bias, Retention, and Online Optimization</a></em>
+                        (Apr 2025)
+                    </li>
+                    <li>
+                        <em><a href="https://spaces.ac.cn/archives/11033" target="_blank">A Brief History of Linear Attention</a></em>
+                        by Su Jianlin (Jun 2025)
+                    </li>
+                    <li>
+                        <em><a href="https://www.douban.com/doubanapp/dispatch/book/36819634" target="_blank">What is Physics? Looking at the World through the Lens of Physics (Part II)</a></em>
+                        (2024)
+                    </li>
+                    <li>
+                        <em><a href="https://arxiv.org/abs/2407.04620" target="_blank">Learning to (Learn at Test Time): RNNs with Expressive Hidden States</a></em>
+                        (Jul 2024)
+                    </li>
                 </ol>
-                <p id="note1-en" style="margin-top: 20px; font-size: 0.9em; color: #666;"><sup>*</sup> The 2024 Nobel Prize in Physics was awarded to John J. Hopfield and Geoffrey Hinton for their foundational contributions to machine learning/neural networks. See the <a href="https://www.nobelprize.org/prizes/physics/2024/summary/" target="_blank">official Nobel Prize page</a>.</p>
+
+                <p id="note1-en" style="margin-top: 20px; font-size: 0.9em; color: #666;">
+                    <sup>*</sup> The 2024 Nobel Prize in Physics was awarded to John J. Hopfield and Geoffrey Hinton for foundational contributions enabling
+                    machine learning with neural networks. See the
+                    <a href="https://www.nobelprize.org/prizes/physics/2024/summary/" target="_blank">official Nobel Prize page</a>.
+                </p>
             </div>
         </div>
     </div>

@@ -264,15 +264,15 @@
             o_t = \frac{\phi(q_t)^\top S_t}{\phi(q_t)^\top z_t}
             \]</div>
 
-            <p>其中 S_t 是一个随 token 流递推更新、与上下文长度无关的中间态。分母项 z_t 的归一化对于数值稳定和长度增长时的尺度漂移至关重要，这也是线性注意力处理灾难性遗忘的关键机制。Katharopoulos 等人指出，这种递推实现使线性注意力在因果场景下呈现出明确的 RNN 结构：注意力从"扫描全部 KV 列表"转为"更新固定大小的隐状态并进行读出"【3】。</p>
+            <p>其中 \(S_t\) 是一个随 token 流递推更新、与上下文长度无关的中间态。分母项 \(z_t\) 的归一化对于数值稳定和长度增长时的尺度漂移至关重要，这也是线性注意力处理灾难性遗忘的关键机制。Katharopoulos 等人指出，这种递推实现使线性注意力在因果场景下呈现出明确的 RNN 结构：注意力从"扫描全部 KV 列表"转为"更新固定大小的隐状态并进行读出"【3】。</p>
 
-            <p><strong>这种重述带来了新的视角。</strong>中间状态 S_t 描述了一个随着输入流更新的记忆状态，也就是 RNN 里的隐状态。这是一个典型的关联记忆模型（associative memory），它编码了从 Key 到 Value 的映射关系。面对一个新的 Query，输出行为就是从 S_t 中提取出与 Q 关联的记忆。关联记忆模型正是 2024 年 Hopfield 和 Hinton 获得物理学诺贝尔奖的工作的基础<sup><a href="#note1">*</a></sup>。启发它的赫布理论以及衍生出的突触可塑性依然是今天主流神经生物学的基础理论。</p>
+            <p><strong>这种重述带来了新的视角。</strong>中间状态 \(S_t\) 描述了一个随着输入流更新的记忆状态，也就是 RNN 里的隐状态。这是一个典型的关联记忆模型（associative memory），它编码了从 Key 到 Value 的映射关系。面对一个新的 Query，输出行为就是从 \(S_t\) 中提取出与 \(Q\) 关联的记忆。关联记忆模型正是 2024 年 Hopfield 和 Hinton 获得物理学诺贝尔奖的工作的基础<sup><a href="#note1">*</a></sup>。启发它的赫布理论以及衍生出的突触可塑性依然是今天主流神经生物学的基础理论。</p>
 
             <h2>波函数类比</h2>
 
-            <p>中间状态 S_t 的引入，让我想起量子力学历史上矩阵力学与波动力学之争。深受马赫主义影响的海森堡认为物理理论应当避免引入缺乏操作定义的量，比如电子在轨道上的精确位置和经典动量等，只有轨道之间的跃迁信息是可观测量，应当用矩阵来描述。与此同时，德布罗意从光的波粒二相性出发，认为一切物质都具有波动性，需要用波函数描述这种物质波。注意：在波恩的概率诠释之前，德布罗意认为这是真实存在的实体波（就像电磁波一样），而不仅仅是便于计算的隐喻。虽然两个理论很快被证明在数学上是等价的——从本体论层面上，波函数从物质实体降格为量子态在位置表象下的表征（representation）——但是波函数相较抽象晦涩的矩阵拥有几何直觉与可视化的优势。它在帮助我们想象（而非理解）理论的可能性上仍有价值。</p>
+            <p>中间状态 \(S_t\) 的引入，让我想起量子力学历史上矩阵力学与波动力学之争。深受马赫主义影响的海森堡认为物理理论应当避免引入缺乏操作定义的量，比如电子在轨道上的精确位置和经典动量等，只有轨道之间的跃迁信息是可观测量，应当用矩阵来描述。与此同时，德布罗意从光的波粒二相性出发，认为一切物质都具有波动性，需要用波函数描述这种物质波。注意：在波恩的概率诠释之前，德布罗意认为这是真实存在的实体波（就像电磁波一样），而不仅仅是便于计算的隐喻。虽然两个理论很快被证明在数学上是等价的——从本体论层面上，波函数从物质实体降格为量子态在位置表象下的表征（representation）——但是波函数相较抽象晦涩的矩阵拥有几何直觉与可视化的优势。它在帮助我们想象（而非理解）理论的可能性上仍有价值。</p>
 
-            <p><strong>在我看来，线性注意力的中间状态 S_t 并不是额外引入了新的"本体论对象"，更像是一次表象切换：</strong>把原本隐含在一次性注意力计算中的线性映射（从 key 空间到 value 空间的关联）显式化为一个可递推更新的算符/状态。就像波函数作为量子态在特定基下的表示，提供了强烈的几何直觉与可视化入口；S_t 的显式化同样把"记忆是什么、如何写入/遗忘、如何分层"变成了可以被直接设计与分析的对象。</p>
+            <p><strong>在我看来，线性注意力的中间状态 \(S_t\) 并不是额外引入了新的"本体论对象"，更像是一次表象切换：</strong>把原本隐含在一次性注意力计算中的线性映射（从 key 空间到 value 空间的关联）显式化为一个可递推更新的算符/状态。就像波函数作为量子态在特定基下的表示，提供了强烈的几何直觉与可视化入口；\(S_t\) 的显式化同样把"记忆是什么、如何写入/遗忘、如何分层"变成了可以被直接设计与分析的对象。</p>
 
             <h2>从静态到动态："惊讶度"的物理学</h2>
 
@@ -366,17 +366,17 @@
             o_t = \frac{\phi(q_t)^\top S_t}{\phi(q_t)^\top z_t}
             \]</div>
 
-            <p>where S_t is an intermediate state that updates recursively with the token stream and is independent of context length. The normalization term z_t is crucial for numerical stability and scale drift as length grows—this is a key mechanism for linear attention to handle catastrophic forgetting. Katharopoulos et al. point out that this recursive implementation reveals an explicit RNN structure in causal linear attention: attention transforms from "scanning the entire KV list" to "updating a fixed-size hidden state and reading out" [3].</p>
+            <p>where \(S_t\) is an intermediate state that updates recursively with the token stream and is independent of context length. The normalization term \(z_t\) is crucial for numerical stability and scale drift as length grows—this is a key mechanism for linear attention to handle catastrophic forgetting. Katharopoulos et al. point out that this recursive implementation reveals an explicit RNN structure in causal linear attention: attention transforms from "scanning the entire KV list" to "updating a fixed-size hidden state and reading out" [3].</p>
 
-            <p><strong>This reformulation brings a new perspective.</strong> The intermediate state S_t describes a memory state that updates with the input stream—equivalent to the hidden state in an RNN. This is a typical <strong>associative memory model</strong>, encoding the mapping from Key to Value. Faced with a new Query, the output behavior is simply extracting the memory associated with Q from S_t. Associative memory models are the foundation of the work for which Hopfield and Hinton were awarded the 2024 Nobel Prize in Physics<sup><a href="#note1-en">*</a></sup>. The Hebbian theory that inspired it, along with the derived concept of synaptic plasticity, remains a cornerstone of modern neurobiology.</p>
+            <p><strong>This reformulation brings a new perspective.</strong> The intermediate state \(S_t\) describes a memory state that updates with the input stream—equivalent to the hidden state in an RNN. This is a typical <strong>associative memory model</strong>, encoding the mapping from Key to Value. Faced with a new Query, the output behavior is simply extracting the memory associated with \(Q\) from \(S_t\). Associative memory models are the foundation of the work for which Hopfield and Hinton were awarded the 2024 Nobel Prize in Physics<sup><a href="#note1-en">*</a></sup>. The Hebbian theory that inspired it, along with the derived concept of synaptic plasticity, remains a cornerstone of modern neurobiology.</p>
 
             <h2>The Wave Function Analogy</h2>
 
-            <p>The introduction of the intermediate state S_t reminds me of the historical debate between Matrix Mechanics and Wave Mechanics. Heisenberg, deeply influenced by Machian positivism, believed physical theories should avoid quantities lacking operational definitions—such as the precise position and classical momentum of an electron in orbit. Only the transition information between orbits was observable and thus should be described by matrices.</p>
+            <p>The introduction of the intermediate state \(S_t\) reminds me of the historical debate between Matrix Mechanics and Wave Mechanics. Heisenberg, deeply influenced by Machian positivism, believed physical theories should avoid quantities lacking operational definitions—such as the precise position and classical momentum of an electron in orbit. Only the transition information between orbits was observable and thus should be described by matrices.</p>
 
             <p>Meanwhile, de Broglie, starting from the wave-particle duality of light, proposed that all matter has a wave nature requiring a wave function description. Note that before Born's probability interpretation, de Broglie believed this was a real, physical wave (like an electromagnetic wave), not just a calculation metaphor. Although the two theories were soon proven mathematically equivalent—and ontologically, the wave function was "downgraded" from a material entity to a representation of a quantum state in the position basis—the wave function still possessed geometric intuition and visualization advantages over the abstract, obscure matrices. It remains valuable for imagining (rather than just calculating) theoretical possibilities.</p>
 
-            <p><strong>In my view, the intermediate state S_t in linear attention is not an additional "ontological object," but rather a representation switch:</strong> it makes explicit the linear mapping (the association from key space to value space) that was previously implicit in the one-shot attention computation, turning it into a recursively updatable operator/state. Just as the wave function, as a representation of a quantum state in a specific basis, provides strong geometric intuition and visualization; the explicitization of S_t similarly turns "what memory is, how to write/forget, how to layer" into objects that can be directly designed and analyzed.</p>
+            <p><strong>In my view, the intermediate state \(S_t\) in linear attention is not an additional "ontological object," but rather a representation switch:</strong> it makes explicit the linear mapping (the association from key space to value space) that was previously implicit in the one-shot attention computation, turning it into a recursively updatable operator/state. Just as the wave function, as a representation of a quantum state in a specific basis, provides strong geometric intuition and visualization; the explicitization of \(S_t\) similarly turns "what memory is, how to write/forget, how to layer" into objects that can be directly designed and analyzed.</p>
 
             <h2>From Static to Dynamic: The Physics of "Surprise"</h2>
 

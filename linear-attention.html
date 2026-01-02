@@ -221,7 +221,8 @@
         <div class="header">
             <h1 id="title-zh" style="display: none;">线性注意力背后的视角转换</h1>
             <h1 id="title-en">The Paradigm Shift Behind Linear Attention</h1>
-            <div class="author" id="author">Zhichen Zhao</div>
+            <div class="author" id="author-zh" style="display: none;">赵智沉</div>
+            <div class="author" id="author-en">Fred Zhao</div>
             <div class="date" id="date-zh" style="display: none;">Jan 1, 2026</div>
             <div class="date" id="date-en">Jan 1, 2026</div>
         </div>
@@ -472,6 +473,8 @@
             const enTitle = document.getElementById('title-en');
             const zhDate = document.getElementById('date-zh');
             const enDate = document.getElementById('date-en');
+            const zhAuthor = document.getElementById('author-zh');
+            const enAuthor = document.getElementById('author-en');
 
             if (lang === 'zh') {
                 zhContent.classList.add('active');
@@ -480,6 +483,8 @@
                 enTitle.style.display = 'none';
                 zhDate.style.display = 'block';
                 enDate.style.display = 'none';
+                zhAuthor.style.display = 'block';
+                enAuthor.style.display = 'none';
             } else {
                 zhContent.classList.remove('active');
                 enContent.classList.add('active');
@@ -487,6 +492,8 @@
                 enTitle.style.display = 'block';
                 zhDate.style.display = 'none';
                 enDate.style.display = 'block';
+                zhAuthor.style.display = 'none';
+                enAuthor.style.display = 'block';
             }
         }
     </script>

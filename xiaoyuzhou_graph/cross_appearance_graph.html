@@ -118,6 +118,47 @@
             color: #0a0a1a;
             box-shadow: 0 0 15px rgba(110, 198, 255, 0.4);
         }
+
+        #search-container {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        #search-input {
+            padding: 8px 15px;
+            border: 1px solid #3a3a6e;
+            border-radius: 20px;
+            background: rgba(20, 20, 40, 0.8);
+            color: #fff;
+            font-size: 14px;
+            width: 300px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        #search-input:focus {
+            border-color: #6ec6ff;
+            box-shadow: 0 0 10px rgba(110, 198, 255, 0.3);
+        }
+
+        .action-btn {
+            background: rgba(110, 198, 255, 0.1);
+            border: 1px solid #6ec6ff;
+            color: #6ec6ff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: #6ec6ff;
+            color: #0a0a1a;
+            box-shadow: 0 0 15px rgba(110, 198, 255, 0.4);
+        }
     </style>
 </head>
 
@@ -136,6 +177,11 @@
             <a href="cross_appearance_llm_results.json" download class="download-btn">
                 <i class="fas fa-download"></i> 下载 LLM 分析结果 (JSON)
             </a>
+        </div>
+        <div id="search-container">
+            <input type="text" id="search-input" placeholder="搜索播客名字 / Search Podcast Name...">
+            <button id="search-btn" class="action-btn">搜索 / Search</button>
+            <button id="reset-btn" class="action-btn">重置 / Reset</button>
         </div>
     </div>
     <div id="legend">
@@ -285,6 +331,60 @@
         };
 
         var network = new vis.Network(container, data, options);
+
+        // Search functionality
+        var searchInput = document.getElementById('search-input');
+        var searchBtn = document.getElementById('search-btn');
+        var resetBtn = document.getElementById('reset-btn');
+
+        var allNodes = nodes.get();
+
+        function performSearch() {
+            var searchTerm = searchInput.value.trim().toLowerCase();
+            if (!searchTerm) {
+                resetSearch();
+                return;
+            }
+
+            var matchedNodes = allNodes.filter(function (node) {
+                return node.label && node.label.toLowerCase().includes(searchTerm);
+            });
+
+            if (matchedNodes.length === 0) {
+                alert('未找到包含 "' + searchTerm + '" 的播客。 / No podcast found containing "' + searchTerm + '".');
+                return;
+            }
+
+            var ids = matchedNodes.map(function (node) { return node.id; });
+            network.selectNodes(ids);
+
+            network.fit({
+                nodes: ids,
+                animation: {
+                    duration: 1000,
+                    easingFunction: 'easeInOutQuad'
+                }
+            });
+        }
+
+        function resetSearch() {
+            searchInput.value = '';
+            network.unselectAll();
+            network.fit({
+                animation: {
+                    duration: 1000,
+                    easingFunction: 'easeInOutQuad'
+                }
+            });
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        resetBtn.addEventListener('click', resetSearch);
+        searchInput.addEventListener('keyup', function (e) {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
     </script>
 </body>
 

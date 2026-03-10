@@ -46,7 +46,7 @@
         #legend {
             position: absolute;
             right: 20px;
-            top: 100px;
+            top: 220px;
             width: 300px;
             max-height: calc(100vh - 140px);
             background: rgba(20, 20, 40, 0.85);
@@ -159,6 +159,62 @@
             color: #0a0a1a;
             box-shadow: 0 0 15px rgba(110, 198, 255, 0.4);
         }
+
+        /* Modal Styles */
+        #modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #modal-content {
+            width: 90%;
+            height: 90%;
+            background: #0d1117;
+            border: 1px solid #30363d;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        #modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        #modal-close:hover {
+            color: #ff7b72;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        #modal-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 
@@ -182,6 +238,17 @@
             <input type="text" id="search-input" placeholder="搜索播客名字 / Search Podcast Name...">
             <button id="search-btn" class="action-btn">搜索 / Search</button>
             <button id="reset-btn" class="action-btn">重置 / Reset</button>
+            <button id="table-btn" class="action-btn"
+                style="border-color: #ff7b72; color: #ff7b72; background: rgba(255, 123, 114, 0.1);">聚类分析表 / Cluster
+                Table</button>
+        </div>
+    </div>
+
+    <!-- Modal for Cluster Table -->
+    <div id="modal-overlay">
+        <div id="modal-content">
+            <span id="modal-close">&times;</span>
+            <iframe id="modal-iframe" src=""></iframe>
         </div>
     </div>
     <div id="legend">
@@ -385,6 +452,31 @@
                 performSearch();
             }
         });
+
+        // Modal Control Logic
+        const modalOverlay = document.getElementById('modal-overlay');
+        const modalIframe = document.getElementById('modal-iframe');
+        const modalClose = document.getElementById('modal-close');
+        const tableBtn = document.getElementById('table-btn');
+
+        if (tableBtn) {
+            tableBtn.onclick = function () {
+                modalOverlay.style.display = 'flex';
+                modalIframe.src = 'cross_appearance_cluster_table.html';
+            };
+        }
+
+        if (modalClose) {
+            modalClose.onclick = function () {
+                modalOverlay.style.display = 'none';
+            };
+        }
+
+        window.onclick = function (event) {
+            if (event.target == modalOverlay) {
+                modalOverlay.style.display = 'none';
+            }
+        };
     </script>
 </body>
 

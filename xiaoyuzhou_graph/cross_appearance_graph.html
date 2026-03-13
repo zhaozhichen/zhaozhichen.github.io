@@ -80,6 +80,30 @@
         .legend-text strong {
             color: #fff;
         }
+        #download-links {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .download-btn {
+            background: rgba(110, 198, 255, 0.1);
+            border: 1px solid #6ec6ff;
+            color: #6ec6ff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .download-btn:hover {
+            background: #6ec6ff;
+            color: #0a0a1a;
+            box-shadow: 0 0 15px rgba(110, 198, 255, 0.4);
+        }
         #search-container {
             margin-top: 15px;
             display: flex;
@@ -174,6 +198,14 @@
             节点 (播客): 3037 | 
             边 (串台关系): 5161 |
             总串台单集数: 8694
+        </div>
+        <div id="download-links">
+            <a href="cross_appearance_graph.json" download class="download-btn">
+                下载图谱数据 (JSON)
+            </a>
+            <a href="cross_appearance_llm_results.json" download class="download-btn">
+                下载 LLM 分析结果 (JSON)
+            </a>
         </div>
         <div id="search-container">
             <input type="text" id="search-input" placeholder="搜索播客名字 / Search Podcast Name...">

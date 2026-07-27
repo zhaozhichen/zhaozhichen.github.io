@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作为信息截断的熵 | Entropy as Information Truncation</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['\\(', '\\)']],
+                displayMath: [['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+                "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #fafafa;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        .author { font-size: 1.1em; color: #666; margin-bottom: 8px; }
+        .date { font-size: 0.95em; color: #999; }
+        .language-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        .lang-btn {
+            padding: 10px 20px;
+            background: #f0f0f0;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover { background: #e0e0e0; }
+        .lang-btn.active { background: #4a90e2; color: white; border-color: #4a90e2; }
+        .content { display: none; }
+        .content.active { display: block; }
+        .content p { margin-bottom: 18px; text-align: justify; }
+        .content ol, .content ul { margin: 20px 0; padding-left: 30px; }
+        .content li { margin-bottom: 12px; }
+        .content strong { color: #2c3e50; font-weight: 600; }
+        .formula {
+            background: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #4a90e2;
+            margin: 20px 0;
+            overflow-x: auto;
+            text-align: center;
+        }
+        .formula .MathJax { font-size: 1.1em; }
+        @media (max-width: 768px) {
+            body { padding: 10px; }
+            .container { padding: 20px; }
+            h1 { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 id="title-zh" hidden>作为信息截断的熵</h1>
+            <h1 id="title-en">Entropy as Information Truncation</h1>
+            <div class="author" id="author-zh" hidden>赵智沉</div>
+            <div class="author" id="author-en">Fred Zhao</div>
+            <div class="date" id="date-zh" hidden>2026 年 7 月 26 日</div>
+            <div class="date" id="date-en">July 26, 2026</div>
+        </div>
+
+        <div class="language-switcher" role="group" aria-label="Language">
+            <button class="lang-btn" type="button" data-lang="zh" onclick="switchLanguage('zh', this)">中文</button>
+            <button class="lang-btn active" type="button" data-lang="en" onclick="switchLanguage('en', this)">English</button>
+        </div>
+
+        <article id="content-zh" class="content" lang="zh-CN">
+            <p>周末凑菲尔兹奖的热闹，回顾了希尔伯特第六问题，特别是著名的洛施密特佯谬：“如何从微观可逆的基本力学方程推导出宏观不可逆的玻尔兹曼熵增定理？”。虽然我在科普书里尽可能直白地解释了粗粒化过程中的信息丢失，但在论证过程中总感觉缺了点什么。这次终于把拼图补上了，如果有机会再版，会写得更清晰。此处整理一下脉络。</p>
+
+            <p>我们可以将这个问题分为两个阶段：</p>
+            <ol>
+                <li>牛顿第二定律到玻尔兹曼方程，以及作为推论的玻尔兹曼熵增定理；</li>
+                <li>从玻尔兹曼方程到流体方程（包括纳维-斯托克斯方程）。</li>
+            </ol>
+
+            <p>牛顿定律描述的是单个粒子在外力下的运动规律。面对封闭环境中近乎无穷多的粒子时（比如流体气体），追踪并计算每一个粒子的运动轨迹是不现实的。此时我们需要借助统计方法，研究 \(N\) 个粒子在相空间里的分布函数。相空间包括位置和动量，自由度为 \(6N\)。当每个粒子都符合牛顿定律时，这个分布函数也一定符合某个方程。严格来说，\(N\) 个粒子的分布函数不可以写成 \(N\) 个单粒子分布函数的乘积，因为它们互相之间通过持续的相互作用（主要是碰撞）保持相干状态。我们之后会看到，正是这种持续的碰撞导致了熵增。另一方面，\(N\) 个粒子的地位是对称的，因此可以通过将其他 \(N-1\) 个粒子自由度积分掉的方法定义单个粒子的“平均”分布。单粒子分布决定了一个多粒子系统的所有宏观物理特征（体积、压强、温度、熵、热传导率、黏性等）。此外，我们可以通过积分掉其他 \(N-2\) 个粒子自由度的方式定义双粒子分布，甚至三粒子、四粒子分布等等。双粒子分布相较于两个单粒子分布的乘积，多出来的那部分就刻画了两个粒子之间的相互关系，即相干性。BBGKY 层级方程以递归的方式将 \(6N\) 自由度的全空间函数写成 \(k\) 粒子分布和 \(k+1\) 粒子分布的关系。</p>
+
+            <div class="formula">\[
+                \frac{\partial f^{(k)}}{\partial t}
+                + \sum_{i=1}^{k}\mathbf{v}_i\cdot\nabla_{\mathbf{x}_i}f^{(k)}
+                = (N-k)r^2\mathcal{C}_{k,k+1}f^{(k+1)}
+            \]</div>
+
+            <p>作为 \(k=1\) 的特例，玻尔兹曼方程表达了单粒子分布和双粒子分布之间的关系。玻尔兹曼的关键洞见是“分子混沌假设”，即假设两个粒子在碰撞前互相独立，双粒子分布可以近似写为两个单粒子分布的乘积，此时 BBGKY 方程就塌缩为完全由单粒子分布表述的方程，截断了对于高阶粒子分布的依赖。它只有 6 个自由度，与粒子总数量无关，而且可以决定所有宏观热力学性质（在稀薄理想气体假设下）。</p>
+
+            <div class="formula">\[
+                \frac{\partial f^{(1)}}{\partial t}
+                + \mathbf{v}\cdot\nabla_{\mathbf{x}}f^{(1)}
+                = Q\!\left(f^{(1)},f^{(1)}\right)
+            \]</div>
+
+            <p>这个看起来无懈可击的方案引入了时间箭头这个恶魔。仔细观察玻尔兹曼方程，在时间反演变换下，左边引入一个负号但右边不变，等式不再成立。这在分子混沌假设中的含义是：假设两个粒子在碰撞前不相干，但碰撞后就会留下记忆。这种对碰撞前后的不对称处理正是时间箭头的根源。玻尔兹曼在这个方程的基础上定义了玻尔兹曼熵，并证明了它随时间递增。</p>
+
+            <div class="formula">\[
+                S_B=-k_BN\int f^{(1)}(\Gamma,t)\ln f^{(1)}(\Gamma,t)\,\mathrm{d}\Gamma
+            \]</div>
+
+            <p>正如玻尔兹曼方程定义于单粒子分布，玻尔兹曼熵亦是。可以想象，玻尔兹曼熵不可逆之根源来自 \(N\) 粒子相空间分布向单粒子分布的降维。在这个过程中，粒子之间的相干性被积分洗掉了。如果我们基于 \(N\) 粒子分布定义所谓的“精细吉布斯熵”，我们可以通过刘维尔定理证明它是守恒量：</p>
+
+            <div class="formula">\[
+                S_G=-k_B\int f^{(N)}(\Gamma,t)\ln f^{(N)}(\Gamma,t)\,\mathrm{d}\Gamma
+            \]</div>
+
+            <p>因此，碰撞过程并没有减少全局信息，而是将原本属于单粒子的信息通过不断碰撞传递进了粒子之间的共同记忆之中。此时，如果我们把每一个粒子单独抓出来问询，得出来的总信息就少于所有粒子拥有的共同记忆。玻尔兹曼熵记录的就是所有单个粒子的信息之和。如果我们将全局信息想象为一个超高维度上的信息流形，那么每一次碰撞就将这个流形的某一块拉丝、扭结、挤压，在无数次碰撞后形成一个难以名状的形态。当我们用单粒子的低维度视角去窥探这个流形，那些复杂的结构在低维投影上压缩成模糊一片，篆刻着碰撞记忆的高维信息也随之消失。</p>
+
+            <p><strong>这个过程称为“粗粒化”。（玻尔兹曼）熵的本质是信息的截断。</strong></p>
+
+            <p>当然，这解释了玻尔兹曼方程如何引入了时间箭头，而不代表它是错的。希尔伯特第六问题的任务之一是解释如何从一个微观定律（牛顿第二定律）推导出统计定律。事实上“分子混沌假设”是个苛刻到不切实际的假设。它要求对任何碰撞而言，两个粒子在碰撞前都互相独立。如果将所有粒子的碰撞关系用图表示的话，这个假设相当于要求这个图是一个树，没有环路。如果两个粒子（以及它们的碰撞前辈）在碰撞前没有交集，那么这两个粒子确实可以视作相互独立。但只要持续时间足够长，无论粒子数 \(N\) 多大，一定会出现环形碰撞，即 A 撞 B，B 撞 C，然后 C 撞 A，此时分子混沌假设就失效了。</p>
+
+            <p>兰福德在 1975 年做出了关键突破——他第一次驯服了环形碰撞情形。他证明了，在极短时间窗口内（\(1/5\) 个平均碰撞周期），牛顿定律收敛到玻尔兹曼方程。这个证明只需要假设在初始状态所有粒子之间不相干，而不需要假设在每一次碰撞前两个粒子都不相干，也不需要假设树形碰撞结构。但是兰福德的方法还是有些简单粗暴，当时间拉长到宏观尺度时，碰撞树的枝桠指数级爆炸，产生环形碰撞的概率极速提升，他的收敛方法就压不住了。在兰福德的基础上，邓煜等人在 2025 年通过一系列精巧的数学工具将这个极端的时间窗口拓展到了任意长，彻底驯服了环形碰撞情形。</p>
+
+            <p>第二阶段：从描述单粒子分布的玻尔兹曼方程推导出描述宏观流体动力学过程的流体方程（比如著名的纳维-斯托克斯方程），本质上是将分布函数在相空间中积分。如果直接将分布函数对动量空间积分，可以得到流体的质量、动量、能量守恒方程；如果将分布函数按努森数（无量纲量，平均自由程和宏观特征尺度的比）渐进展开（即查普曼-恩斯科格展开），在零阶可以得到欧拉方程（其解为经典的麦克斯韦-玻尔兹曼分布）；在一阶可以得到纳维-斯托克斯方程。不过这些都与本次菲尔兹奖关系不大。</p>
+
+            <p>关于时间箭头，还有一个常被讨论的是策梅洛佯谬，指的是宏观系统的熵增定律与微观力学的庞加莱回归定理相矛盾。庞加莱回归定理指的是一个封闭的哈密顿系统，只要经过足够长时间，会无限逼近任意初始状态，无论它是简单线性系统还是复杂混沌系统。当然，对于一个复杂的多粒子系统而言，这个回归时间非常非常长。邓煜的证明和庞加莱回归定理并不矛盾，因为两者在不同的顺序上取极限。邓煜首先假定粒子数趋于无限，然后证明此系统在任意时间尺度都满足玻尔兹曼方程；庞加莱回归定理则先假定一个有限系统，在趋于无限的时间上一定会回到初始状态。如果粒子数无限，相空间无限大，遍历轨迹无法收敛。当然这些都是数学上讨论的极限情形。物理学面对的永远都是有限情形。</p>
+        </article>
+
+        <article id="content-en" class="content active" lang="en">
+            <p>Over the weekend, joining in the excitement around the Fields Medal, I revisited Hilbert’s sixth problem—especially the famous Loschmidt paradox: “How can the macroscopically irreversible Boltzmann entropy-increase theorem be derived from microscopically reversible fundamental equations of mechanics?” In my popular-science book, I tried to explain the information loss in coarse-graining as plainly as I could, yet the argument always felt as if it were missing a piece. This time I finally found the missing piece. If the book ever gets a new edition, I will make the explanation clearer. Here, I want to set out the line of thought.</p>
+
+            <p>We can divide the problem into two stages:</p>
+            <ol>
+                <li>from Newton’s second law to the Boltzmann equation, and from there to the Boltzmann \(H\)-theorem as a corollary;</li>
+                <li>from the Boltzmann equation to the fluid equations, including the Navier–Stokes equations.</li>
+            </ol>
+
+            <p>Newton’s laws describe how a single particle moves under an external force. Faced with an almost infinite number of particles in a closed environment—a fluid or a gas, for instance—it is unrealistic to track and calculate the trajectory of every particle. We therefore turn to statistics and study the distribution function of \(N\) particles in phase space. Phase space contains position and momentum and has \(6N\) degrees of freedom. If every particle obeys Newton’s laws, this distribution function must itself obey some equation.</p>
+
+            <p>Strictly speaking, the \(N\)-particle distribution cannot be written as a product of \(N\) one-particle distributions, because continuous interactions—collisions, above all—keep the particles correlated. We will see that it is precisely these persistent collisions that give rise to entropy increase. On the other hand, the \(N\) particles are symmetric in status. By integrating out the degrees of freedom of the other \(N-1\) particles, we can therefore define an “average” one-particle distribution. That one-particle distribution determines all the macroscopic physical properties of a many-particle system: volume, pressure, temperature, entropy, thermal conductivity, viscosity, and so on.</p>
+
+            <p>Likewise, by integrating out the other \(N-2\) particles, we can define a two-particle distribution, and similarly three-particle and four-particle distributions. The part of the two-particle distribution that exceeds the product of two one-particle distributions encodes the relationship between the particles: their correlation. The BBGKY hierarchy recursively expresses the full \(6N\)-dimensional distribution in terms of the relationship between a \(k\)-particle distribution and a \((k+1)\)-particle distribution.</p>
+
+            <div class="formula">\[
+                \frac{\partial f^{(k)}}{\partial t}
+                + \sum_{i=1}^{k}\mathbf{v}_i\cdot\nabla_{\mathbf{x}_i}f^{(k)}
+                = (N-k)r^2\mathcal{C}_{k,k+1}f^{(k+1)}
+            \]</div>
+
+            <p>For \(k=1\), the Boltzmann equation is the special case that relates the one-particle distribution to the two-particle distribution. Boltzmann’s crucial insight was the assumption of “molecular chaos”: before a collision, two particles are assumed to be independent, so their joint distribution can be approximated by the product of two one-particle distributions. The BBGKY equation then collapses into an equation written entirely in terms of the one-particle distribution, truncating its dependence on higher-order particle distributions. It has only six degrees of freedom, regardless of the total number of particles, and—under the dilute ideal-gas assumption—determines every macroscopic thermodynamic property.</p>
+
+            <div class="formula">\[
+                \frac{\partial f^{(1)}}{\partial t}
+                + \mathbf{v}\cdot\nabla_{\mathbf{x}}f^{(1)}
+                = Q\!\left(f^{(1)},f^{(1)}\right)
+            \]</div>
+
+            <p>This apparently airtight maneuver lets in the demon of time’s arrow. Look closely at the Boltzmann equation: under time reversal, the left-hand side acquires a minus sign while the right-hand side does not, and the equality no longer holds. In the language of molecular chaos, two particles are assumed to be uncorrelated before they collide, yet the collision leaves a memory afterward. This asymmetric treatment of before and after is the source of time’s arrow. Boltzmann defined his entropy from this equation and proved that it increases with time.</p>
+
+            <div class="formula">\[
+                S_B=-k_BN\int f^{(1)}(\Gamma,t)\ln f^{(1)}(\Gamma,t)\,\mathrm{d}\Gamma
+            \]</div>
+
+            <p>Just as the Boltzmann equation is defined on the one-particle distribution, so is Boltzmann entropy. The root of its irreversibility, then, can be understood as the dimensional reduction from the \(N\)-particle phase-space distribution to the one-particle distribution. In that reduction, correlations among particles are washed away by integration. If instead we define the so-called fine-grained Gibbs entropy from the \(N\)-particle distribution, Liouville’s theorem lets us prove that it is conserved:</p>
+
+            <div class="formula">\[
+                S_G=-k_B\int f^{(N)}(\Gamma,t)\ln f^{(N)}(\Gamma,t)\,\mathrm{d}\Gamma
+            \]</div>
+
+            <p>Collisions therefore do not reduce global information. Through repeated collisions, they move information that once belonged to individual particles into a shared memory among particles. If we pull the particles aside one by one and question each in isolation, the sum of what they tell us will contain less information than their shared memory as a whole. Boltzmann entropy records the sum of the information carried by the individual particles.</p>
+
+            <p>Imagine global information as an information manifold in an extremely high-dimensional space. Every collision draws out, knots, and compresses some patch of that manifold. After countless collisions, it takes on a shape beyond description. When we peer at it from the low-dimensional viewpoint of a single particle, those elaborate structures collapse into a blur under projection, and the high-dimensional information engraved with the memory of collisions disappears with them.</p>
+
+            <p><strong>This process is called “coarse-graining.” The essence of (Boltzmann) entropy is the truncation of information.</strong></p>
+
+            <p>Of course, this explains how the Boltzmann equation introduces an arrow of time; it does not mean the equation is wrong. One task within Hilbert’s sixth problem is precisely to explain how a statistical law can be derived from a microscopic law—Newton’s second law. In fact, molecular chaos is an assumption so stringent as to be unrealistic. It requires the two particles in every collision to be independent beforehand. If we draw every collision as a graph, the assumption amounts to requiring the graph to be a tree, with no loops. If the histories of two particles—and of all their collisional ancestors—have never intersected, then the particles can indeed be treated as independent. But given enough time, no matter how large \(N\) is, a collision loop must appear: A hits B, B hits C, and then C hits A. At that point molecular chaos fails.</p>
+
+            <p>Lanford made the crucial breakthrough in 1975: he was the first to tame the case of collision loops. He proved that, within an extremely short time window—one fifth of a mean collision time—Newtonian dynamics converges to the Boltzmann equation. His proof needs only the assumption that all particles are initially uncorrelated. It does not assume that every pair is uncorrelated before each collision, nor does it require a tree-shaped collision structure. Yet Lanford’s method remained somewhat blunt. As the time window expands toward macroscopic scales, the branches of the collision tree proliferate exponentially, the probability of loops rises sharply, and his convergence method can no longer keep them under control. Building on Lanford’s work, Deng Yu and collaborators used a sequence of delicate mathematical tools in 2025 to extend that tiny window to arbitrarily long times, finally taming collision loops altogether.</p>
+
+            <p>The second stage—from the Boltzmann equation for a one-particle distribution to fluid equations describing macroscopic dynamics, such as the Navier–Stokes equations—is essentially a matter of integrating the distribution function over phase space. Direct integration over momentum space gives the conservation equations for mass, momentum, and energy. Alternatively, expand the distribution asymptotically in the Knudsen number, the dimensionless ratio of the mean free path to a characteristic macroscopic length—the Chapman–Enskog expansion. At zeroth order one obtains the Euler equations, whose solution is the classical Maxwell–Boltzmann distribution; at first order one obtains the Navier–Stokes equations. None of this, however, has much to do with the Fields Medal at hand.</p>
+
+            <p>Another frequently discussed puzzle about time’s arrow is Zermelo’s paradox: the apparent conflict between entropy increase in a macroscopic system and Poincaré’s recurrence theorem in microscopic mechanics. The recurrence theorem says that a closed Hamiltonian system, given enough time, will return arbitrarily close to any initial state, whether the system is simple and linear or complex and chaotic. For a complicated many-particle system, of course, that recurrence time is fantastically long.</p>
+
+            <p>Deng Yu’s proof does not contradict Poincaré recurrence, because the two take their limits in different orders. Deng first lets the number of particles tend to infinity, then proves that the system satisfies the Boltzmann equation on arbitrary time scales. Poincaré recurrence first fixes a finite system, then lets time tend to infinity, in which case the system must return to its initial state. With infinitely many particles, phase space is infinite and an ergodic trajectory cannot close. These are, of course, limiting cases discussed in mathematics. Physics always confronts the finite case.</p>
+        </article>
+    </div>
+
+    <script>
+        function switchLanguage(lang, button) {
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.classList.toggle('active', btn === button);
+            });
+
+            var isChinese = lang === 'zh';
+            document.getElementById('content-zh').classList.toggle('active', isChinese);
+            document.getElementById('content-en').classList.toggle('active', !isChinese);
+
+            ['title', 'author', 'date'].forEach(function (field) {
+                document.getElementById(field + '-zh').hidden = !isChinese;
+                document.getElementById(field + '-en').hidden = isChinese;
+            });
+
+            document.documentElement.lang = isChinese ? 'zh-CN' : 'en';
+        }
+    </script>
+</body>
+</html>

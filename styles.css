@@ -419,7 +419,7 @@ section {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 680px) {
     .nav-menu {
         display: none;
     }
@@ -509,4 +509,4 @@ html {
 .projects-grid,
 .contact-content {
     animation: fadeInUp 0.8s ease-out;
-} 
+}

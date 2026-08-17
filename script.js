@@ -156,8 +156,9 @@ document.addEventListener('DOMContentLoaded', function() {
 // Add CSS for mobile menu
 const style = document.createElement('style');
 style.textContent = `
-    @media (max-width: 768px) {
+    @media (max-width: 680px) {
         .nav-menu {
+            display: flex;
             position: fixed;
             top: 70px;
             left: -100%;
@@ -193,4 +194,4 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style); 
+document.head.appendChild(style);

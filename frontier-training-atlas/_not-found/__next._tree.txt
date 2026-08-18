@@ -1,2 +1,2 @@
-:HL["/frontier-training-atlas/_next/static/chunks/0m1_1qu8m-y~9.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"Wc7KC-qZ05J_uCIqI6pba"}
+:HL["/frontier-training-atlas/_next/static/chunks/05acby5gxxyi-.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"/_not-found","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"vbCDGrmlgmCuZTsWZ_sEJ"}

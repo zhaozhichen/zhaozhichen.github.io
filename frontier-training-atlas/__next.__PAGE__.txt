@@ -1,9 +1,9 @@
 1:"$Sreact.fragment"
 2:I[47257,["/frontier-training-atlas/_next/static/chunks/0bn7sb9dt40_4.js"],"ClientPageRoot"]
-3:I[31713,["/frontier-training-atlas/_next/static/chunks/0bn7sb9dt40_4.js","/frontier-training-atlas/_next/static/chunks/0u09z2g-d.mmy.js"],"default"]
+3:I[31713,["/frontier-training-atlas/_next/static/chunks/0bn7sb9dt40_4.js","/frontier-training-atlas/_next/static/chunks/166pmh9ka4uo3.js"],"default"]
 6:I[97367,["/frontier-training-atlas/_next/static/chunks/0bn7sb9dt40_4.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/frontier-training-atlas/_next/static/chunks/0u09z2g-d.mmy.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Wc7KC-qZ05J_uCIqI6pba"}
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"Component":"$3","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@4","$@5"]}}],[["$","script","script-0",{"src":"/frontier-training-atlas/_next/static/chunks/166pmh9ka4uo3.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"vbCDGrmlgmCuZTsWZ_sEJ"}
 4:{}
 5:"$0:rsc:props:children:0:props:serverProvidedParams:params"
 8:null

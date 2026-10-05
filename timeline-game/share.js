@@ -24,8 +24,6 @@
     text((score.accuracy * 100).toFixed(1) + '%', 66, 538, 206, '#fff', '600', 930, 'Arial, sans-serif');
     text('正确率', 82, 592, 28, '#bbb');
     text(`答对 ${score.correct} / ${score.answered} 张`, 80, 696, 38);
-    const line = score.accuracy === 1 ? '你和历史，口供一致。' : score.accuracy >= .8 ? '历史没乱，今天你也没有。' : score.accuracy >= .5 ? '大体按时，偶尔穿越。' : '不是记错，是时间旅行。';
-    text(line, 80, 775, 39, '#fff', '400');
     // A small timeline visual also represents the last ten answers.
     const recent = state.attempts.slice(-10), start = 104, end = 976, y = 882;
     ctx.strokeStyle = '#888'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(80, y); ctx.lineTo(1000, y); ctx.stroke();
@@ -39,11 +37,8 @@
     ctx.fillStyle = '#fff'; ctx.fillRect(qrX, qrY, size, size);
     ctx.fillStyle = '#000';
     matrix.forEach((row, y) => row.forEach((dark, x) => { if (dark) ctx.fillRect(qrX + x * unit, qrY + y * unit, unit, unit); }));
-    text('轮到你了。', 80, 1050, 49, '#fff', '500', 600);
-    text('来排一段历史。', 80, 1110, 29, '#bbb', '400', 600);
+    text('你来试试', 80, 1075, 49, '#fff', '500', 600);
     text('zhaozhichen.github.io/timeline-game/', 80, 1195, 22, '#bbb', '400', 615, 'Arial, sans-serif');
-    text('原作 Calculating Empires · Kate Crawford & Vladan Joler', 80, 1271, 20, '#999');
-    text('个人娱乐 · 非商业用途', 80, 1300, 18, '#999');
     return canvas;
   }
   function fileName(state) {

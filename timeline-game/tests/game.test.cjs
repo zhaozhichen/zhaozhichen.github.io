@@ -121,3 +121,39 @@ test('separate rounds with the same name have independent completion times', () 
   assert.notEqual(first.id,second.id); assert.notEqual(first.endedAt,second.endedAt);
   assert.equal(first.name,second.name); assert.equal(first.attempts.length,10);
 });
+
+test('the share image represents every answer in order, including long rounds', async () => {
+  const vm = require('node:vm');
+  const source = fs.readFileSync(path.join(__dirname, '../share.js'), 'utf8');
+  const lookup = Object.fromEntries(deck.map(c => [c.id, c]));
+  for (const count of [10, 11, 30, 31, 100, deck.length - 1]) {
+    let state = G.create('玩家', deck, () => .8, 'share-test');
+    for (let i = 0; i < count; i++) {
+      const year = lookup[G.pending(state)].year;
+      const slot = i % 3 ? state.timeline.filter(id => lookup[id].year <= year).length : 0;
+      state = G.place(state, slot, lookup);
+      if (i < count - 1) state = G.next(state);
+    }
+    state = G.finish(state);
+    const dots = [], labels = []; let circle;
+    const ctx = {
+      fillRect() {}, strokeRect() {}, beginPath() {}, moveTo() {}, lineTo() {}, stroke() {},
+      measureText() { return {width: 100}; }, fillText(value) { labels.push(value); },
+      arc(x, y, r) { circle = {x, y, r}; }, fill() { dots.push({...circle, color: this.fillStyle}); }
+    };
+    const canvas = {getContext: () => ctx};
+    const window = {TimelineGame: G, TIMELINE_QR: {matrix: [[true]]}};
+    vm.runInNewContext(source, {window, document: {fonts: {load: async () => [{}]}, createElement: () => canvas}});
+    await window.TimelineShare.make(state);
+    assert.equal(dots.length, count, `${count} answers must produce ${count} dots`);
+    assert.deepEqual(dots.map(d => d.color), state.attempts.map(a => a.correct ? '#fff' : '#000'));
+    assert.ok(labels.includes(`答对 ${G.stats(state).correct} / ${count} 张`));
+    for (let i = 0; i < dots.length; i++) {
+      const dot = dots[i];
+      assert.ok(dot.x - dot.r >= 80 && dot.x + dot.r <= 1000);
+      assert.ok(dot.y - dot.r > 720 && dot.y + dot.r < 950, 'dots must stay between score and QR');
+      if (i) assert.ok(dot.y > dots[i - 1].y || (dot.y === dots[i - 1].y && dot.x > dots[i - 1].x), 'read left to right, then top to bottom');
+      for (const other of dots.slice(0, i)) assert.ok(Math.hypot(dot.x - other.x, dot.y - other.y) > dot.r + other.r + 2, 'dots must not overlap');
+    }
+  }
+});

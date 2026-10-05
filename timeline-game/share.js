@@ -32,13 +32,22 @@
     text((score.accuracy * 100).toFixed(1) + '%', 66, 538, 206, '#fff', '600', 930, 'Arial, sans-serif');
     text('正确率', 82, 592, 28, '#bbb');
     text(`答对 ${score.correct} / ${score.answered} 张`, 80, 696, 38);
-    // A small timeline visual also represents the last ten answers.
-    const recent = state.attempts.slice(-10), start = 104, end = 976, y = 882;
-    ctx.strokeStyle = '#888'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(80, y); ctx.lineTo(1000, y); ctx.stroke();
-    recent.forEach((answer, i) => {
-      const x = start + i * (end - start) / Math.max(1, recent.length - 1);
+    // One dot per answer, in play order. Wrap long rounds above the QR area.
+    const answers = state.attempts, rows = Math.ceil(answers.length / 30);
+    const columns = Math.ceil(answers.length / rows), start = 104, end = 976;
+    const stepX = (end - start) / Math.max(1, columns - 1);
+    const stepY = Math.min(30, 180 / Math.max(1, rows - 1));
+    const top = Math.min(882, 920 - (rows - 1) * stepY);
+    const radius = Math.min(9, stepY / 2 - 4);
+    for (let row = 0; row < rows; row++) {
+      const count = Math.min(columns, answers.length - row * columns), y = top + row * stepY;
+      ctx.strokeStyle = '#888'; ctx.lineWidth = 2; ctx.beginPath();
+      ctx.moveTo(80, y); ctx.lineTo(start + (count - 1) * stepX + 24, y); ctx.stroke();
+    }
+    answers.forEach((answer, i) => {
+      const x = start + (i % columns) * stepX, y = top + Math.floor(i / columns) * stepY;
       ctx.fillStyle = answer.correct ? '#fff' : '#000'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+      ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     });
     const matrix = window.TIMELINE_QR.matrix, unit = Math.floor(276 / matrix.length), size = unit * matrix.length;
     const qrX = 1000 - size, qrY = 960;

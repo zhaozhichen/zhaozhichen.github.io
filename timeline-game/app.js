@@ -255,7 +255,7 @@
     }
     if (page === 'play') renderPlay();
     if (page === 'archive') renderArchive();
-    document.title = (page === 'play' ? '' : ({archive:'历史卡', about:'关于'})[page] + ' · ') + '计算帝国——时间线';
+    document.title = (page === 'play' ? '' : ({archive:'历史卡', about:'关于'})[page] + ' · ') + '计算帝国';
     if (!initial) { window.scrollTo({top:0, behavior:'instant'}); $('#main').focus({preventScroll:true}); }
   }
   window.addEventListener('hashchange', () => route());

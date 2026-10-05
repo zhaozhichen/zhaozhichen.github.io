@@ -151,7 +151,7 @@ test('the share image represents every answer in order, including long rounds', 
     for (let i = 0; i < dots.length; i++) {
       const dot = dots[i];
       assert.ok(dot.x - dot.r >= 80 && dot.x + dot.r <= 1000);
-      assert.ok(dot.y - dot.r > 815 && dot.y + dot.r < 1030, 'dots must stay between score and QR');
+      assert.ok(dot.y - dot.r > 720 && dot.y + dot.r < 950, 'dots must stay between score and QR');
       if (i) assert.ok(dot.y > dots[i - 1].y || (dot.y === dots[i - 1].y && dot.x > dots[i - 1].x), 'read left to right, then top to bottom');
       for (const other of dots.slice(0, i)) assert.ok(Math.hypot(dot.x - other.x, dot.y - other.y) > dot.r + other.r + 2, 'dots must not overlap');
     }

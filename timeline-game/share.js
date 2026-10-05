@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  const TITLE = '计算帝国——时间线';
+  const TITLE = '计算帝国';
   const sans = '"PingFang SC", "Microsoft YaHei", sans-serif';
   const titleFont = '"Timeline Title Heavy"';
   const nameFont = '"Timeline Name Heavy", "Songti SC", serif';
@@ -25,20 +25,19 @@
     };
     ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 1080, 1350);
     ctx.strokeStyle = '#666'; ctx.lineWidth = 1; ctx.strokeRect(32.5, 32.5, 1015, 1285);
-    text('计算帝国', 80, 160, 129, '#fff', '900', 920, titleFont);
-    text('——时间线', 80, 300, 129, '#fff', '900', 920, titleFont);
-    text(timestamp(state.endedAt), 80, 350, 23, '#aaa', '400', 920, 'Arial, sans-serif');
-    ctx.strokeStyle = '#555'; ctx.beginPath(); ctx.moveTo(80, 380); ctx.lineTo(1000, 380); ctx.stroke();
-    text(state.name, 80, 450, 48, '#fff', '900', 920, nameFont);
-    text((score.accuracy * 100).toFixed(1) + '%', 66, 662, 206, '#fff', '600', 930, 'Arial, sans-serif');
-    text('正确率', 82, 716, 28, '#bbb');
-    text(`答对 ${score.correct} / ${score.answered} 张`, 80, 790, 38);
+    text(TITLE, 80, 160, 129, '#fff', '900', 920, titleFont);
+    text(timestamp(state.endedAt), 80, 210, 23, '#aaa', '400', 920, 'Arial, sans-serif');
+    ctx.strokeStyle = '#555'; ctx.beginPath(); ctx.moveTo(80, 250); ctx.lineTo(1000, 250); ctx.stroke();
+    text(state.name, 80, 340, 48, '#fff', '900', 920, nameFont);
+    text((score.accuracy * 100).toFixed(1) + '%', 66, 568, 206, '#fff', '600', 930, 'Arial, sans-serif');
+    text('正确率', 82, 622, 28, '#bbb');
+    text(`答对 ${score.correct} / ${score.answered} 张`, 80, 710, 38);
     // One dot per answer, in play order. Wrap long rounds above the QR area.
     const answers = state.attempts, rows = Math.ceil(answers.length / 30);
     const columns = Math.ceil(answers.length / rows), start = 104, end = 976;
     const stepX = (end - start) / Math.max(1, columns - 1);
     const stepY = Math.min(30, 180 / Math.max(1, rows - 1));
-    const top = Math.min(972, 1010 - (rows - 1) * stepY);
+    const top = Math.min(882, 920 - (rows - 1) * stepY);
     const radius = Math.min(9, stepY / 2 - 4);
     for (let row = 0; row < rows; row++) {
       const count = Math.min(columns, answers.length - row * columns), y = top + row * stepY;
@@ -51,17 +50,17 @@
       ctx.beginPath(); ctx.arc(x, y, radius, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
     });
     const matrix = window.TIMELINE_QR.matrix, unit = Math.floor(276 / matrix.length), size = unit * matrix.length;
-    const qrX = 1000 - size, qrY = 1040;
+    const qrX = 1000 - size, qrY = 960;
     ctx.fillStyle = '#fff'; ctx.fillRect(qrX, qrY, size, size);
     ctx.fillStyle = '#000';
     matrix.forEach((row, y) => row.forEach((dark, x) => { if (dark) ctx.fillRect(qrX + x * unit, qrY + y * unit, unit, unit); }));
-    text('你来试试', 80, 1155, 49, '#fff', '500', 600);
-    text('zhaozhichen.github.io/timeline-game/', 80, 1275, 22, '#bbb', '400', 615, 'Arial, sans-serif');
+    text('你来试试', 80, 1075, 49, '#fff', '500', 600);
+    text('zhaozhichen.github.io/timeline-game/', 80, 1195, 22, '#bbb', '400', 615, 'Arial, sans-serif');
     return canvas;
   }
   function fileName(state) {
     const name = state.name.replace(/[\\/:*?"<>|\u0000-\u001f]/g, '_');
-    return `计算帝国-时间线-${name}-${state.endedAt}.png`;
+    return `${TITLE}-${name}-${state.endedAt}.png`;
   }
   window.TimelineShare = {make, timestamp, fileName, title: TITLE};
 })();

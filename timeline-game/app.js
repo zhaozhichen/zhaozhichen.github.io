@@ -231,8 +231,6 @@
     $('.detail-text').hidden = frontOnly;
     $('#detail-title').textContent = `${c.id} · ${c.title}`;
     for (const side of ['front','back']) { $('#detail-' + side).src = asset(c, side); $('#detail-' + side).alt = c.title + (side === 'front' ? '，事件面' : '，答案面'); }
-    $('#detail-year').textContent = `${c.year}　${c.date_note || ''}`;
-    $('#detail-background').replaceChildren(...c.background.map(p => make('p', '', p)));
     $('#detail-art-note').textContent = c.art_note;
     $('#detail-sources').replaceChildren();
     for (const source of [{title:'在原作中查看这个事件', url:c.map_source}, ...(c.sources || [])]) {

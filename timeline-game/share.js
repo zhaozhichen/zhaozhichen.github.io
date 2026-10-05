@@ -2,11 +2,19 @@
   'use strict';
   const TITLE = '计算帝国——时间线';
   const sans = '"PingFang SC", "Microsoft YaHei", sans-serif';
+  const titleFont = '"Timeline Title Heavy"';
+  const nameFont = '"Timeline Name Heavy", "Songti SC", serif';
   function timestamp(time) {
     const d = new Date(time), pad = n => String(n).padStart(2, '0');
     return `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
   }
-  function make(state) {
+  async function make(state) {
+    // Canvas snapshots do not update when a webfont arrives: load it first.
+    const [titleFaces] = await Promise.all([
+      document.fonts.load(`900 43px ${titleFont}`, TITLE),
+      document.fonts.load('900 48px "Timeline Name Heavy"', state.name)
+    ]);
+    if (!titleFaces.length) throw new Error('The title font is unavailable.');
     const score = window.TimelineGame.stats(state), canvas = document.createElement('canvas');
     canvas.width = 1080; canvas.height = 1350;
     const ctx = canvas.getContext('2d');
@@ -17,10 +25,10 @@
     };
     ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 1080, 1350);
     ctx.strokeStyle = '#666'; ctx.lineWidth = 1; ctx.strokeRect(32.5, 32.5, 1015, 1285);
-    text(TITLE, 80, 120, 43, '#fff', '500');
+    text(TITLE, 80, 120, 43, '#fff', '900', 920, titleFont);
     text(timestamp(state.endedAt), 80, 167, 23, '#aaa', '400', 920, 'Arial, sans-serif');
     ctx.strokeStyle = '#555'; ctx.beginPath(); ctx.moveTo(80, 210); ctx.lineTo(1000, 210); ctx.stroke();
-    text(state.name, 80, 310, 48, '#fff', '500');
+    text(state.name, 80, 310, 48, '#fff', '900', 920, nameFont);
     text((score.accuracy * 100).toFixed(1) + '%', 66, 538, 206, '#fff', '600', 930, 'Arial, sans-serif');
     text('正确率', 82, 592, 28, '#bbb');
     text(`答对 ${score.correct} / ${score.answered} 张`, 80, 696, 38);

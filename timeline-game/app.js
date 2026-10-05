@@ -147,33 +147,16 @@
     if (!G.canFinish(state)) return;
     state = G.finish(state); save(); renderPlay(); $('#finished-title').focus();
   };
-  function renderFinished() {
-    const score = G.stats(state), root = $('#finished'); root.replaceChildren();
+  async function renderFinished() {
+    const finishedState = state, score = G.stats(finishedState), root = $('#finished');
     const summary = make('section', 'finish-summary');
     const h = make('h1', 'sr-only', '本局成绩'); h.id = 'finished-title'; h.tabIndex = -1;
-    const canvas = window.TimelineShare.make(state), url = canvas.toDataURL('image/png');
-    const image = make('img', 'share-card'); image.src = url; image.width = 1080; image.height = 1350;
-    image.alt = `${state.name}，正确率 ${pct(score.accuracy)}，答对 ${score.correct} / ${score.answered} 张，结束于 ${window.TimelineShare.timestamp(state.endedAt)}。二维码指向 ${window.TIMELINE_QR.url}`;
+    const status = make('p', 'muted', '正在生成成绩卡…'); status.setAttribute('role', 'status');
     const actions = make('div', 'finish-actions');
-    const download = make('a', 'button primary', '保存图片'); download.id = 'save-share'; download.href = url; download.download = window.TimelineShare.fileName(state);
-    actions.append(download);
-    // Native sharing is an explicit user action; downloading works in other browsers.
-    if (navigator.canShare && navigator.share && typeof File !== 'undefined') {
-      const bytes = Uint8Array.from(atob(url.split(',')[1]), c => c.charCodeAt(0));
-      const file = new File([bytes], window.TimelineShare.fileName(state), {type:'image/png'});
-      if (navigator.canShare({files:[file]})) {
-        const share = make('button', '', '分享');
-        share.onclick = async () => {
-          try { await navigator.share({files:[file], title:window.TimelineShare.title}); }
-          catch (e) { if (e.name !== 'AbortError') notice('分享未完成，可以先保存图片。'); }
-        };
-        actions.append(share);
-      }
-    }
     const again = make('button', '', '再玩一次');
     again.onclick = () => { state = null; save(); renderPlay(); $('#player-name').focus(); };
-    actions.append(again); summary.append(h, image, actions);
-    const wrong = state.attempts.filter(a => !a.correct);
+    actions.append(again); summary.append(h, status, actions);
+    const wrong = finishedState.attempts.filter(a => !a.correct);
     if (wrong.length) {
       const review = make('details', 'review-list'); review.append(make('summary', '', `错题 · ${wrong.length}`));
       const list = make('ul');
@@ -184,7 +167,36 @@
       }
       review.append(list); summary.append(review);
     }
-    root.append(summary);
+    // Mount the heading before awaiting fonts so finishing can focus it immediately.
+    root.replaceChildren(summary);
+    const isCurrent = () => state === finishedState && summary.isConnected;
+    try {
+      const canvas = await window.TimelineShare.make(finishedState);
+      if (!isCurrent()) return;
+      const url = canvas.toDataURL('image/png');
+      const image = make('img', 'share-card'); image.src = url; image.width = 1080; image.height = 1350;
+      image.alt = `${finishedState.name}，正确率 ${pct(score.accuracy)}，答对 ${score.correct} / ${score.answered} 张，结束于 ${window.TimelineShare.timestamp(finishedState.endedAt)}。二维码指向 ${window.TIMELINE_QR.url}`;
+      status.replaceWith(image);
+      const download = make('a', 'button primary', '保存图片'); download.id = 'save-share'; download.href = url; download.download = window.TimelineShare.fileName(finishedState);
+      actions.prepend(download);
+      // Native sharing is an explicit user action; downloading works in other browsers.
+      if (navigator.canShare && navigator.share && typeof File !== 'undefined') {
+        const bytes = Uint8Array.from(atob(url.split(',')[1]), c => c.charCodeAt(0));
+        const file = new File([bytes], window.TimelineShare.fileName(finishedState), {type:'image/png'});
+        if (navigator.canShare({files:[file]})) {
+          const share = make('button', '', '分享');
+          share.onclick = async () => {
+            try { await navigator.share({files:[file], title:window.TimelineShare.title}); }
+            catch (e) { if (e.name !== 'AbortError') notice('分享未完成，可以先保存图片。'); }
+          };
+          actions.insertBefore(share, again);
+        }
+      }
+    } catch {
+      if (!isCurrent()) return;
+      status.textContent = '图片生成失败，请重试。';
+      const retry = make('button', '', '重试'); retry.onclick = renderFinished; actions.prepend(retry);
+    }
   }
 
   const categoryMap = new Map(cards.map(c => [c.section, c.category]));

@@ -29,3 +29,5 @@
 本项目仅供个人学习与娱乐，不做任何商业用途，是非官方个人项目，与原作者及展览机构无隶属或合作关系。原作与原始图像的权利归相应权利人所有。仓库其他部分的许可说明不构成对这些原作及图像的额外授权。
 
 年份口径和来源见 `cards/date-audit.json`，图像处理记录见 `cards/art-process.json`。
+
+标题与玩家姓名使用思源宋体 Heavy（Adobe Source Han Serif SC Heavy）的自托管 WOFF2 子集，按 SIL OFL 1.1 授权；字体来源、修改说明及许可见 `fonts/README.md` 和 `fonts/OFL.txt`。

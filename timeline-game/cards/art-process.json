@@ -1,0 +1,926 @@
+[
+  {
+    "id": "adam",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete original optimization contour surface; remove small top caption, black backdrop. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. Remove white parallelogram overlay at lower left and reconstruct contours under it.",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "africa",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete map of Africa with internal borders and Madagascar; remove external caption and chart connectors. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "algebra",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: source mathematical function curve chart. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "apple-gravity",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete engraved apple with stem and leaf; remove Classical mechanics bar and arrows, restore covered apple surface. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "bayes",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete two overlapping prior/posterior distribution curves, remove labels and chart-line connectors outside the chart, preserve curves and axes. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. Keep all THREE complete distribution curves and their shared horizontal axis, remove all words.",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "bbc-camera",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the attached original Calculating Empires crop. Produce one cleaned source illustration for a historical card. Extract just the entire vintage television camera and its support with the camera operator, as a source-based concept illustration of early TV broadcasting. Remove stadium crowd/background, captions, digits and map line. Keep camera proportions; reconstruct only obscured lower support. Opaque black background, original monochrome photographic halftone. Put whole object inside image with 10% black breathing room on all sides. Invariants: preserve source geometry and visual identity. Output opaque RGB black backdrop (#000000), white/gray source illustration, never transparency or checkerboard, no speckles in flat black areas, no added border, no extra decoration, no date or caption.",
+    "visual_qa": "完整主体、无外部文字和日期；AI恢复遮挡区域"
+  },
+  {
+    "id": "berlin-wall",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete barbed-wire Berlin wall and towers isometric illustration; erase Berlin wall label and date, remove world map backdrop. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "bertillon",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete three-panel illustration of anthropometric measurements. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "bifocals",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. two complete round spectacle lenses with a horizontal dotted division; remove vertical external connectors. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "binary",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete original two contrasting zero/one blocks; remove thin external connector through top edge. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "border-gate",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: whole isometric border gate with barrier arm; remove chart connectors and captions. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "bow-street",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: whole group of early Bow Street officers; remove caption over bodies and restore clothing. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "britannia",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole historical Britannia engraving of central seated woman with staff and surrounding figures; erase all diagram triangles, labels, circle and connectors, restore hidden figures. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "broken-window",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete shattered window pattern; remove caption and external connectors. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "cable-copper",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. complete detailed round copper cable cross-section; remove external text or straight connectors. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "calculus",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete shaded area under a smooth curve, remove small Infinitesimals caption and horizontal dashed timeline. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "camera-obscura",
+    "tool": "built-in image_gen",
+    "prompt": "Edit the supplied original Calculating Empires map crop into one complete illustration for a black card. Opaque flat pure black #000000 background, original crisp white engraving/diagram style. Preserve the visible source composition faithfully. Remove ALL map text, captions, dates, timeline lines, connector stubs, label boxes and unrelated shapes. Conservatively complete obscured outer contours; entire subject within frame with 8% black padding on every side. No glow, gradients, shadows, checkerboard or transparency. Keep the entire optical diagram: the upper cutaway camera box, diagonal mirror, lens underneath, two diagonal light rays and the complete lower horizontal drawing plane. Remove ONLY the dashed vertical map timeline passing through the apparatus and the horizontal map connector at left. Preserve the two diagonal projection rays as they belong to the optical diagram. Restore lower right drawing-plane corner if needed. Do not turn this into a modern camera.",
+    "visual_qa": "已查看：完整主体，无外部标题与年份。AI补全部分仅作示意。"
+  },
+  {
+    "id": "cassette",
+    "tool": "built-in imagegen",
+    "prompt": "Minimal precise source-image cleanup for a black playing card. Keep ONLY the target icon in its exact original flat white-on-black geometry. All background and negative space must be perfectly opaque pure black #000000; all white shapes crisp. Remove external labels, dates, timeline connectors, dashed lines and irrelevant parts. Complete any slightly cropped outer edge. Center the COMPLETE target with 10% black padding on every side. No glow, shadows, gradients, texture, transparency or redesign. Target is the compact audio cassette with two gear-like reel holes, center window, corner screws and lower holes. Preserve all these details. Remove lines protruding outside the shell and words below.",
+    "visual_qa": "完整主体，无外部文字或日期"
+  },
+  {
+    "id": "cctv",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole original dome surveillance camera with rectangular upper housing and dark lens; remove external chart lines. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "chat-bubbles",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete three speech bubbles; remove external map lines. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "chemistry",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete original oval chemical laboratory engraving; remove diamond overlay and connectors, reconstruct hidden top apparatus. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "chess",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete original chessboard. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "cinematograph",
+    "tool": "built-in image_gen",
+    "prompt": "Edit the supplied original Calculating Empires map crop into one complete illustration for a black card. Opaque flat pure black #000000 background, original crisp white engraving/diagram style. Preserve the visible source composition faithfully. Remove ALL map text, captions, dates, timeline lines, connector stubs, label boxes and unrelated shapes. Conservatively complete obscured outer contours; entire subject within frame with 8% black padding on every side. No glow, gradients, shadows, checkerboard or transparency. Keep the entire cinematic projection apparatus AND the operator behind it, with the complete tall wooden stand and all legs and the operator's shoes. Remove the large white diagonal map stripe in lower left; restore the wooden stand's lower-left leg and foot where covered. Remove the Lumiere text and date on right. Keep authentic white engraving hatching with deep black gaps.",
+    "visual_qa": "已查看：完整主体，无外部标题与年份。AI补全部分仅作示意。"
+  },
+  {
+    "id": "cipher-disk",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete historical circular cipher wheel with alphabet. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "climate-earth",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole original cube with Earth continents drawn over its faces; remove chart labels, dashed lines and arrows crossing it. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "clouds",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original cloud classification silhouettes; remove all cloud names, altitude scales and dotted chart lines but keep each complete cloud. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "cnn",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete convolutional network layer diagram; remove dashed horizontal timeline and caption only. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "compact-disc",
+    "tool": "built-in imagegen",
+    "prompt": "Minimal precise source-image cleanup for a black playing card. Keep ONLY the target icon in its exact original flat white-on-black geometry. All background and negative space must be perfectly opaque pure black #000000; all white shapes crisp. Remove external labels, dates, timeline connectors, dashed lines and irrelevant parts. Complete any slightly cropped outer edge. Center the COMPLETE target with 10% black padding on every side. No glow, shadows, gradients, texture, transparency or redesign. Target is ONLY the circular optical disc near the BOTTOM, composed of a thin white outer circle and smaller white center-hole ring. Remove MP3 heading, rectangular frame, letters, vertical lines and all other objects. Keep it as a clean unfilled circular outline, not a solid white disc.",
+    "visual_qa": "完整主体，无外部文字或日期"
+  },
+  {
+    "id": "compression",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: original nested squares compression illustration. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "coordinate-system",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete Cartesian axes and grid diagram with arrows; remove map words and overlay label bars; retain mathematical coordinates. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image. Keep coordinate labels such as (2,3), (-3,1), (-1,-4) but erase 1637.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "copyright",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the attached original Calculating Empires crop. Produce one cleaned source illustration for a historical card. Keep only the white copyright circle and white C. Restore the tiny cropped bottom of the circle. Every gap, including inside the C and between C and ring, must be flat pure solid black. Delete thin crossing lines and dashes. Put whole object inside image with 10% black breathing room on all sides. Invariants: preserve source geometry and visual identity. Output opaque RGB black backdrop (#000000), white/gray source illustration, never transparency or checkerboard, no speckles in flat black areas, no added border, no extra decoration, no date or caption.",
+    "visual_qa": "完整主体、无外部文字和日期；AI恢复遮挡区域"
+  },
+  {
+    "id": "cray",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete horseshoe-shaped Cray-1 supercomputer icon; remove neighboring hexagons and labels, reconstruct the covered upper part. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "crypto-key",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original horizontal cryptographic key icon with round head and teeth; remove dashed timeline and all external text. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "cybersyn",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: entire original futuristic Cybersyn control-room chair; remove white Algocracy circle and other diamonds and chart lines, restore covered upholstery and pedestal. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "darwin-expression",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: original complete oval portrait of expressive man; remove external line. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "dice",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete original die showing five dots; remove external connecting line. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "diffusion-concept",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete original deconvolutional layer diagram. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "digital-archive",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete isometric books/folders library array; remove Wikipedia box, internet archive diamond, text and external lines; restore hidden books. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "dna",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete DNA double helix glyph; remove adjacent text and connecting line. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "dolly",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole sheep silhouette including all four legs; remove chart connectors. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "duchenne",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: whole historical facial-expression experiment photograph including the seated subject and standing doctor; remove dashed timeline. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "education-tree",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete leafless branching tree; erase overlay school labels and restore hidden branches; retain full trunk. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "eeg",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: entire side-profile head with EEG electrodes, restore neck edge; remove chart lines and captions. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "egg",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete circular egg-cell illustration with radial halo; remove overlapping lower diamond and connectors, reconstruct covered lower arc. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "eic",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original East India Company monogram, retain letters and crossed emblem; remove outer box and lines. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "eigenfaces",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete cross-shaped array of grayscale facial templates; erase external labels and retain all faces. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "electromagnetic",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete paired positive/negative electric field-line diagram; remove external vertical connector. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "enclosure",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original isometric land-parcel grid with white plots; remove outside connector and Enclosure title. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "encyclopedia",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete original Encyclopedie title page; preserve historical letters but erase all Roman or Arabic publication year from the title page. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. Retain historical title text; remove publication year MDCCLI entirely so no date is readable.",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "eu-flag",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate original European flag with ring of twelve stars, remove exterior lines and caption. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "evolution-tree",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete historical tree of life illustration; remove large Tree of life diamond and all rectangular text labels, reconstruct covered branches and trunk. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "face-markers",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: whole face-landmark outline with boxes; remove number 21 and caption outside face. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "fbi",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached existing historical card illustration. Preserve geometry and white-on-black appearance. Remove EVERY trace of text and gray chart lines outside the solid white rectangular FBI sign. All regions outside the white box must be perfectly uniform PURE BLACK (#000000), including gray remnants at bottom reading 1908 and top reading US. Keep only the complete white rectangle with bold black letters FBI. Do not blur or dim remnants, ERASE completely. Keep rectangle whole with black margin.",
+    "visual_qa": "二次修复后检查：无残留年份及图表虚线。"
+  },
+  {
+    "id": "feedback",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached existing historical card illustration. Preserve geometry and white-on-black appearance. Remove the entire extraneous VERTICAL DASHED LINE passing through this feedback loop. Erase every vertical white dash, including the ones INSIDE the top and bottom circular black nodes. Retain the complete loop with two circular nodes and arrows and curved connecting lines. Background pure black. No captions or other new details.",
+    "visual_qa": "二次修复后检查：无残留年份及图表虚线。"
+  },
+  {
+    "id": "fiber-cable",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. complete cross-section of optical submarine cable with outer sheath and inner fibres; remove connections. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "flower",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate the complete snail with shell and flowering branch; preserve all petals, stems and snail; no invented seeds. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "food-chain",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole sequence of nested fish demonstrating food chain; remove vertical external line. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "fuel-pump",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete petrol pump silhouette. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "gameboy",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the attached original Calculating Empires crop. Produce one cleaned source illustration for a historical card. Keep the complete handheld Game Boy from the reference with screen, D-pad, buttons, speaker slots. Remove all words, digits and external dashed lines. Retain same precise source proportions. Put whole object inside image with 10% black breathing room on all sides. Invariants: preserve source geometry and visual identity. Output opaque RGB black backdrop (#000000), white/gray source illustration, never transparency or checkerboard, no speckles in flat black areas, no added border, no extra decoration, no date or caption.",
+    "visual_qa": "完整主体、无外部文字和日期；AI恢复遮挡区域"
+  },
+  {
+    "id": "gas-mask",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete historical gas mask with head silhouette; remove external lines. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "gear-calculator",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete original six gear/pulley diagram circles and connecting belts, remove horizontal dashed timeline; retain intrinsic gear numbers. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "geologic-map",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete visible historical geological map illustration; remove Geology heading, bibliography boxes and dashed chart lines; restore obscured map, retain original visible geography. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "gis-layers",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete stacked map layers with location marker and bottom terrain block; remove external words and lines. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "gps-orbits",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached existing historical card illustration. Preserve geometry and white-on-black appearance. Remove both STRAIGHT VERTICAL DASHED LINES that run across this satellite orbit drawing (left and right of center). They are external timeline/chart guides, not part of the globe or orbits. Restore all globe outlines and curved orbital lines where they intersect those removed guides. Preserve globe, satellites, all curved orbital paths. Pure black backdrop. No text or years.",
+    "visual_qa": "二次修复后检查：无残留年份及图表虚线。"
+  },
+  {
+    "id": "gpu",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete original GPU chip/circuit-board illustration behind CUDA and AI chips labels; remove labels and diamonds, restore circuit-board parts. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "gui",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. Extract ONLY the middle Xerox 8010 Star desktop screenshot. Remove the big OS label covering its upper left and restore the hidden part of that screenshot. Preserve the rest of that single desktop, complete rectangle. Discard every surrounding screenshot, caption, diamond, connectors and other objects. Do not invent a modern interface.. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "gymnastics",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: original complete historical engraving of exercising men; remove central book citation rectangle and all text; restore hidden bodies. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "heliocentrism",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete concentric heliocentric planetary orbit diagram; erase labels but retain orbit paths and planetary dots. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "ibm",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: rounded IBM badge; preserve letters remove external line and date. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "intelligence-matrix",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: original three by three pattern-completion matrix of squares circles and diamonds; remove Raven caption, keep all nine patterns. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "intelligence-wheel",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete eight-spoke multiple-intelligence circular wheel; remove all words inside and outside sectors and chart connectors, preserve full wheel. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "invisible-hand",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole downward-pointing engraved hand with cuff, erase surrounding triangle and text, restore finger. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "iphone",
+    "tool": "built-in image_gen",
+    "prompt": "Edit the provided original map crop. Isolate only the requested complete illustration in the original white-on-black graphic style. Opaque uniform pure black #000000 background. Remove map caption text, dates, unrelated objects, timeline lines and connectors. Preserve visible geometry faithfully; conservatively restore only parts hidden by text or missing at crop edges. Entire subject must fit with 8% black margin on all four sides. No glow, grey halo, transparency, shadows, extra decoration or new text. Keep the large smartphone glyph: white rounded rectangle with black rectangular screen. Remove Smartphone title bar entirely and reconstruct the white side rims and black screen behind it. Remove the iPhone date diamond at bottom and restore the full white lower rim and smoothly rounded bottom corners. Delete all other shapes and connector stubs. Do not invent buttons, cameras or speaker slots absent from the source.",
+    "visual_qa": "完整主体；无外部文字、年份与连线；已查看"
+  },
+  {
+    "id": "ipod-wheel",
+    "tool": "built-in imagegen",
+    "prompt": "Minimal precise source-image cleanup for a black playing card. Keep ONLY the target icon in its exact original flat white-on-black geometry. All background and negative space must be perfectly opaque pure black #000000; all white shapes crisp. Remove external labels, dates, timeline connectors, dashed lines and irrelevant parts. Complete any slightly cropped outer edge. Center the COMPLETE target with 10% black padding on every side. No glow, shadows, gradients, texture, transparency or redesign. Target is the complete circular iPod click wheel. Preserve center white button, MENU label at top, previous/next track symbols and play/pause at bottom: these are intrinsic controls. Remove the external words at top corners and the vertical connector stubs above/below circle. No enclosing device body.",
+    "visual_qa": "完整主体，无外部文字或日期"
+  },
+  {
+    "id": "iss",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete International Space Station silhouette with all panels and antennae; remove dashed timeline through it. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "jacquard",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: entire original Jacquard loom with punched card and full base; remove hexagonal caption and dates, restore hidden lower wood frame. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "keyboard",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete three rows of QWERTY typewriter keys; preserve letters and key circles, remove captions. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "knitting-machine",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: entire original mechanical knitting machine including all legs. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "kodak",
+    "tool": "built-in image_gen",
+    "prompt": "Edit the supplied original Calculating Empires map crop into one complete illustration for a black card. Opaque flat pure black #000000 background, original crisp white engraving/diagram style. Preserve the visible source composition faithfully. Remove ALL map text, captions, dates, timeline lines, connector stubs, label boxes and unrelated shapes. Conservatively complete obscured outer contours; entire subject within frame with 8% black padding on every side. No glow, gradients, shadows, checkerboard or transparency. Keep only the COMPLETE original small Kodak box-camera glyph: white rectangular body with dark concentric lens rings, two small black dots, and its protruding top/right controls. Remove any unrelated connector line. All protruding knobs must be fully visible, not truncated. Preserve this source's flat vector-like icon, do not modernize the camera.",
+    "visual_qa": "已查看：完整主体，无外部标题与年份。AI补全部分仅作示意。"
+  },
+  {
+    "id": "korsakov",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. entire original mechanical punched-card retrieval plate; remove horizontal dashed timeline. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "light-waves",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete original intertwined electromagnetic wave diagram with arrow. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "lp",
+    "tool": "built-in imagegen",
+    "prompt": "Minimal precise source-image cleanup for a black playing card. Keep ONLY the target icon in its exact original flat white-on-black geometry. All background and negative space must be perfectly opaque pure black #000000; all white shapes crisp. Remove external labels, dates, timeline connectors, dashed lines and irrelevant parts. Complete any slightly cropped outer edge. Center the COMPLETE target with 10% black padding on every side. No glow, shadows, gradients, texture, transparency or redesign. Target is the single white vinyl disc with thin inner label circle and tiny black spindle hole. Remove title/box line above and vertical line beneath; complete full circular outer contour.",
+    "visual_qa": "完整主体，无外部文字或日期"
+  },
+  {
+    "id": "map-pin",
+    "tool": "built-in imagegen",
+    "prompt": "A pristine flat monochrome map location pin icon: solid WHITE upright teardrop silhouette, circular top and downward-pointing tapered bottom, with one completely empty pure BLACK circular hole in its upper round part. Center on a perfectly solid pure BLACK canvas with generous margins. Flat two-color graphic design only: white pin and pure black background/hole. No texture, shading, shadows, stroke, button, sphere, other circles or objects.",
+    "visual_qa": "已检查完整轮廓及干净背景，无日期或外部文字。"
+  },
+  {
+    "id": "marine-clock",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: original semicircular marine chronometer mechanism; retain its original semicircular diagram, remove connectors, do not invent a whole circular clock. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "market-bear",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole white bear silhouette, erase labels over its body and surrounding chart lines. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "market-bull",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole bull silhouette, remove all overlapping chart diagonals and external labels. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "markov",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete state transition network with nodes A B C and curved arrows; remove triangle frame and unrelated chart lines; preserve node letters and probability numbers. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "medical-tree",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete original medical classification tree with nine lower boxes; remove all words but retain full branching structure, no external vertical map lines. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "mining",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete historical mining machinery engraving, remove any outer lines. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "moniac",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete MONIAC water flow machine diagram; remove captions and dashed timeline through lower part; retain internal plumbing. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "moon",
+    "tool": "built-in imagegen",
+    "prompt": "A pristine flat monochrome icon. Pure white circular disc containing a single pure black lowercase sans-serif letter m, exactly centered inside circle. Disc centered on pure black canvas, with generous black margins on all sides. Only three elements: background, disc, letter. Crisp antialiasing; no texture, shadow, glow, triangle, ornament, dust, or any other element. Flat white and black graphic design.",
+    "visual_qa": "已检查完整轮廓及干净背景，无日期或外部文字。"
+  },
+  {
+    "id": "mouse",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. complete hand operating early computer mouse; remove thin chart lines and title. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "mugshots",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete frontal and side-view historical mugshot photograph, remove Mugshots title bar and surrounding chart edges; restore covered portrait. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "museum",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete British Museum facade image; remove large Museums and public museum labels and chart connectors, restore covered facade. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "mushroom-cloud",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete atomic mushroom cloud silhouette; remove external baseline and connectors. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "nansen",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete original Nansen passport stamp without outer captions; erase 1926 and other date numerals on stamp to avoid wrong answer hint. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions. Erase the small bottom inscription 12 MAY 1926 too; leave the original surrounding engraving intact.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "napier",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete original crossed calculating rods, remove overlay hexagonal labels and dates, restore rods behind them. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "network-root",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: whole spreading rhizome roots illustration; remove thin chart lines. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "newspaper",
+    "tool": "built-in image_gen",
+    "prompt": "Edit the provided original map crop. Isolate only the requested complete illustration in the original white-on-black graphic style. Opaque uniform pure black #000000 background. Remove map caption text, dates, unrelated objects, timeline lines and connectors. Preserve visible geometry faithfully; conservatively restore only parts hidden by text or missing at crop edges. Entire subject must fit with 8% black margin on all four sides. No glow, grey halo, transparency, shadows, extra decoration or new text. Keep the three overlapping rectangular newspaper sheet outlines. Remove all interior text and the thick vertical map line. Complete the right and bottom corners of all three sheets, preserving their slight down-right offsets. The result is the original clean stacked publication symbol, completely blank inside.",
+    "visual_qa": "完整主体；无外部文字、年份与连线；已查看"
+  },
+  {
+    "id": "niepce",
+    "tool": "built-in image_gen",
+    "prompt": "Edit the supplied original Calculating Empires map crop into one complete illustration for a black card. Opaque flat pure black #000000 background, original crisp white engraving/diagram style. Preserve the visible source composition faithfully. Remove ALL map text, captions, dates, timeline lines, connector stubs, label boxes and unrelated shapes. Conservatively complete obscured outer contours; entire subject within frame with 8% black padding on every side. No glow, gradients, shadows, checkerboard or transparency. The target is Niépce's famous View from the Window at Le Gras photograph, visible behind the labels. Preserve the grainy high contrast white-on-black rooftop/architecture scene. Remove the Photographic glass plates box, Daguerreotype diamond, gigantic white graphic at upper right, timelines, small caption along bottom and all extra background. Conservatively reconstruct the obscured roof and wall areas as a coherent version of this historical scene, retaining visible source structure and grain. Present the entire rectangular landscape photograph centered with black padding. No lettering, frames or dates.",
+    "visual_qa": "已查看：完整主体，无外部标题与年份。AI补全部分仅作示意。"
+  },
+  {
+    "id": "oil-rig",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate entire original oil derrick with flare; remove all external lines and text, complete derrick feet. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "open-book",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original Calculating Empires source crop. Extract complete open book silhouette; remove all external thin vertical timeline and text. Preserve exact source visual identity and proportions. Remove external words/dates, timeline lines, diamonds and unrelated fragments. AI-inpaint the covered illustration; keep the FULL object with 10% breathing room on every side. No captions or dates in final art. Opaque pure black (#000000) backdrop, original monochrome white/gray drawing. Every negative space solid black; no transparency, no checkerboard, no glow or fake texture. ",
+    "visual_qa": "完整轮廓与黑色背景已检查；图表标签已清理。"
+  },
+  {
+    "id": "orthopedic-tree",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete historical bent tree tied to a straight support post; remove huge Orthopedics diamond and Straight child caption, restore hidden trunk and support. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "paris-roads",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete radial street plan with round central square, remove frame caption and outside diagram lines. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "penicillin",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: original round culture dish illustration; remove dashed timeline crossing dish. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "penny-black",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original Penny Black postage stamp with portrait; remove black caption bars and diamond overlays and dashed chart lines, restore hidden portrait and ornament. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image. Faithfully reconstruct Queen Victoria left-facing profile where obscured, preserve POSTAGE / ONE PENNY as actual stamp inscriptions.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "periodic-table",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete original periodic-table grid diagram, no caption. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "personality-tree",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: fan of eight curved branches linking small white round dots to a bottom node; remove external line. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "phonautograph",
+    "tool": "built-in image_gen",
+    "prompt": "Edit the provided original map crop. Isolate only the requested complete illustration in the original white-on-black graphic style. Opaque uniform pure black #000000 background. Remove map caption text, dates, unrelated objects, timeline lines and connectors. Preserve visible geometry faithfully; conservatively restore only parts hidden by text or missing at crop edges. Entire subject must fit with 8% black margin on all four sides. No glow, grey halo, transparency, shadows, extra decoration or new text. Keep the complete phonautograph: flaring oval horn at upper left, round recording drum at right, decorative supports and complete platform base. Remove '(1857)' and horizontal dashed timeline. Preserve all engraving and all full mechanical parts.",
+    "visual_qa": "完整主体；无外部文字、年份与连线；已查看"
+  },
+  {
+    "id": "pill",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete oval white pill silhouette. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "police-badge",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: entire Metropolitan Police star badge and crown; remove triangle behind badge. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "pong",
+    "tool": "built-in imagegen",
+    "prompt": "Minimal precise source-image cleanup for a black playing card. Keep ONLY the target icon in its exact original flat white-on-black geometry. All background and negative space must be perfectly opaque pure black #000000; all white shapes crisp. Remove external labels, dates, timeline connectors, dashed lines and irrelevant parts. Complete any slightly cropped outer edge. Center the COMPLETE target with 10% black padding on every side. No glow, shadows, gradients, texture, transparency or redesign. Target is exactly the source's ONE tall white rectangular paddle on the left and ONE small square ball to its upper right. Remove Atari text. Do not add another paddle or a screen; preserve this minimal source symbol.",
+    "visual_qa": "完整主体，无外部文字或日期"
+  },
+  {
+    "id": "prism",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete original triangular optical prism and light rays; remove dotted vertical timeline, restore complete triangle. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "prison-cell",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete original isometric white prison cell with tiny black window; remove outside labels and lines. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "punch-clock",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: original hand putting card into factory punch clock; remove external lines. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions. Keep the hand, card and complete rectangular clock box outline; erase Factory punch clock, Scientific management and all other words. Do not invent a clock dial.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "quantum-cat",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete sleeping cat; remove faint external diagram line. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "qubit",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete Bloch sphere diagram; preserve small intrinsic coordinates but remove external lines. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "radiation",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete radiation trefoil icon including three lobes and center dot; remove overlapping top diamond and restore upper lobe. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "radio",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. complete vintage radio transmitter metal device; remove all diagram curves and connectors behind object. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "radioactive-decay",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole branching radioactive decay diagram with atom clusters; retain isotope numbers and particle symbols, remove map lines. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "reading-eye",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. eye with concentric rings, remove diagonal and horizontal map connector lines. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "rock-strata",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete geological rock-layer cross-section; remove dashed horizontal line crossing illustration. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "router",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. complete white two-antenna wireless router silhouette; remove timeline. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "search-graph",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached historical-card illustration, white art on a pure black background. Correct one label only: in the LOWER MIDDLE-RIGHT circle currently labelled F, change F to C. Leave the far right circle labelled F. Thus all six nodes have DISTINCT single capital labels A B C D E F. Preserve every line and edge weight and exact black background. No new elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "seismic-waves",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete concentric earthquake-wave rings and central wireframe Earth block. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "siri",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the attached original Calculating Empires crop. Produce one cleaned source illustration for a historical card. Keep the complete white circular badge containing a solid black microphone silhouette. Delete crossing dashed/vertical lines and adjacent objects. Circle edge crisp, exterior entirely pure black, no gray halo. Put whole object inside image with 10% black breathing room on all sides. Invariants: preserve source geometry and visual identity. Output opaque RGB black backdrop (#000000), white/gray source illustration, never transparency or checkerboard, no speckles in flat black areas, no added border, no extra decoration, no date or caption.",
+    "visual_qa": "完整主体、无外部文字和日期；AI恢复遮挡区域"
+  },
+  {
+    "id": "slime-mold",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete circular slime mold branching network; remove horizontal dashed timeline. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "sms-phone",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the attached original Calculating Empires crop. Produce one cleaned source illustration for a historical card. Keep the complete mobile telephone silhouette with screen and keypad. Remove all outside words and dashed line. Preserve full phone including bottom. Put whole object inside image with 10% black breathing room on all sides. Invariants: preserve source geometry and visual identity. Output opaque RGB black backdrop (#000000), white/gray source illustration, never transparency or checkerboard, no speckles in flat black areas, no added border, no extra decoration, no date or caption.",
+    "visual_qa": "完整主体、无外部文字和日期；AI恢复遮挡区域"
+  },
+  {
+    "id": "soldier-formation",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete inverted triangle formation of tiny white dots; remove horizontal dashed timeline and external lines. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "space-defense",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete space rocket / Titan silhouette; remove outside chart lines and words. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "space-rocket",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: whole original space rocket silhouette with exhaust, no labels. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "spinning-jenny",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original spinning machine with wheel and wood frame; remove diagonal timeline behind it. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "sputnik-real",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original Sputnik sphere and all four antennae; remove date, caption and chart connectors. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "steam-train",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate whole original early steam locomotive with chimney, large wheels and boiler; remove hexagons and Industrial Revolution heading and all text, restore hidden wheels. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "stratigraphy",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: four complete layered rock block diagrams; retain layer letters but remove titles and external connectors. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "suez",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: whole original canal symbol with two solid horizontal banks and dashed center shipping path. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "surveillance-eye",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete original engraved surveillance eye in rectangular frame; no outside words. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "syringe",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: complete horizontal syringe icon; remove vertical diagram connector. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "tank",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete tank silhouette with gun barrel and tracks. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "taxonomy",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete inverted triangle classification diagram with horizontal levels; remove all names, external lines and labels. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "telstar",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. Extract only the complete vintage communication satellite visible behind the two text bars. Restore obscured wire mesh and body panels from visible surrounding evidence. Preserve same cylindrical satellite shape, no redesign into another satellite. Remove white circular backdrop, text bars and diagram lines.. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "thermometer",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate the complete thermometer with ONE shared bulb and two adjacent C and F scales; retain full bulb and scale ticks. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "timeline-chart",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original historical timeline chart; remove every date and year, preserve horizontal bar structure and tiny names. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image. Erase every date, year and numeral, including tiny numerals intrinsic to timeline; keep only chart structure.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "transistor",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete three lead transistor silhouette, remove external connectors. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "vacuum-tube",
+    "tool": "built-in imagegen",
+    "prompt": "Restore this original historical map illustration as a clean digital card asset. Target: complete white vacuum tube silhouette with prongs; remove Vacuum tube words and external connectors. Preserve source style, geometry and major details. Remove ALL external map text, publication dates, captions, timeline dashes, diamonds/hexagons and connector lines, including labels overlapping foreground. Reconstruct hidden object parts faithfully from visible structure. Entire target object must fit with generous margin, no cropping. Original intrinsic numbers on calculating rods or gear diagrams and IBM letters are allowed, but no year or map heading. Background and every empty gap must be opaque pure RGB black #000000, no checkerboard, no texture, no halo or gradient. White/gray historical engraving or diagram on black, no new decorative elements.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "venus",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached historical-card illustration, white art on a pure black background. Remove the extraneous white triangle ABOVE the white circular planet icon. Retain only the complete clean white circular disc with the black capital letter V. Fill removed triangle area pure black. Make circle truly complete, no notch. Preserve all other details.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "vhs",
+    "tool": "built-in imagegen",
+    "prompt": "Minimal precise source-image cleanup for a black playing card. Keep ONLY the target icon in its exact original flat white-on-black geometry. All background and negative space must be perfectly opaque pure black #000000; all white shapes crisp. Remove external labels, dates, timeline connectors, dashed lines and irrelevant parts. Complete any slightly cropped outer edge. Center the COMPLETE target with 10% black padding on every side. No glow, shadows, gradients, texture, transparency or redesign. Target is entire VHS tape icon, white rectangular body with its two reel windows and top lid line. Remove only dashed external timeline above. Keep black gaps and exact body.",
+    "visual_qa": "完整主体，无外部文字或日期"
+  },
+  {
+    "id": "voc",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete original VOC monogram, retain intertwined letters; remove outer box and lines. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "voder",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: attached original historical diagram crop. complete Voder operator and schematic, remove caption labels but keep apparatus; restore cropped right circuitry. Keep original source geometry and engraving/diagram style. Delete surrounding labels, dates, map timelines and non-object graphics. Reconstruct only obscured or slightly clipped parts to show the COMPLETE subject. Center with 10% breathing space. Use opaque solid pure black RGB(0,0,0) backdrop and white/gray illustration. All empty/negative spaces solid black, no transparency, no checkerboard, no halo, no extra texture, no added text, no border.",
+    "visual_qa": "完整轮廓与纯黑背景已检查；保留器物或图示，移除图表标签。"
+  },
+  {
+    "id": "water-integrator",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the supplied historical map crop. Target subject: complete water integrator photograph. Preserve the original image style and subject, with all parts intact and no clipping. Erase all external overlaid text, dates, long horizontal or vertical chart connector lines, tiny unrelated edge fragments, diamonds and captions. Restore any subject obscured by external lines or words. Retain only intrinsic subject labels such as keyboard letters, mathematical expressions, cipher alphabet and graph weights. Do not add dates or text. Isolate the complete subject with some margin on an opaque uniform pure #000000 black background; no gray haze, no added texture, no checkerboard. Keep only the original illustration, no decorative additions.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "weather-satellite",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete simple satellite silhouette with two rectangular solar panels and center hexagon; remove vertical connector. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific scale symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no texture added to background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "who",
+    "tool": "built-in imagegen",
+    "prompt": "Edit the attached original map crop into a clean card illustration. Target: WHO letters and World Health Organization small subline within original rectangular badge; erase 1948 date and all external connectors. Preserve the source image style and visible details, restore parts hidden by labels. Remove every external word, date, caption, diagram connector, diamond, background map, and timeline. Reconstruct the entire object with complete outline and ample black margin; no clipped edges. Keep only intrinsic lettering such as WHO or police badge insignia; no calendar year. Opaque pure black #000000 background in all empty areas, no checkerboard, glow, texture or gradient. Do not invent additional decorative elements. White and gray source-style art on pure black.",
+    "visual_qa": "已检查完整轮廓、黑色背景及外部文字移除。"
+  },
+  {
+    "id": "world-globe",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the supplied crop from Calculating Empires historical map. Isolate complete longitude-latitude globe with white continents; remove nearby labels and diagonal connector. Preserve its original monochrome engraving/silhouette/diagram style and all actual object components. Remove all external event titles, dates, labels, foreground words, diamonds, bibliography boxes and unrelated chart connectors. Carefully inpaint the image obscured by that text. Restore complete visible silhouettes and edges; never crop any part of the subject. Preserve intrinsic historical markings and scientific symbols where they belong to the object, but no external years or captions. Center the fully restored subject with generous clear margins on a completely opaque uniform pure black #000000 background, including all holes and gaps. No gray haze, no added texture in background, no checkerboard, no extra ornamental frames, no invented surrounding objects. Return only this single complete clean image.",
+    "visual_qa": "已检查轮廓完整性及外部文字移除。"
+  },
+  {
+    "id": "youtube",
+    "tool": "built-in imagegen",
+    "prompt": "Edit target: the attached original Calculating Empires crop. Produce one cleaned source illustration for a historical card. Keep complete white rounded rectangular play badge with solid black triangle. Restore right edge if necessary. Delete diagonal white connector. Triangle interior and exterior background must be flat RGB 0 black. Put whole object inside image with 10% black breathing room on all sides. Invariants: preserve source geometry and visual identity. Output opaque RGB black backdrop (#000000), white/gray source illustration, never transparency or checkerboard, no speckles in flat black areas, no added border, no extra decoration, no date or caption.",
+    "visual_qa": "完整主体、无外部文字和日期；AI恢复遮挡区域"
+  }
+]

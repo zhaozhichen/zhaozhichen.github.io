@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://zhaozhichen.github.io/timeline-game/">
+  <meta name="description" content="一个人的历史时间卡游戏：把事件放入时间轴，揭晓年份，挑战自己的准确率。">
+  <title>计算帝国——时间线</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="data.js"></script>
+  <script defer src="core.js"></script>
+  <script defer src="qr.js"></script>
+  <script defer src="share.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="wordmark" href="#play">计算帝国——时间线</a>
+    <nav aria-label="主导航">
+      <a href="#play" data-route="play">游戏</a>
+      <a href="#archive" data-route="archive">历史卡</a>
+      <a href="#about" data-route="about">关于</a>
+    </nav>
+  </header>
+  <p id="storage-notice" class="notice" role="status" hidden></p>
+  <main id="main" tabindex="-1">
+    <section id="view-play" class="view" aria-label="游戏">
+      <div id="welcome">
+        <div class="welcome-grid">
+          <div class="welcome-copy">
+            <h1 class="sr-only">计算帝国——时间线</h1>
+            <form id="start-form">
+              <label for="player-name">你的名字</label>
+              <div class="name-row"><input id="player-name" name="name" maxlength="24" autocomplete="nickname" placeholder="输入名字" required><button class="primary" type="submit">开始</button></div>
+            </form>
+          </div>
+          <div class="welcome-cards" aria-label="黑色事件面，白色答案面">
+            <img class="sample sample-left" src="cards/back/CE097.png" alt="答案面示例：1801，雅卡尔展示提花织机" width="1008" height="1408">
+            <img class="sample sample-center" src="cards/front/CE008.png" alt="事件面示例：爱迪生留声机问世" width="1008" height="1408">
+            <img class="sample sample-right" src="cards/back/CE255.png" alt="答案面示例：1963，加拿大 GIS 开始开发" width="1008" height="1408">
+          </div>
+        </div>
+      </div>
+      <div id="game" hidden>
+        <div class="game-heading"><span id="player-label"></span><button id="end-game" class="text-button">结束</button></div>
+        <dl class="scoreboard" aria-label="本局统计">
+          <div><dt>已出现</dt><dd id="stat-appeared">2</dd></div>
+          <div><dt>已作答</dt><dd id="stat-answered">0</dd></div>
+          <div><dt>答对</dt><dd id="stat-correct">0</dd></div>
+          <div><dt>答错</dt><dd id="stat-wrong">0</dd></div>
+          <div class="accuracy-stat"><dt>正确率</dt><dd id="stat-accuracy">—</dd></div>
+        </dl>
+        <div class="round-stage">
+          <button id="current-card" class="current-card" disabled aria-label="本轮事件卡"><img id="current-image" width="1008" height="1408" alt="本轮事件面"></button>
+          <div class="round-copy" hidden><h1 id="round-title" role="status" aria-live="polite"></h1><div id="round-actions"><button id="next-card" class="primary">下一张</button></div></div>
+        </div>
+        <section class="timeline-region" aria-label="时间轴">
+          <div id="timeline-scroll" class="timeline-scroll" tabindex="0" role="group" aria-label="时间轴，可横向滚动"><div id="timeline" class="timeline"></div></div>
+          <div class="timeline-tools"><button id="timeline-start" aria-label="移动到最早的事件">最早</button><button id="timeline-left" aria-label="时间轴向左滚动">←</button><label for="timeline-range" class="sr-only">移动时间轴</label><input id="timeline-range" type="range" min="0" max="1000" value="0"><button id="timeline-right" aria-label="时间轴向右滚动">→</button><button id="timeline-end" aria-label="移动到最晚的事件">最晚</button></div>
+        </section>
+      </div>
+      <div id="finished" hidden></div>
+    </section>
+    <section id="view-archive" class="view" aria-labelledby="archive-title" hidden>
+      <div class="page-heading"><h1 id="archive-title">历史卡</h1></div>
+      <div class="archive-toolbar"><label class="sr-only" for="archive-search">搜索历史事件</label><input id="archive-search" type="search" placeholder="搜索事件、年份或编号"><label class="sr-only" for="archive-category">按主题筛选</label><select id="archive-category"><option value="">全部主题</option></select><div class="toggle"><button id="archive-front" aria-pressed="true">事件面</button><button id="archive-back" aria-pressed="false">答案面</button></div></div>
+      <p id="archive-count" class="muted small" aria-live="polite"></p><div id="archive-grid" class="archive-grid"></div>
+      <nav class="pager" aria-label="历史卡翻页"><button id="archive-prev">上一页</button><span id="archive-page"></span><button id="archive-next">下一页</button></nav>
+    </section>
+    <section id="view-about" class="view about" aria-labelledby="about-title" hidden>
+      <h1 id="about-title">关于</h1>
+      <p class="about-intro">这些卡片从 <a href="https://calculatingempires.net/" target="_blank" rel="noopener">Calculating Empires</a> 出发。原作由 Kate Crawford 与 Vladan Joler 创作，将技术、权力与社会的漫长关系放在一张巨大的图中。</p>
+      <h2>原作引用与免责声明</h2><p>本项目是个人制作的非官方历史卡牌游戏，仅供个人学习与娱乐，不用于任何商业用途，与原作者及展览机构无隶属或合作关系。原作与原始图像的权利归相应权利人所有；本说明不构成任何额外授权。</p>
+      <p>卡片图像取材于原网站；部分经 AI 去除文字遮挡并补全，部分使用同主题概念配图。每张卡片详情均附配图说明与来源链接。</p>
+      <h2>关于年份</h2><p>每张卡按标题描述的具体事件判定年份，例如论文发表、公开展示或产品上市。答案用整数表示，公元前使用负数。历史常有多种时间口径，可在详情中查看对应来源及<a href="cards/date-audit.json" target="_blank">年份审核记录</a>。</p>
+      <h2>怎么玩</h2><ol><li>输入名字，随机发一张白面朝上的已知卡，以及一张黑色事件卡。</li><li>点击时间轴上的「＋」：左边更早，右边更晚，也可以插入两张卡之间。</li><li>系统揭晓年份并记录正误，将卡片归入正确位置。同年相邻都算正确。点击已揭晓的图片可以放大阅读。</li><li>至少回答 10 张才可结束，不包含初始的已知卡。第 10 张之后仍可继续，最多回答 283 张，每局不重复抽卡。</li></ol>
+      <h2>分数与分享</h2><p>正确率 = 答对 ÷ 已作答。初始卡和未回答的卡不计分。「已出现」包含初始卡和当前卡，答错也可以继续。</p><p>结束后生成一张成绩卡，包含姓名、正确率、答题数、结束时间和游戏二维码，可以保存为图片或分享。没有排行榜，每局都有自己的成绩卡。</p><p>当前进度保存在浏览器里，不上传服务器。刷新可以继续，换浏览器或清除网站数据后无法恢复。</p>
+    </section>
+  </main>
+  <footer class="site-footer"><span><a href="https://calculatingempires.net/" target="_blank" rel="noopener">Calculating Empires</a> · Kate Crawford &amp; Vladan Joler</span><span>个人娱乐 · 非商业用途 · <a href="../#projects">主页</a></span></footer>
+  <dialog id="card-detail" class="card-dialog"><div class="dialog-heading"><h2 id="detail-title"></h2><button id="close-detail" aria-label="关闭卡片详情">关闭 ×</button></div><div class="detail-pair"><img id="detail-front" alt="事件面" width="1008" height="1408"><img id="detail-back" alt="答案面" width="1008" height="1408"></div><div class="detail-text"><p id="detail-year"></p><div id="detail-background"></div><details><summary>配图说明与资料来源</summary><p id="detail-art-note"></p><div id="detail-sources"></div></details></div></dialog>
+  <noscript><p class="notice">游戏需要启用 JavaScript。</p></noscript>
+</body>
+</html>

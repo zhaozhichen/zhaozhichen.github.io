@@ -1,0 +1,224 @@
+{
+  "checked_at": "2026-10-04",
+  "scope": "初筛中全部十个 date_question 条目。原始初筛文件保留；下列决定用于正式卡牌。",
+  "items": [
+    {
+      "id": "CE004",
+      "decision": "reword",
+      "original_year": "1826",
+      "year": 1827,
+      "title": "尼埃普斯制成《窗外的风景》",
+      "date_note": "采用藏馆现行定年：1827",
+      "rationale": "早期资料常写1826或1827；现藏馆Harry Ransom Center的作品及馆藏记录均定为1827。保留这一明确的编目口径，不宣称已消除所有历史争议。",
+      "sources": [
+        {
+          "title": "Harry Ransom Center：Joseph Nicéphore Niépce Photography Collection",
+          "url": "https://research.hrc.utexas.edu/photopublic/fullDisplay.cfm?CollID=16075"
+        }
+      ]
+    },
+    {
+      "id": "CE047",
+      "decision": "remove",
+      "original_year": "待核",
+      "rationale": "阿尔特多夫市的历史年表将法尔夫勒手摇轮椅定为‘约1655年’；未找到足以将制成事件精确到单一年的可靠记录，因此不放入需要唯一年份答案的本套牌。",
+      "sources": [
+        {
+          "title": "阿尔特多夫市历史年表：1492—1789",
+          "url": "https://www.altdorf.de/eigene_dateien/gemeindeinfo-tourismus/geschichte/relaunch_2012/05_neuzeit_1492-1789_relaunch_2012.pdf"
+        }
+      ]
+    },
+    {
+      "id": "CE054",
+      "decision": "reword",
+      "original_year": "1973",
+      "year": 1973,
+      "title": "梅特卡夫提交以太网方案备忘录",
+      "date_note": "以1973年5月22日的备忘录为准",
+      "rationale": "将以太网构想与另一个TCP论文节点分开；采用Metcalfe在施乐PARC提交备忘录的明确日期。",
+      "sources": [
+        {
+          "title": "Computer History Museum：Xerox Researcher Proposes Ethernet",
+          "url": "https://www.computerhistory.org/tdih/may/22/"
+        }
+      ]
+    },
+    {
+      "id": "CE086",
+      "decision": "reword",
+      "original_year": "1958",
+      "year": 1958,
+      "title": "罗森布拉特发表感知机论文",
+      "date_note": "以《心理学评论》论文发表年为准",
+      "rationale": "不将软件演示、Mark I硬件建造与论文混为一谈。Rosenblatt论文发表于Psychological Review第65卷第6期，1958年。",
+      "sources": [
+        {
+          "title": "Rosenblatt：The Perceptron，原论文扫描",
+          "url": "https://papers.baulab.info/papers/Rosenblatt-1958.pdf"
+        },
+        {
+          "title": "Cornell：Professor’s perceptron paved the way for AI",
+          "url": "https://psychology.cornell.edu/news/professors-perceptron-paved-way-ai-60-years-too-soon"
+        }
+      ]
+    },
+    {
+      "id": "CE132",
+      "decision": "reword",
+      "original_year": "1968",
+      "year": 1970,
+      "title": "《被压迫者教育学》英文版出版",
+      "date_note": "以英文译本首次出版年为准",
+      "rationale": "1968常用于成稿或早期出版叙述；本卡限定为出版社明确记载的1970年英文译本出版。",
+      "sources": [
+        {
+          "title": "Bloomsbury：Pedagogy of the Oppressed",
+          "url": "https://www.bloomsbury.com/us/pedagogy-of-the-oppressed-9781501314155/"
+        }
+      ]
+    },
+    {
+      "id": "CE137",
+      "decision": "reword",
+      "original_year": "1944",
+      "year": 1962,
+      "title": "MBTI首版手册出版",
+      "date_note": "以ETS出版的首版手册为准",
+      "rationale": "研发历时多年；出版商历史与书目将首版手册列为1962年，较含糊的‘形成’可检验。",
+      "sources": [
+        {
+          "title": "The Myers-Briggs Company：MBTI Facts，首版手册书目",
+          "url": "https://www.themyersbriggs.com/en-us/support/mbti-facts"
+        }
+      ]
+    },
+    {
+      "id": "CE152",
+      "decision": "reword",
+      "original_year": "1961",
+      "year": 1962,
+      "title": "IBM Shoebox在世博会亮相",
+      "date_note": "1962年西雅图世界博览会",
+      "rationale": "区分1961年设计与1962年公开展示；IBM历史档案明确记录在西雅图世博会首次亮相。",
+      "sources": [
+        {
+          "title": "IBM：Advancing Humanity，Shoebox",
+          "url": "https://www.ibm.com/history/advancing-humanity"
+        }
+      ]
+    },
+    {
+      "id": "CE160",
+      "decision": "reword",
+      "original_year": "1976",
+      "year": 1976,
+      "title": "MYCIN医学咨询专著出版",
+      "date_note": "以肖特利夫的专著出版年为准",
+      "rationale": "系统开发跨越数年；作者个人学术档案列明Elsevier于1976年出版专著，不将该年当成系统诞生或临床部署年。",
+      "sources": [
+        {
+          "title": "Edward Shortliffe：Computer-Based Medical Consultations: MYCIN",
+          "url": "https://impact.dbmi.columbia.edu/~ehs7001/Shortliffe-1976/MYCIN%20thesis%20Book.htm"
+        }
+      ]
+    },
+    {
+      "id": "CE195",
+      "decision": "correct",
+      "original_year": "待核（原图2009）",
+      "year": 2008,
+      "title": "中本聪发布比特币白皮书",
+      "date_note": "2008年10月31日，密码学邮件列表",
+      "rationale": "原始邮件存档给出2008年10月31日；2009年是网络启动年，两者分开。",
+      "sources": [
+        {
+          "title": "Cryptography mailing list：Bitcoin P2P e-cash paper",
+          "url": "https://www.metzdowd.com/pipermail/cryptography/2008-October/014810.html"
+        }
+      ]
+    },
+    {
+      "id": "CE204",
+      "decision": "reword",
+      "original_year": "1954",
+      "year": 1961,
+      "title": "Unimate在通用汽车工厂上岗",
+      "date_note": "以工业机器人实际部署年为准",
+      "rationale": "1954对应Devol的专利申请阶段；Computer History Museum将Unimate在通用汽车生产线工作明确列为1961年。",
+      "sources": [
+        {
+          "title": "Computer History Museum：1961，UNIMATE",
+          "url": "https://www.computerhistory.org/timeline/1961/"
+        }
+      ]
+    }
+  ],
+  "additional_precision_checks": [
+    {
+      "id": "CE032",
+      "decision": "reword",
+      "year": 1784,
+      "date_note": "以1784年8月21日的书信为准",
+      "rationale": "发明年份存在不同叙述，改用有日期的书信描述双焦点眼镜。",
+      "sources": [
+        {
+          "title": "Benjamin Franklin to George Whatley, 21 August 1784，书信集扫描",
+          "url": "https://library.oarcloud.noaa.gov/docs.lib/htdocs/rescue/Rarebook_treasures/E3026F7A21875_PDF/E3026F7A21875v3.pdf"
+        }
+      ]
+    },
+    {
+      "id": "CE078",
+      "decision": "clarify",
+      "year": 1992,
+      "date_note": "以ITU-T T.81批准年为准",
+      "rationale": "T.81于1992年9月18日批准；相同的ISO版本年份为1994，卡牌明确采用ITU口径。",
+      "sources": [
+        {
+          "title": "ITU-T T.81 (09/1992)",
+          "url": "https://www.itu.int/itu-t/recommendations/rec.aspx?id=2633&lang=en"
+        }
+      ]
+    },
+    {
+      "id": "CE111",
+      "decision": "reword",
+      "year": 1801,
+      "date_note": "以1801年11月12日讲演为准",
+      "rationale": "双缝及其他干涉实验经常被混写；改为皇家学会明确记录的《论光与颜色的理论》宣读日期。",
+      "sources": [
+        {
+          "title": "Royal Society：Thomas Young Bakerian Lecture manuscript",
+          "url": "https://makingscience.royalsociety.org/items/l-and-p_11_172/paper-on-the-theory-of-light-and-colours-bakerian-lecture-by-thomas-young"
+        }
+      ]
+    },
+    {
+      "id": "CE126",
+      "decision": "reword",
+      "year": 1888,
+      "date_note": "以邦迪钥匙式计时器问世为准",
+      "rationale": "不以公司成立替代机器日期；IBM历史记录明确将Bundy Key Recorder列为1888年。",
+      "sources": [
+        {
+          "title": "IBM：The International Time Recording Company",
+          "url": "https://www.ibm.com/history/international-time-recording"
+        }
+      ]
+    },
+    {
+      "id": "CE131",
+      "decision": "clarify",
+      "year": 1963,
+      "date_note": "覆盖1961年文献的首版，出版于1963年",
+      "rationale": "部分机构历史用1964年表示服务正式推出；Garfield自己的历史回顾明确说首版覆盖1961年文献、于1963年出版。本卡限定这一版本。",
+      "sources": [
+        {
+          "title": "Eugene Garfield：Where was this paper cited?（1994年原文）",
+          "url": "https://clarivate.com/academia-government/essays/where-was-this-paper-cited/"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+(function () {
+  'use strict';
+  const TITLE = '计算帝国——时间线';
+  const sans = '"PingFang SC", "Microsoft YaHei", sans-serif';
+  function timestamp(time) {
+    const d = new Date(time), pad = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}.${pad(d.getMonth() + 1)}.${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  }
+  function make(state) {
+    const score = window.TimelineGame.stats(state), canvas = document.createElement('canvas');
+    canvas.width = 1080; canvas.height = 1350;
+    const ctx = canvas.getContext('2d');
+    const text = (value, x, y, size, color = '#fff', weight = '400', maxWidth = 920, family = sans) => {
+      ctx.fillStyle = color; ctx.font = `${weight} ${size}px ${family}`;
+      while (ctx.measureText(value).width > maxWidth && size > 12) ctx.font = `${weight} ${--size}px ${family}`;
+      ctx.fillText(value, x, y);
+    };
+    ctx.fillStyle = '#000'; ctx.fillRect(0, 0, 1080, 1350);
+    ctx.strokeStyle = '#666'; ctx.lineWidth = 1; ctx.strokeRect(32.5, 32.5, 1015, 1285);
+    text(TITLE, 80, 120, 43, '#fff', '500');
+    text(timestamp(state.endedAt), 80, 167, 23, '#aaa', '400', 920, 'Arial, sans-serif');
+    ctx.strokeStyle = '#555'; ctx.beginPath(); ctx.moveTo(80, 210); ctx.lineTo(1000, 210); ctx.stroke();
+    text(state.name, 80, 310, 48, '#fff', '500');
+    text((score.accuracy * 100).toFixed(1) + '%', 66, 538, 206, '#fff', '600', 930, 'Arial, sans-serif');
+    text('正确率', 82, 592, 28, '#bbb');
+    text(`答对 ${score.correct} / ${score.answered} 张`, 80, 696, 38);
+    const line = score.accuracy === 1 ? '你和历史，口供一致。' : score.accuracy >= .8 ? '历史没乱，今天你也没有。' : score.accuracy >= .5 ? '大体按时，偶尔穿越。' : '不是记错，是时间旅行。';
+    text(line, 80, 775, 39, '#fff', '400');
+    // A small timeline visual also represents the last ten answers.
+    const recent = state.attempts.slice(-10), start = 104, end = 976, y = 882;
+    ctx.strokeStyle = '#888'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(80, y); ctx.lineTo(1000, y); ctx.stroke();
+    recent.forEach((answer, i) => {
+      const x = start + i * (end - start) / Math.max(1, recent.length - 1);
+      ctx.fillStyle = answer.correct ? '#fff' : '#000'; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(x, y, 9, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+    });
+    const matrix = window.TIMELINE_QR.matrix, unit = Math.floor(276 / matrix.length), size = unit * matrix.length;
+    const qrX = 1000 - size, qrY = 960;
+    ctx.fillStyle = '#fff'; ctx.fillRect(qrX, qrY, size, size);
+    ctx.fillStyle = '#000';
+    matrix.forEach((row, y) => row.forEach((dark, x) => { if (dark) ctx.fillRect(qrX + x * unit, qrY + y * unit, unit, unit); }));
+    text('轮到你了。', 80, 1050, 49, '#fff', '500', 600);
+    text('来排一段历史。', 80, 1110, 29, '#bbb', '400', 600);
+    text('zhaozhichen.github.io/timeline-game/', 80, 1195, 22, '#bbb', '400', 615, 'Arial, sans-serif');
+    text('原作 Calculating Empires · Kate Crawford & Vladan Joler', 80, 1271, 20, '#999');
+    text('个人娱乐 · 非商业用途', 80, 1300, 18, '#999');
+    return canvas;
+  }
+  function fileName(state) {
+    const name = state.name.replace(/[\\/:*?"<>|\u0000-\u001f]/g, '_');
+    return `计算帝国-时间线-${name}-${state.endedAt}.png`;
+  }
+  window.TimelineShare = {make, timestamp, fileName, title: TITLE};
+})();

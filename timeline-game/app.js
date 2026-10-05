@@ -59,7 +59,7 @@
     $('#end-game').disabled = !G.canFinish(state);
     $('#end-game').textContent = G.canFinish(state) ? '结束' : `结束 · ${s.answered}/10`;
     $('#end-game').setAttribute('aria-label', G.canFinish(state) ? '结束本局' : `结束需作答 10 张，已作答 ${s.answered} 张`);
-    for (const key of ['appeared','answered','correct','wrong']) $('#stat-' + key).textContent = s[key];
+    for (const key of ['answered','correct','wrong']) $('#stat-' + key).textContent = s[key];
     $('#stat-accuracy').textContent = pct(s.accuracy);
     $('#current-image').src = asset(c, revealed ? 'back' : 'front');
     $('#current-image').alt = c.title + (revealed ? '，' + c.year + ' 年，答案面' : '，请判断时间位置');

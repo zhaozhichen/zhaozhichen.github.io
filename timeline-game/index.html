@@ -46,7 +46,6 @@
       <div id="game" hidden>
         <div class="game-heading"><span id="player-label"></span><button id="end-game" class="primary end-button">结束</button></div>
         <dl class="scoreboard" aria-label="本局统计">
-          <div><dt>已出现</dt><dd id="stat-appeared">2</dd></div>
           <div><dt>已作答</dt><dd id="stat-answered">0</dd></div>
           <div><dt>答对</dt><dd id="stat-correct">0</dd></div>
           <div><dt>答错</dt><dd id="stat-wrong">0</dd></div>
@@ -76,7 +75,7 @@
       <p>卡片图像取材于原网站；部分经 AI 去除文字遮挡并补全，部分使用同主题概念配图。每张卡片详情均附配图说明与来源链接。</p>
       <h2>关于年份</h2><p>每张卡按标题描述的具体事件判定年份，例如论文发表、公开展示或产品上市。答案用整数表示，公元前使用负数。历史常有多种时间口径，可在详情中查看对应来源及<a href="cards/date-audit.json" target="_blank">年份审核记录</a>。</p>
       <h2>怎么玩</h2><ol><li>输入名字，随机发一张白面朝上的已知卡，以及一张黑色事件卡。</li><li>点击时间轴上的「＋」：左边更早，右边更晚，也可以插入两张卡之间。</li><li>系统揭晓年份并记录正误，将卡片归入正确位置。同年相邻都算正确。点击已揭晓的图片可以放大阅读。</li><li>至少回答 10 张才可结束，不包含初始的已知卡。第 10 张之后仍可继续，最多回答 283 张，每局不重复抽卡。</li></ol>
-      <h2>分数与分享</h2><p>正确率 = 答对 ÷ 已作答。初始卡和未回答的卡不计分。「已出现」包含初始卡和当前卡，答错也可以继续。</p><p>结束后生成一张成绩卡，包含姓名、正确率、答题数、结束时间和游戏二维码，可以保存为图片或分享。没有排行榜，每局都有自己的成绩卡。</p><p>当前进度保存在浏览器里，不上传服务器。刷新可以继续，换浏览器或清除网站数据后无法恢复。</p>
+      <h2>分数与分享</h2><p>正确率 = 答对 ÷ 已作答。初始卡和未回答的卡不计分，答错也可以继续。</p><p>结束后生成一张成绩卡，包含姓名、正确率、答题数、结束时间和游戏二维码，可以保存为图片或分享。没有排行榜，每局都有自己的成绩卡。</p><p>当前进度保存在浏览器里，不上传服务器。刷新可以继续，换浏览器或清除网站数据后无法恢复。</p>
     </section>
   </main>
   <footer class="site-footer"><span><a href="https://calculatingempires.net/" target="_blank" rel="noopener">Calculating Empires</a> · Kate Crawford &amp; Vladan Joler</span><span>个人娱乐 · 非商业用途 · <a href="../#projects">主页</a></span></footer>

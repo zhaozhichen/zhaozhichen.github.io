@@ -1,6 +1,8 @@
 # Pickleball Court Time
 
-A static Open Play calendar for CityPickle Times Square, Gotham Long Island City, PB Club Jersey City, Pickleball Kingdom Watchung, and Game On Plainfield.
+A static Open Play calendar for CityPickle Times Square, Gotham Long Island City, Gotham Hunters Point, PB Club Jersey City, Pickleball Kingdom Watchung, and Game On Plainfield.
+
+Gotham's branches have separate filters, calendar labels, and source results: Long Island City at 5-25 46th Ave, and Hunters Point at 52-37 2nd St. Hunters Point includes both indoor and outdoor pickleball pods. Events are checked against each branch's own pod IDs before display.
 
 Live at https://zhaozhichen.github.io/pickleball-court-time/
 
@@ -19,6 +21,7 @@ Node.js 22+:
 ```sh
 npm install
 npm run typecheck
+npm test
 npm run build
 ```
 

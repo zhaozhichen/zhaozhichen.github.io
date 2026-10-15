@@ -1,4 +1,5 @@
 import { getAvailability } from './data';
+import { PREFERENCES_VERSION, restoreSelectedVenues } from './preferences';
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { CalendarDays, ChevronLeft, ChevronRight, RefreshCw, ArrowUpRight, Check, X, SlidersHorizontal, MapPin, Clock3, Users, CircleHelp, List, LayoutGrid, Info, LoaderCircle, ExternalLink, AlertCircle } from 'lucide-react';
 import { VENUES, type Slot, type Availability, localDate, addDays, dateLabel, monday, minutes, clock, TIMEZONE } from './courts';
@@ -24,8 +25,8 @@ export default function Home() {
  const [results,setResults]=useState<Availability[]>([]);const [loading,setLoading]=useState(true);const [loadedAt,setLoadedAt]=useState('');const [loadError,setLoadError]=useState('');
  const [activeSlot,setActiveSlot]=useState<Slot|null>(null);const [sources,setSources]=useState(false);const [mobileFilters,setMobileFilters]=useState(false);
  const [reload,setReload]=useState(0);const dialog=useRef<HTMLDialogElement>(null);const requestId=useRef(0);const cache=useRef(new Map<string,{time:number;results:Availability[]}>());
- useEffect(()=>{const d=localDate();setToday(d);setDate(d);try{const prefs=JSON.parse(localStorage.getItem('court-time-prefs')||'{}');if(Array.isArray(prefs.selected))setSelected(prefs.selected.filter((id:string)=>VENUES.some(v=>v.id===id)));if(['week','day','list'].includes(prefs.view))setView(prefs.view);}catch{}},[]);
- useEffect(()=>{if(today)try{localStorage.setItem('court-time-prefs',JSON.stringify({selected,view}));}catch{}},[selected,view,today]);
+ useEffect(()=>{const d=localDate();setToday(d);setDate(d);try{const prefs=JSON.parse(localStorage.getItem('court-time-prefs')||'{}');setSelected(restoreSelectedVenues(prefs));if(['week','day','list'].includes(prefs.view))setView(prefs.view);}catch{}},[]);
+ useEffect(()=>{if(today)try{localStorage.setItem('court-time-prefs',JSON.stringify({selected,view,version:PREFERENCES_VERSION}));}catch{}},[selected,view,today]);
  const dates=useMemo(()=>date?Array.from({length:view==='week'?7:1},(_,i)=>addDays(date,i)):[],[date,view]);
  const dateKey=dates.join(',');
  useEffect(()=>{if(!dates.length)return;const controller=new AbortController();const id=++requestId.current;setLoading(true);setLoadError('');setResults([]);
@@ -75,7 +76,7 @@ export default function Home() {
   {view==='day'&&<><div className="day-heading"><strong>{date&&dateLabel(date,{month:'long',day:'numeric',weekday:'long'})}</strong><span>{date===today?'今天':'按场馆对比'}</span></div><div className="venue-day-scroll" tabIndex={0} aria-label="按场馆浏览当天场次" role="region"><div className="venue-day-grid" style={{gridTemplateColumns:`repeat(${visibleVenues.length},minmax(175px,1fr))`}}>{visibleVenues.map(v=>{const venueSlots=slots.filter(s=>s.venueId===v.id);const row=results.find(r=>r.date===date&&r.venueId===v.id);return <section className="venue-day-column" key={v.id}><div className="timegrid-venue"><VenueDot id={v.id}/><strong>{v.short}</strong><small>{v.name}</small></div><div className="venue-day-events">{venueSlots.map(s=><EventCard key={s.id} s={s}/>)}{!venueSlots.length&&<div className="lane-empty">{loading&&!row?'正在读取…':row&&!['available','empty'].includes(row.status)?STATUS[row.status]:'暂无匹配场次'}</div>}</div></section>})}</div></div></>}
   {view==='list'&&<div className="agenda"><div className="agenda-date">{date&&dateLabel(date,{month:'long',day:'numeric',weekday:'long'})}</div>{slots.length?slots.map(s=>{const v=byVenue(s.venueId);return <button key={s.id} className="agenda-row" onClick={()=>setActiveSlot(s)}><div className="agenda-time"><strong>{s.start}</strong><small>{displayEnd(s.end)}</small></div><div className="agenda-detail"><span><VenueDot id={v.id}/>{v.short}</span><strong>{s.title||'Open Play'}</strong><small>{s.level||'水平要求请查看场次详情'}</small></div><span className={`seats ${s.available?'':'sold-out'}`}>{seatLabel(s)}</span><b className="agenda-price">{s.price!==undefined?`$${s.price}`:'—'}</b><ArrowUpRight size={17}/></button>}):<div className="empty-state"><CalendarDays size={32}/><h3>{loading?'正在找场次':'这一天还没有匹配的场次'}</h3><p>试试其他日期，或放宽时段与水平筛选。</p></div>}</div>}
   </>}
-  <footer className="calendar-footer"><div className="legend">{visibleVenues.map(v=><span key={v.id}><VenueDot id={v.id}/>{v.brand}</span>)}</div><span>全部时间为纽约当地时间</span></footer>
+  <footer className="calendar-footer"><div className="legend">{visibleVenues.map(v=><span key={v.id}><VenueDot id={v.id}/>{v.short}</span>)}</div><span>全部时间为纽约当地时间</span></footer>
  </section>
  <div className="bottom-note"><span><Info size={14}/>按普通访客显示。名额、会员优惠及报名资格以官方页面为准。</span><button onClick={()=>setSources(true)}>{loadedVenueIds.size}/{VENUES.length} 个场馆已读取<ArrowUpRight size={13}/></button></div>
  </div></main>

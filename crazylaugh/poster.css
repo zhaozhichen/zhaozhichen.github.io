@@ -43,3 +43,18 @@ h1,h2,h3,.brand{font-weight:900}button{background:#fff2d9;border:2px solid var(-
 .matrix .cell:hover{background:#ffc354}
 .matrix .cell.silent:hover{background:#a3d65f}
 .matrix .cell.tie:hover{background:#e5ce89}
+
+/* One matrix, four relevant columns. */
+.matrix .corner,.matrix tbody th{width:20%}
+.matrix thead th:not(.corner){width:20%}
+.axis-button{font-size:12px;min-height:60px;padding:9px}
+.cell{font-size:11px;padding:9px}
+.formula-line{font-size:11px}.formula-line strong{font-size:12px}
+.cell-heading{font-size:12px}.cell-heading em{font-size:10px}
+.cell-totals{font-size:11px}
+@media(max-width:720px){
+.matrix .corner,.matrix tbody th{width:20%}
+.axis-button{font-size:9px;padding:5px 3px;min-height:65px}
+.cell{padding:6px 3px}.cell-heading{font-size:10px}
+.cell-totals{font-size:9px}
+}

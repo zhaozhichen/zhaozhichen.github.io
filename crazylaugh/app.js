@@ -10,7 +10,7 @@ const preferenceLabel=x=>Math.abs(x)<1e-8?'两者持平':x>0?'告诉更优':'不
 const groups=[['ta的收益与成本',p=>p.owner==='ta'&&p.action==='告诉'],['ta在沉默中的损失',p=>p.owner==='ta'&&p.action==='不告诉'],['我的收益与成本',p=>p.owner==='我']];
 $('#sliders').innerHTML=groups.map(([title,predicate])=>`<h3 class="parameter-group">${title}</h3>${M.parameters.filter(predicate).map(p=>`<div class="parameter"><div class="parameter-top"><span class="symbol">${p.key}</span><label for="param-${p.key}" title="${p.description}">${p.label}</label><output id="output-${p.key}" for="param-${p.key}">${p.value}</output></div><input id="param-${p.key}" type="range" min="0" max="10" step="0.5" value="${p.value}" aria-describedby="desc-${p.key}"><p id="desc-${p.key}" class="description">${p.action} · ${p.description}</p></div>`).join('')}`).join('');
 document.querySelector('.parameters').id='parameters';
-document.querySelector('.selection').insertAdjacentHTML('beforebegin','<a class="mobile-parameters" href="#parameters">调节14项收益与成本 ↓</a>');
+document.querySelector('.selection').insertAdjacentHTML('beforebegin','<a class="mobile-parameters" href="#parameters">调节12项收益与成本 ↓</a>');
 const visibleCols=[0,2,4,6];
 for(const [selector,labels,indices] of [['#row-filter',M.rows,M.rows.map((_,i)=>i)],['#col-filter',M.cols,visibleCols]]){
   $(selector).insertAdjacentHTML('beforeend',indices.map(i=>`<option value="${i}">${labels[i]}</option>`).join(''));

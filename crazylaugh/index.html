@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffe65b">
+<meta name="description" content="调节14项收益与成本，探索28种知情状态下，告诉或不告诉对朋友、对自己、对双方的影响。">
+<title>告诉，还是不告诉？｜友情计分台</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="poster.css">
+<script defer src="model.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<header class="masthead"><a class="brand" href="#">友情计分台</a></header>
+<div class="layout">
+<aside class="parameters" aria-label="收益与成本参数">
+  <div class="panel-heading"><div><h2>你的价值刻度</h2></div><button id="reset" class="text-button">恢复默认</button></div>
+  <div id="sliders"></div>
+  <button id="zero" class="secondary full">全部设为0</button>
+</aside>
+<main>
+<section class="intro"><div><p class="prompt">发现好友对象有情况</p><h1>告诉，还是不告诉？</h1></div><div class="intro-mark" aria-hidden="true"><span>说？</span><span>不说。</span></div></section>
+<section class="selection" aria-labelledby="selection-title">
+  <div class="section-heading"><h2 id="selection-title">先选你所处的情况</h2><button id="clear" class="text-button">重置为全部28种</button></div>
+  <div class="scope-buttons" role="group" aria-label="一阶信息筛选">
+    <button data-scope="all" aria-pressed="true">全部28种</button>
+    <button data-scope="A" aria-pressed="false">ta已经知道 <span>16种</span></button>
+    <button data-scope="B" aria-pressed="false">ta还不知道 <span>12种</span></button>
+  </div>
+  <div class="filters"><label>我对ta的判断<select id="row-filter"><option value="all">不限定 · 对符合条件的状态取平均</option></select></label><label>ta对我的判断<select id="col-filter"><option value="all">不限定 · 对符合条件的状态取平均</option></select></label></div>
+  <p class="small-note">“不限定”表示我们不掌握更多条件，不等于情形中的当事人“拿不准”。可点击矩阵行列标题筛选一类，或点击有效格子只看一种。</p>
+</section>
+<section id="summary" class="summary" aria-live="polite" aria-atomic="true"></section>
+<div id="detail"></div>
+<div class="matrix-intro"><h2>把所有可能摊开</h2><p><i class="dot tell"></i>告诉更优 <i class="dot silent"></i>不告诉更优 <i class="dot tie"></i>持平 <span class="invalid-legend">划掉＝逻辑不成立</span></p></div>
+<div id="matrices"></div>
+<section class="research" id="research" aria-labelledby="research-title">
+  <div class="research-heading"><span class="research-tag">研究附件</span><h2 id="research-title">为什么会“迁怒信使”？</h2><p>Shooting the Messenger · 2019</p></div>
+  <div class="research-body">
+    <p>Leslie K. John、Hayley Blunden 与 Heidi Liu 在《实验心理学杂志：总论》（<i>Journal of Experimental Psychology: General</i>）发表这项研究，通过 <strong>11 个实验</strong>考察人们为何会反感传递坏消息的无辜者。</p>
+    <ul class="research-findings">
+      <li><strong>无辜，也可能不讨喜。</strong>实验中，坏消息的传递者获得较低的好感评价；这种效应不同于单纯不认同消息内容，也未同样出现在无辜旁观者身上。</li>
+      <li><strong>“为什么会这样？”可能变成“你是不是没安好心？”</strong>研究支持一种解释：坏消息激发寻求解释的需求（意义建构），而对信使恶意动机的错误归因与反感有关。这是部分机制，并非唯一原因。</li>
+      <li><strong>意外的坏消息，反感更强。</strong>消息违背预期时，实验观察到更明显的信使反感。</li>
+      <li><strong>善意可以缓解迁怒。</strong>当接收者知道信使抱有善意时，反感有所减弱；研究因此也提示了如何更好地传递坏消息。</li>
+    </ul>
+    <details class="research-experiments"><summary>展开：11 个实验如何逐步验证</summary>
+      <dl>
+        <dt>实验 1 · 基本效应</dt><dd>预注册实验室实验采用随机抽奖，由无辜信使告知结果。收到坏消息的参与者，对信使的好感评价更低。</dd>
+        <dt>实验 2A、2B · 特异性</dt><dd>分别考察旁观者与信使的差异，以及迁怒效应与接收到不认同信息之间的区别。</dd>
+        <dt>实验 3A、3B · 意义建构</dt><dd>先观察坏消息是否激发寻求解释的需求，再操控这种需求，检验其是否加剧对坏消息信使的反感。</dd>
+        <dt>实验 4 · 意外程度</dt><dd>考察消息是否符合预期；意料之外的坏消息带来更明显的反感。</dd>
+        <dt>实验 5A、5B、5C · 动机归因</dt><dd>检验对信使的反感与错误的恶意动机判断之间的联系。</dd>
+        <dt>实验 6A、6B · 缓解方法</dt><dd>独立于消息好坏操控信使动机信息，为动机归因的因果作用提供证据；善意信息能缓解反感。</dd>
+      </dl>
+    </details>
+    <div class="research-model"><h3>与本计分台的关系</h3><p><strong>M</strong> 对应基本迁怒成本；<strong>J</strong> 是我们为首次告知时可能出现的意外冲击设置的额外成本。<strong>首次得知不等于出乎意料</strong>，可以按实际情境调低 J。</p><p>论文没有测出本页的 0—10 分权重，也没有直接检验“发现好友对象出轨是否该告知”。它为考虑迁怒成本提供依据，不直接证明“不告诉”更好。</p></div>
+    <p class="research-citation">John, L. K., Blunden, H., &amp; Liu, H. (2019). Shooting the messenger. <i>Journal of Experimental Psychology: General, 148</i>(4), 644–666.</p>
+    <div class="research-links"><a href="https://doi.org/10.1037/xge0000586" target="_blank" rel="noopener noreferrer">论文 DOI ↗</a><a href="https://www.hbs.edu/ris/Publication%20Files/John%20et%20al%202019%20-%20Shooting%20the%20Messenger_bed9332f-ac03-4f35-a4dc-3da322cfa112.pdf" target="_blank" rel="noopener noreferrer">哈佛商学院全文 PDF ↗</a></div>
+  </div>
+</section>
+</main></div>
+</body></html>

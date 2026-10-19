@@ -14,6 +14,7 @@
 <div class="layout">
 <aside class="parameters" aria-label="收益与成本参数">
   <div class="panel-heading"><div><h2>你的价值刻度</h2></div><button id="reset" class="text-button">恢复默认</button></div>
+  <p class="small-note">通用参考值 · 非人群实测均值</p>
   <div id="sliders"></div>
   <button id="zero" class="secondary full">全部设为0</button>
 </aside>
@@ -31,6 +32,7 @@
 </section>
 <section id="summary" class="summary" aria-live="polite" aria-atomic="true"></section>
 <div id="detail"></div>
+<details class="baseline-notes"><summary>默认值的依据与适用范围</summary><p>参考情境：消息可靠，确实违背双方的关系约定；告知发生在私下，表达尊重，不要求 ta 立即表态。分值是用于讨论的主观预期影响，不是普通人心理基线的测量结果，也不按“告诉”或“不告诉”获胜来校准。</p><p>量尺参考：0 表示没有额外影响，1—2 表示较小，3—4 表示中等，5—6 表示较大，7—8 表示很大，9—10 表示极大。涉及迁怒、隐瞒被发现等不确定后果的项目，数值包含发生可能性与影响程度，不表示后果必然发生。</p><p>提前准备与自主选择 I=5、延迟知情的具体损失 D=4；新增情感支持 S=3；隐私暴露 H=2、表态压力 R=2、被隐瞒的伤害 L=2、信任收益 T=2、基本迁怒 M=2、信任损失 N=2；失去支持 F=1、额外迁怒 J=1、心理负担 K=1。这些大小关系是透明的建模判断，不是研究得出的精确权重。</p><p>28 种情况等权不代表现实发生率；细分类的数量会影响总体平均。模型还沿用日后会知情、对双方等权相加、仅比较告知与沉默等简化，以及特定情况下省略心理负担的规则。调节权重不能消除这些结构假设，合计分也不能代替当事人的选择。</p></details>
 <div class="matrix-intro"><h2>所有二阶信息</h2><p><i class="dot tell"></i>告诉更优 <i class="dot silent"></i>不告诉更优 <i class="dot tie"></i>持平 <span class="invalid-legend">×＝逻辑不成立</span></p></div>
 <div id="matrices"></div>
 <section class="research" id="research" aria-labelledby="research-title">
@@ -53,7 +55,7 @@
         <dt>实验 6A、6B · 缓解方法</dt><dd>独立于消息好坏操控信使动机信息，为动机归因的因果作用提供证据；善意信息能缓解反感。</dd>
       </dl>
     </details>
-    <div class="research-model"><h3>与本计分台的关系</h3><p><strong>M</strong> 对应基本迁怒成本；<strong>J</strong> 是我们为首次告知时可能出现的意外冲击设置的额外成本。<strong>首次得知不等于出乎意料</strong>，可以按实际情境调低 J。</p><p>论文没有测出本页的 0—10 分权重，也没有直接检验“发现好友对象出轨是否该告知”。它为考虑迁怒成本提供依据，不直接证明“不告诉”更好。</p></div>
+    <div class="research-model"><h3>与本计分台的关系</h3><p><strong>M</strong> 对应基本迁怒成本；<strong>J</strong> 是我们为首次告知时可能出现的意外冲击设置的额外成本。<strong>首次得知不等于出乎意料</strong>，可以按实际情境调低 J。</p><p>论文没有测出本页的 0—10 分权重，也没有直接检验“发现好友对象出轨是否该告知”。它为考虑迁怒成本提供依据，不直接证明任何一种行动更好。</p></div>
     <p class="research-citation">John, L. K., Blunden, H., &amp; Liu, H. (2019). Shooting the messenger. <i>Journal of Experimental Psychology: General, 148</i>(4), 644–666.</p>
     <div class="research-links"><a href="https://doi.org/10.1037/xge0000586" target="_blank" rel="noopener noreferrer">论文 DOI ↗</a><a href="https://www.hbs.edu/ris/Publication%20Files/John%20et%20al%202019%20-%20Shooting%20the%20Messenger_bed9332f-ac03-4f35-a4dc-3da322cfa112.pdf" target="_blank" rel="noopener noreferrer">哈佛商学院全文 PDF ↗</a></div>
   </div>

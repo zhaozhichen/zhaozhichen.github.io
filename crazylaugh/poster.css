@@ -58,3 +58,5 @@ h1,h2,h3,.brand{font-weight:900}button{background:#fff2d9;border:2px solid var(-
 .cell{padding:6px 3px}.cell-heading{font-size:10px}
 .cell-totals{font-size:9px}
 }
+
+.baseline-notes{margin:22px 0;padding:15px 18px;background:#ffebcf;border:2px solid #10100c;border-radius:10px;line-height:1.8}.baseline-notes summary{font-weight:800;font-size:14px}.baseline-notes p{font-size:13px;margin-top:12px;color:#625744}
